@@ -1,0 +1,23 @@
+{
+  "name": "basic",
+  "author": "David Ronai <davronai@gmail.com>",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.2.x"
+  },
+  "dependencies": {
+    "coffee-script": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-jade": "~0.5.0",
+    "grunt-contrib-coffee": "~0.6.7",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-contrib-stylus": "~0.8.0",
+    "grunt-contrib-imagemin":"~0.3.0"
+  }
+}

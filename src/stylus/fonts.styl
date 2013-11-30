@@ -1,0 +1,70 @@
+@font-face 
+    font-family: "OpenSans-regular"
+    font-style: normal
+    font-weight: normal
+    src: url("/fonts/opensans-regular-webfont.eot?#iefix") format("embedded-opentype"),
+         url("/fonts/opensans-regular-webfont.woff") format("woff"),
+         url("/fonts/opensans-regular-webfont.ttf") format("truetype"),
+         url("/fonts/opensans-regular-webfont.svg#opensans-regular-webfont") format("svg")
+
+@font-face 
+    font-family: "OpenSans-bolditalic"
+    font-style: normal
+    font-weight: normal
+    src: url("/fonts/opensans-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),
+         url("/fonts/opensans-bolditalic-webfont.woff") format("woff"),
+         url("/fonts/opensans-bolditalic-webfont.ttf") format("truetype"),
+         url("/fonts/opensans-bolditalic-webfont.svg#opensans-bolditalic-webfont") format("svg")
+
+@font-face 
+    font-family: "OpenSans-bold"
+    font-style: normal
+    font-weight: normal
+    src: url("/fonts/opensans-bold-webfont.eot?#iefix") format("embedded-opentype"),
+         url("/fonts/opensans-bold-webfont.woff") format("woff"),
+         url("/fonts/opensans-bold-webfont.ttf") format("truetype"),
+         url("/fonts/opensans-bold-webfont.svg#opensans-bold-webfont") format("svg")
+
+@font-face 
+    font-family: "opensans-extrabold"
+    font-style: normal
+    font-weight: normal
+    src: url("/fonts/opensans-extrabold-webfont.eot?#iefix") format("embedded-opentype"),
+         url("/fonts/opensans-extrabold-webfont.woff") format("woff"),
+         url("/fonts/opensans-extrabold-webfont.ttf") format("truetype"),
+         url("/fonts/opensans-extrabold-webfont.svg#opensans-extrabold-webfont") format("svg")
+
+@font-face 
+    font-family: "christmas-tree"
+    font-style: normal
+    font-weight: normal
+    src: url("/fonts/christmas-tree.eot?#iefix") format("embedded-opentype"),
+         url("/fonts/christmas-tree.woff") format("woff"),
+         url("/fonts/christmas-tree.ttf") format("truetype"),
+         url("/fonts/christmas-tree.svg#christmas-tree") format("svg")
+
+[data-icon]:after ,
+[class^="icon-"]:after,
+[class*=" icon-"]:after
+    font-family: "christmas-tree" !important
+    content: attr(data-icon)
+    font-style: normal !important
+    font-weight: normal !important
+    font-variant: normal !important
+    text-transform: none !important
+    speak: none
+    line-height: 1
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+
+[data-icon]:after 
+    content: attr(data-icon)
+
+.icon-home:after
+    content: "a"
+    display block
+    position absolute
+    z-index 1
+    top 50%
+    left 50%
+    margin -10px 0 0 -7px

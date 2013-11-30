@@ -89,7 +89,8 @@ module.exports = function ( grunt ) {
                 },
 				compile : {
 					files : {
-						'./www/css/main.css' : 'src/stylus/**/*.styl'
+						'./www/css/main.css' : ['src/stylus/fonts.styl', 'src/stylus/main.styl' ],
+						'./www/css/experiment.css' : ['src/stylus/fonts.styl', 'src/stylus/experiment.styl' ]
 					}
 				}
             },

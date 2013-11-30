@@ -1,0 +1,35 @@
+@font-face{font-family:"OpenSans-regular";font-style:normal;font-weight:normal;src:url("/fonts/opensans-regular-webfont.eot?#iefix") format("embedded-opentype"),url("/fonts/opensans-regular-webfont.woff") format("woff"),url("/fonts/opensans-regular-webfont.ttf") format("truetype"),url("/fonts/opensans-regular-webfont.svg#opensans-regular-webfont") format("svg")}
+@font-face{font-family:"OpenSans-bolditalic";font-style:normal;font-weight:normal;src:url("/fonts/opensans-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),url("/fonts/opensans-bolditalic-webfont.woff") format("woff"),url("/fonts/opensans-bolditalic-webfont.ttf") format("truetype"),url("/fonts/opensans-bolditalic-webfont.svg#opensans-bolditalic-webfont") format("svg")}
+@font-face{font-family:"OpenSans-bold";font-style:normal;font-weight:normal;src:url("/fonts/opensans-bold-webfont.eot?#iefix") format("embedded-opentype"),url("/fonts/opensans-bold-webfont.woff") format("woff"),url("/fonts/opensans-bold-webfont.ttf") format("truetype"),url("/fonts/opensans-bold-webfont.svg#opensans-bold-webfont") format("svg")}
+@font-face{font-family:"opensans-extrabold";font-style:normal;font-weight:normal;src:url("/fonts/opensans-extrabold-webfont.eot?#iefix") format("embedded-opentype"),url("/fonts/opensans-extrabold-webfont.woff") format("woff"),url("/fonts/opensans-extrabold-webfont.ttf") format("truetype"),url("/fonts/opensans-extrabold-webfont.svg#opensans-extrabold-webfont") format("svg")}
+@font-face{font-family:"christmas-tree";font-style:normal;font-weight:normal;src:url("/fonts/christmas-tree.eot?#iefix") format("embedded-opentype"),url("/fonts/christmas-tree.woff") format("woff"),url("/fonts/christmas-tree.ttf") format("truetype"),url("/fonts/christmas-tree.svg#christmas-tree") format("svg")}
+[data-icon]:after,[class^="icon-"]:after,[class*=" icon-"]:after{font-family:"christmas-tree" !important;content:attr(data-icon);font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+[data-icon]:after{content:attr(data-icon)}
+.icon-home:after{content:"a";display:block;position:absolute;z-index:1;top:50%;left:50%;margin:-10px 0 0 -7px}
+
+*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.blue{color:#5a72cb}
+.red{color:#fe5151}
+.wrapper{width:100%;max-width:1024px;margin:0 auto}
+header{width:100%;height:50px;font-family:"OpenSans-bold";}
+header > div{width:100%;height:50px}
+header .main{background:#fff}
+header .icon-home{color:#5a72cb;width:50px;height:50px;position:relative;text-align:center;line-height:50px;transition:all .3s ease-out 0s;float:left;display:block;text-decoration:none;}
+header .icon-home .background{position:absolute;bottom:0;width:100%;height:5px;background:#5a72cb;transition:all .2s ease-out;z-index:0}
+header .icon-home:hover{color:#fff;transition:all .3s ease-out 0s;}
+header .icon-home:hover .background{height:100%}
+header .date{width:135px;height:50px;float:left;border-left:1px solid rgba(0,0,0,0.2);border-right:1px solid rgba(0,0,0,0.2);padding:0 10px;line-height:50px;}
+header .date .day{float:left;margin:0 10px 0 0;}
+header .date .day .red{margin:0 0 0 5px}
+header .date .more{width:35px;height:35px;border-radius:18px;border:2px solid rgba(90,114,203,0.5);float:right;cursor:pointer;margin:7px 0 0 0;transition:all .15s linear;-webkit-transform-origin:50% 50%;background:url("/img/more-day-btn.png") no-repeat center -30px;}
+header .date .more:hover,header .date .more .active{border:2px solid #5a72cb;background:url("/img/more-day-btn.png") no-repeat center 10px}
+header .date .more .active{background:url("/img/more-day-btn.png") no-repeat center 10px}
+header .desc{width:auto;height:50px;padding:0 0 0 10px;line-height:50px;float:left;}
+header .desc .author{text-transform:uppercase}
+header .calendar{background:#f4f4f4;}
+header .calendar ul{padding:0 0 0 185px;}
+header .calendar ul li{display:block;float:left;text-align:center;width:25px;height:50px;line-height:50px;color:#5a72cb;transition:all .3s linear;position:relative;cursor:pointer;}
+header .calendar ul li:before{id:'test';z-index:0;position:absolute;width:100px;height:100px;left:0;top:0;content:url("/img/calendar-thumbs-holder.jpg");opacity:0;}
+header .calendar ul li:before:hover{opacity:0}
+header .calendar ul li:hover{width:100px;}
+header .calendar ul li:hover:before{opacity:1;transition:all .15s linear}

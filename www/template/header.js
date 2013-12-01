@@ -1,12 +1,25 @@
-var iframe;
+var iframe, resize;
 
 iframe = null;
+
+resize = function() {
+  iframe.width(window.innerWidth);
+  iframe.height(window.innerHeight - 50);
+  return null;
+};
 
 $(function() {
   var _this = this;
   iframe = $('iframe');
-  return $(window).on('resize', function() {
-    iframe.width(window.innerWidth);
-    return iframe.height(window.height - 50);
+  $(window).on('resize', resize);
+  $('.more').on('click', function() {
+    if ($('.calendar').hasClass('show')) {
+      $('.more').removeClass('opened');
+      return $('.calendar').removeClass('show');
+    } else {
+      $('.more').addClass('opened');
+      return $('.calendar').addClass('show');
+    }
   });
+  return resize();
 });

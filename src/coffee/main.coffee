@@ -1,5 +1,7 @@
-main = null
-
+XMAS = 
+	body: null
+	timer: null
+	
 class Main
 
 	stage 			: null
@@ -73,7 +75,7 @@ class Main
 		$("#featured").addClass("stable")
 
 
-$(document).ready ->
+$ ->
 	main = new Main()
 	
 	$(window).blur(()->

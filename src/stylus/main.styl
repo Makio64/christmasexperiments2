@@ -259,35 +259,36 @@ header
                         transition(all 0.35s ease-out)
                         transform(scale(1) )
                         transitionDelay(.225s)
-                        margin-top -38px
+                        margin-top -20px
                         opacity 1
                         transform(perspective(1200px))
-                        line-height 40px
+                        line-height 36px
 
 
         .mask2
-                left auto
-                right 0
+            left auto
+            right 0
 
         .open
-                // transform(perspective(1000px))
-                transition(all 0.6s ease)
-                transitionDelay(0s)
-                transform(scale(.85))
-                opacity 0
-                position absolute
-                top 50%
-                left 50%
-                margin-left -70px
-                margin-top -28px
-                z-index 10
-                background rgba(1, 20, 55, .3)
-                width 140px
-                height 40px
-                font-size 14px
-                color #FFF
-                text-align center
-                line-height 10px
+            // transform(perspective(1000px))
+            transition(all 0.6s ease)
+            transitionDelay(0s)
+            transform(scale(.85))
+            opacity 0
+            position absolute
+            top 50%
+            left 50%
+            margin-left -70px
+            margin-top -10px
+            z-index 10
+            background rgba(1, 20, 55, .3)
+            width 140px
+            height 40px
+            font-size 14px
+            color #FFF
+            text-align center
+            line-height 10px
+            border 2px solid rgba(255, 255, 255, .3)
 
 
 .intro 
@@ -297,19 +298,46 @@ header
     font-size 1.2rem
     font-family "OpenSans-regular"
 
-.artists
+.experiments
     width 100%
-    overflow auto
+    max-width 972px
+    margin 50px auto 0
 
-section.artist
+.experiment
 
-    background #FFF
-    width 22%
+    width 240px
+    height 420px
     color #dd4b39
     text-align center
-    margin 1.5%
+    margin-right 4px
     float left
     position relative
+    cursor pointer
+    overflow hidden
+    opacity 0
+    -webkit-perspective 1000px
+    transition(all 0.5s ease)
+    transformOrigin( 50% 0% )
+    transform( rotateX(-50deg) )
+    -webkit-transform-style: preserve-3d;
+
+    .preview-image 
+        display block
+        position absolute
+        top 0
+        left 0
+        z-index -1
+
+    .overlay 
+        z-index 1
+        position absolute
+        top 0
+        left 0
+        background #011437
+        opacity .6
+        height 100%
+        width 100%
+
 
     .corner
         position absolute
@@ -321,79 +349,178 @@ section.artist
         border-width 45px 0 0 45px
         border-color transparent transparent transparent #f1f1f1
 
-    .number
-        font-weight 300
-        font-size 72px
-        padding-top 40px
-        display block
-        margin auto
-
-    h5
-        display block
-        text-transform uppercase
+    .open
+        // transform(perspective(1000px))
+        transition(all 0.6s ease)
+        transitionDelay(0s)
+        transform(scale(.85))
+        opacity 0
+        position absolute
+        top 50%
+        left 50%
+        margin-left -70px
+        margin-top -10px
+        z-index 10
+        background rgba(1, 20, 55, .3)
+        width 140px
+        height 40px
         font-size 14px
-        font-weight 600
-        letter-spacing 2px
-        padding-top 25px
+        color #FFF
+        text-align center
+        line-height 10px
+        border 2px solid rgba(255, 255, 255, .3)
 
-    .author
-
-        color #dd4b39
-        display block
-        font-size 11px
-        font-weight 600
-        letter-spacing 1px
-        padding-bottom 20px
-
-    .ice 
-        display block
-        margin auto
-        padding-top 20px
-        width 15px
-        height 16px
-
-    .preview
+    .desc 
+        z-index 2
+        width 100%
+        height 420px
+        background #fff
+        text-align center
         position relative
-        height 182px
-        overflow hidden
+        transition(all 0.3s ease .0s)
+        padding-top 117px
 
-        a
-            opacity 0
+        .number
+            color #dd4b39
+            font-weight 300
+            font-size 72px
+            padding 50px 0 0 0
             display block
             margin auto
+            opacity 0
+            transition(all 0.3s ease .2s)
+            position: absolute;
+            width: 100%;
+            top: -5px;
 
-        .img
-            position absolute
-            top 0
-            left 0
-            height 182px
-            width 100%
+        h3
+            color #fe5151
+            display block
+            font-size 14px
+            letter-spacing 2px
+            font-family "OpenSans-regular"
+            margin 40px 0 0 0
+            opacity 0
+            transition(all 0.3s ease .3s)
+            z-index 3
+
+
+            a 
+                color #fe5151
+                display block
+                font-size 11px
+                letter-spacing 1px
+                text-transform uppercase
+                margin 15px 0 0px 0
+                // transition(all 0.3s ease .4s)
+
+        .ice 
+            display block
+            margin 30px auto 0
+            width 15px
+            height 16px
+            opacity 0
+            transition(all 0.3s ease .4s)
+
+        .bottom-triangle
             z-index 2
-
-            &.prev1
-                background url("./../img/01/preview.jpg") no-repeat center center
-
-        .triangle1
-            position absolute
-            top 0
-            left 0
-            z-index 4
             width 0px
             height 0px
             border-style solid
-            border-width 60px 240px 0 0
+            border-width 60px 260px 0 0
             border-color #ffffff transparent transparent transparent
-
-        .mask 
-            z-index 3
             position absolute
-            top 0
-            left 0
+            bottom -60px
+            transform( rotate(15deg) )
+            transformOrigin(0% 0%)
+            transition(all 0.3s ease .1s)
+        
 
-            background #011437
-            opacity .6
-            height 182px
-            width 100%
+    &.show 
+
+        transform( rotateX(0deg) )
+        opacity 1
+
+        .overlay 
+            opacity 0
+
+        .number 
+            padding 40px 0 0 0
+            opacity 1
+
+        h3
+            margin 30px 0 0 0
+            opacity 1
+
+        .ice 
+            margin 20px auto 0
+            opacity 1
+
+        .desc 
+            height 245px
+            transition(all 0.3s ease .1s)
+
+            .bottom-triangle
+                transform( rotate(0deg) ) 
+                transition(all 0.3s ease .0s)
+
+    &:hover 
+
+        transform( rotateX(0deg) )
+        opacity 1
+
+
+        .overlay 
+            opacity 0
+
+        .number 
+            padding 30px 0 0 0
+            margin -10px 0 0 0
+            font-size 20px
+            opacity 1
+            position absolute
+            z-index 3
+            transition(all 0.3s ease 0s)
+
+        h3
+            // margin -90px 0 0 0
+            transition(all 0.3s ease 0s)
+            opacity 0
+
+        .ice 
+            margin 10px auto 0
+            opacity 0
+            transition(all 0.3s ease 0s)
+
+        .desc 
+            height 40px
+            transition(all 0.3s ease .1s)
+            padding 50px 0 0 0
+
+            .bottom-triangle
+                transform( rotate(13deg) ) 
+                transition(all 0.3s ease .0s)
+                bottom 0
+
+        .open
+            transition(all 0.35s ease-out 1s)
+            transform(scale(1) )
+            transitionDelay(.225s)
+            margin-top -20px
+            opacity 1
+            transform(perspective(1200px))
+            line-height 36px
+
+
+    &:nth-child(4n)
+        margin 0
+
+
+    &:nth-child(odd)
+        margin-top 20px
+        margin-bottom -16px
+
+
 
 footer
     margin auto
@@ -414,7 +541,7 @@ footer
             .inner 
                 width 96%
 
-    section.artist
+    .experiment
         width 30%
         margin 1.6%
 
@@ -455,7 +582,7 @@ footer
             display none
 
 
-    section.artist
+    .experiment
         width 96%
         margin 2%
 

@@ -471,10 +471,13 @@ Point = (function() {
 
 })();
 
-var Main, main,
+var Main, XMAS,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-main = null;
+XMAS = {
+  body: null,
+  timer: null
+};
 
 Main = (function() {
   Main.prototype.stage = null;
@@ -546,8 +549,9 @@ Main = (function() {
 
 })();
 
-$(document).ready(function() {
-  var _this = this;
+$(function() {
+  var main,
+    _this = this;
   main = new Main();
   $(window).blur(function() {
     main.pause = true;

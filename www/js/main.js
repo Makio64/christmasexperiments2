@@ -518,11 +518,23 @@ window.XMAS = {
     this.showThumbs();
     return null;
   },
+  initSocial: function() {
+    (function(d, s, id) {
+	          var js, fjs = d.getElementsByTagName(s)[0];
+	          if (d.getElementById(id)) return;
+	          js = d.createElement(s); js.id = id;
+	          js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=220813356385";
+	          fjs.parentNode.insertBefore(js, fjs);
+	        }(document, 'script', 'facebook-jssdk'));;
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');;
+    return null;
+  },
   showThumbs: function(evt) {
     var i, idx, thumb, _i, _ref;
     idx = -1;
     if (_this.XMAS.thumbs.length === 0) {
       $(window).off('scroll');
+      initSocial();
     }
     for (i = _i = 0, _ref = _this.XMAS.thumbs.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
       thumb = _this.XMAS.thumbs[i];
@@ -547,5 +559,13 @@ window.XMAS = {
 
 $(function() {
   XMAS.init();
+  (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=220813356385";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));;
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');;
   return null;
 });

@@ -885,7 +885,6 @@ StartScene = (function(_super) {
     average = this.getAverage(array);
     this.vignette.uniforms["darkness"].value += (average * .2 - this.vignette.uniforms["darkness"].value) * Constant.brightnessEase;
     this.focus.uniforms["waveFactor"].value += (average * Constant.convexRatio - this.focus.uniforms["waveFactor"].value) * Constant.convexEase;
-    this.camera.fov += (45 + average * 2.8 - this.camera.fov) * .65;
     if (average > 0 && this.state === 0) {
       this.state = 1;
       this.hammer.open();
@@ -2007,7 +2006,7 @@ Main = (function() {
     focus.uniforms["waveFactor"].value = 0.001;
     focus.uniforms["sampleDistance"].value = 0.6;
     fxaa = new THREE.ShaderPass(THREE.FXAAShader);
-    fxaa.uniforms["resolution"].value.set(1 / (window.innerWidth / window.devicePixelRatio), 1 / (window.innerHeight / window.devicePixelRatio));
+    fxaa.uniforms["resolution"].value.set(1 / (window.innerWidth / 1), 1 / (window.innerHeight / 1));
     film = new THREE.FilmPass(0.55, 0.015, 648, false);
     this.focus = focus;
     this.film = film;
@@ -2062,7 +2061,7 @@ Main = (function() {
       this.camera.updateProjectionMatrix();
       this.focus.uniforms["screenWidth"].value = window.innerWidth * window.devicePixelRatio;
       this.focus.uniforms["screenHeight"].value = window.innerHeight * window.devicePixelRatio;
-      this.fxaa.uniforms["resolution"].value.set(1 / (window.innerWidth / window.devicePixelRatio), 1 / (window.innerHeight / window.devicePixelRatio));
+      this.fxaa.uniforms["resolution"].value.set(1 / (window.innerWidth / 1), 1 / (window.innerHeight / 1));
     }
   };
 

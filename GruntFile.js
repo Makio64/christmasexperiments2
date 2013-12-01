@@ -75,7 +75,8 @@ module.exports = function ( grunt ) {
 						bare: true
 					},
 					files: {
-						"./www/js/main.js" : coffeesToWatch
+						"./www/js/main.js" : coffeesToWatch,
+						"./www/template/header.js" : 'src/coffee/experiment.coffee'
 					}
 				}
 			},

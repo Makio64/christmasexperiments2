@@ -31,7 +31,7 @@ header .social{float:right;}
 header .social .share,header .social .follow{float:left;width:auto;height:50px;border-left:1px solid rgba(0,0,0,0.2);text-align:center;line-height:58px;padding:0 10px}
 header .social .share{border-right:1px solid rgba(0,0,0,0.2);}
 header .social .share iframe{width:82px !important}
-header .calendar{background:#f4f4f4;}
+header .calendar{background:#f4f4f4;overflow:hidden;}
 header .calendar ul{padding:0 0 0 185px;}
 header .calendar ul li{display:block;float:left;text-align:center;width:25px;height:50px;line-height:50px;color:#5a72cb;transition:all .3s linear;position:relative;cursor:pointer;}
 header .calendar ul li:before{id:'test';z-index:0;position:absolute;width:100px;height:100px;left:0;top:0;content:url("/img/calendar-thumbs-holder.jpg");opacity:0;}

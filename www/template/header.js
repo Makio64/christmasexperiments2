@@ -1,22 +1,12 @@
-var initUI, onClickHandler, openSharer,
-  _this = this;
+var iframe;
 
-initUI = function() {
-  var description;
-  description = document.getElementsByName('description')[0].getAttribute('content');
-  return null;
-};
-
-onClickHandler = function(e) {
-  console.log(e);
-  window.open('https://twitter.com/share?url=http://google.com');
-  return null;
-};
-
-openSharer = function() {
-  return null;
-};
+iframe = null;
 
 $(function() {
-  return initUI();
+  var _this = this;
+  iframe = $('iframe');
+  return $(window).on('resize', function() {
+    iframe.width(window.innerWidth);
+    return iframe.height(window.height - 50);
+  });
 });

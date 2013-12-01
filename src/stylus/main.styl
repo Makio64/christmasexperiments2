@@ -1,510 +1,463 @@
+redColor = #fe5151
+blueColor = #5a72cb
+
 // Macro
 transform()
-	-webkit-transform: arguments
-	-moz-transform: arguments
-	-o-transform: arguments
-	-ms-transform: arguments
-	transform: arguments
+    -webkit-transform: arguments
+    -moz-transform: arguments
+    -o-transform: arguments
+    -ms-transform: arguments
+    transform: arguments
 transition()
-	-webkit-transition: arguments
-	-moz-transition: arguments
-	-o-transition: arguments
-	-ms-transition: arguments
-	transition: arguments
+    -webkit-transition: arguments
+    -moz-transition: arguments
+    -o-transition: arguments
+    -ms-transition: arguments
+    transition: arguments
 transitionDelay()
-	-webkit-transition-delay: arguments
-	-moz-transition-delay: arguments
-	-o-transition-delay: arguments
-	-ms-transition-delay: arguments
-	transition-delay: arguments
+    -webkit-transition-delay: arguments
+    -moz-transition-delay: arguments
+    -o-transition-delay: arguments
+    -ms-transition-delay: arguments
+    transition-delay: arguments
 transformOrigin()
-	-webkit-transform-origin: arguments
-	-moz-transform-origin: arguments
-	-o-transform-origin: arguments
-	-ms-transform-origin: arguments
-	transform-origin: arguments
+    -webkit-transform-origin: arguments
+    -moz-transform-origin: arguments
+    -o-transform-origin: arguments
+    -ms-transform-origin: arguments
+    transform-origin: arguments
 
 .blue
-	color #5a72cb
+    color redColor
 
 .red
-	color #fe5151
+    color blueColor
+
+*, *:before, *:after
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
 
 
 // START
 body, html
-	width 100%
-	height 100%
-	min-height 100%
-	min-width 100%
-	font-family: 'Open Sans', sans-serif;
-	font-size: 12px
-	font-weight: 400
-	background #f4f4f4
-
-#main
-	width 100%
-	margin auto
-	position relative
+    width 100%
+    height 100%
+    min-height 100%
+    min-width 100%
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px
+    font-weight: 400
+    background #f4f4f4
 
 header
-	#title
-		opacity 0
-		width 512px
-		height 337px
-		background #FFF
-		position absolute
-		z-index 2
-		top -337px
-		left 0
-		text-align center
+    
+    width 100%
+    height 337px
+    
 
-		transform(perspective(300px) rotateX(-90deg) )
-		transformOrigin 50% 0%
-		&.activate 
-			opacity 1
-			transition(all .6s cubic-bezier(0.200, 0.240, 0.230, 1.250))
-			transitionDelay(.1s)
-			// transition(all 1s cubic-bezier(0.250, 0.460, 0.450, 0.940))
-			// transition(all 1s ease-out)
-			transform(perspective(1000px) rotateX(0deg) )
-			.share
-				opacity 1
+    #title
+        opacity 1
+        width 100%
+        height 337px
+        background #FFF
+        z-index 2
+        top -337px
+        left 0
+        text-align center
+        display table
 
-		a
-			text-decoration none
+        a
+            text-decoration none
 
-		.inner
-			transition(all 0.2s ease)
-			width 502px
-			height 327px
-			margin 5px
-			border 1px solid #f4f4f4
-			background #FFF
+        .inner
+            transition(all 0.2s ease)
+            width 100%
+            max-width 502px
+            height 327px
+            margin 5px
+            border 1px solid #f4f4f4
+            background #FFF
+            display table-cell
+            vertical-align middle
 
-		.deco
-			text-decoration none
-			margin auto
-			display block
-			width 13px
-			height 21px
-			padding-top 67px
+        .deco
+            text-decoration none
+            margin auto
+            display block
+            width 13px
+            height 21px
 
-		.the
-			text-decoration none
-			padding-top 29px
-			display block
-			font-size 14px
-			color #5a72cb
+        .the
+            text-decoration none
+            padding-top 29px
+            display block
+            font-size 14px
+            color #5a72cb
 
-		.christmas
-			text-decoration none
-			display block
-			font-size 36px
-			font-weight 800
-			color #fe5151
-			text-transform uppercase
-			letter-spacing 6px
-			margin-top -2px
+        .christmas
+            text-decoration none
+            display block
+            font-size 36px
+            font-weight 800
+            color #fe5151
+            text-transform uppercase
+            letter-spacing 6px
+            margin-top -2px
 
-		.experiments
-			text-decoration none
-			display block
-			font-size 18px
-			font-weight 800
-			color #5a72cb
-			text-transform uppercase
-			letter-spacing 3px
-			margin-top -2px
+        .experiments
+            text-decoration none
+            display block
+            font-size 18px
+            font-weight 800
+            color #5a72cb
+            text-transform uppercase
+            letter-spacing 3px
+            margin-top -2px
 
-		sub 
-			text-decoration none
-			display block
-			padding-top 25px
-			color #7694c2
-			font-size 14px
-			letter-spacing 2.5px
+        sub 
+            text-decoration none
+            display block
+            padding-top 25px
+            color #7694c2
+            font-size 14px
+            letter-spacing 2.5px
 
-		a.about
-			display block
-			text-transform uppercase
-			text-decoration underline
-			color #5a72cb
-			padding-top 27px
-			letter-spacing 2.4px
+        a.about
+            display block
+            text-transform uppercase
+            text-decoration underline
+            color #5a72cb
+            padding-top 27px
+            letter-spacing 2.4px
 
-		.share
-			opacity 0
-			transition(all .6s ease-out)
-			transitionDelay(2.1s)
-			padding-top 37px
+        .share
+            opacity 1
+            transition(all .6s ease-out)
+            transitionDelay(2.1s)
+            padding-top 37px
 
-		#twitter-widget-0
-			padding-left 5px
+        #twitter-widget-0
+            padding-left 5px
+
+.dayProject
+    
+    width 100%
+    max-width 1024px
+    height 348px
+
+    .left,
+    .right 
+        width 50%
+        height 100%
+        float left
+
+    .left 
+        background redColor
+        display table
+        text-align center
+        color #fff
+
+        .inner 
+
+            width auto
+            height 131px
+            display table-cell
+            vertical-align middle
+
+            .look 
+                text-transform uppercase
+                font-size 1rem
+                font-family "OpenSans-bold"
+                letter-spacing 3px
+
+            a 
+                color #fff 
+                display block
+
+            h2 
+                font-family "OpenSans-bold"
+                font-size 1.9rem
+                letter-spacing 3px
+                margin 15px 0
+
+            .author 
+                font-family "OpenSans-italic"
+                margin 0 0 5px 0
+
+                a 
+                    margin 10px 0
+                    font-family "OpenSans-bold"
+                    text-transform uppercase
+
+    .right
+        opacity 1
+        overflow hidden
+        cursor pointer
+        position relative
+
+        .content
+                background url("./../img/01/featured.jpg") no-repeat center center
+                background-size auto auto
+                height 100%
+                width 100%
+                position relative
+                transition(all 0.8s ease-out)
+
+                .day
+                    transition(all 0.4s ease)
+                    position absolute
+                    top 50%
+                    left 50%
+                    margin-left -38px
+                    margin-top -35px
+                    z-index 10
+                    background #FFF
+                    // margin auto
+                    // margin-top 135px
+                    width 70px
+                    height 70px
+                    padding-top 19px
+                    font-size 30px
+                    color #dd4b39
+                    border-bottom 5px solid #dd4b39
+                    text-align center
+                    transitionDelay(.4s)
+
+        
+
+        .mask
+                position absolute
+                top 0 
+                left 0
+                opacity .3
+                background #011437
+                width 50%
+                min-height 100%
+                height 100%
+                z-index 8
+                left 0
+                transition(all 0.8s ease-out)
+                transform(perspective(300px) rotateX(0deg) rotateY(0deg) rotateZ(0deg))
+
+        &:hover
+                .content
+                        transform(scale(1.2))
+                .mask
+                        left -50%
+                        transform(perspective(300px) rotateX(0deg) rotateY(90deg) rotateZ(0deg))
+                .mask2
+                        left auto
+                        right -50%
+                        transform(perspective(300px) rotateX(0deg) rotateY(-90deg) rotateZ(0deg))
+                .day
+                        transitionDelay(0s)
+                        opacity 0
+                        transform( scale(1.3) )
+                .open
+                        transition(all 0.35s ease-out)
+                        transform(scale(1) )
+                        transitionDelay(.225s)
+                        margin-top -38px
+                        opacity 1
+                        transform(perspective(1200px))
+                        line-height 40px
 
 
-	#featured
-		opacity 0
-		height 337px
-		width 100%
-		// background-size 100% auto
-		z-index 1
-		position absolute
-		top -337px
-		right 0
-		overflow hidden
-		cursor pointer
+        .mask2
+                left auto
+                right 0
 
-		.content
-			background url("./../img/01/featured.jpg") no-repeat center center
-			background-size auto auto
-			height 337px
-			width 100%
-			position relative
-
-		.mask
-			position absolute
-			top 0 
-			left 0
-			opacity .3
-			background #011437
-			width 50%
-			min-height 100%
-			height 100%
-			z-index 8
-			left 0
-			transition(all 0.8s ease-out)
-			transform(perspective(300px) rotateX(0deg) rotateY(0deg) rotateZ(0deg))
-
-		&:hover
-			.content
-				transform(scale(1.2))
-			.mask
-				left -50%
-				transform(perspective(300px) rotateX(0deg) rotateY(90deg) rotateZ(0deg))
-			.mask2
-				left auto
-				right -50%
-				transform(perspective(300px) rotateX(0deg) rotateY(-90deg) rotateZ(0deg))
-			#currentday
-				transitionDelay(0s)
-				opacity 0
-			.open
-				transition(all 0.35s ease-out)
-				transform(scale(1) )
-				transitionDelay(.225s)
-				padding-top 22px
-				margin-top -38px
-				opacity 1
-				transform(perspective(1200px))
+        .open
+                // transform(perspective(1000px))
+                transition(all 0.6s ease)
+                transitionDelay(0s)
+                transform(scale(.85))
+                opacity 0
+                position absolute
+                top 50%
+                left 50%
+                margin-left -70px
+                margin-top -28px
+                z-index 10
+                background rgba(1, 20, 55, .3)
+                width 140px
+                height 40px
+                font-size 14px
+                color #FFF
+                text-align center
+                line-height 10px
 
 
-		.mask2
-			left auto
-			right 0
-
-		.open
-			// transform(perspective(1000px))
-			transition(all 0.6s ease)
-			transitionDelay(0s)
-			transform(scale(.85))
-			opacity 0
-			position absolute
-			top 50%
-			left 50%
-			margin-left -70px
-			margin-top -28px
-			z-index 10
-			background rgba(1, 20, 55, .3)
-			width 140px
-			height 40px
-			padding-top 22px
-			font-size 14px
-			color #FFF
-			text-align center
-
-		#currentday
-			transition(all 0.4s ease)
-			position absolute
-			top 50%
-			left 50%
-			margin-left -38px
-			margin-top -35px
-			z-index 10
-			background #FFF
-			// margin auto
-			// margin-top 135px
-			width 70px
-			height 46px
-			padding-top 19px
-			font-size 30px
-			color #dd4b39
-			border-bottom 5px solid #dd4b39
-			text-align center
-			transitionDelay(.4s)
-
-		transform(perspective(300px) rotateX(-90deg) )
-		transformOrigin 50% 0%
-		&.activate 
-			// transition(all 1.00s cubic-bezier(0.200, 0.240, 0.230, 1.250))
-			transition(all .6s cubic-bezier(0.250, 0.460, 0.450, 0.940))
-			// transition(all .6s ease-out)
-			transform(perspective(1000px) rotateX(0deg) )
-			transitionDelay(.2s)
-			opacity 1
-
-			&.stable
-				transition(all .3s ease-out)
-				transitionDelay(0s)
-				transform(perspective(auto) rotateY(auto))
-
-			.content
-				transition(all 0.8s ease)
-
-		
-
-#dayProject
-	height 346px
-	width 100%
-	background #dd4b39
-	text-align center
-	color #FFF
-	text
-	margin auto
-	margin-top 337px
-	opacity 0
-	width 100%
-	transform(perspective(300px) rotateX(-90deg))
-	transformOrigin 50% 0%
-	&.activate 
-		opacity 1
-		transition(all .75s cubic-bezier(0.200, 0.240, 0.230, 1.250))
-		// transition(all 1.1s cubic-bezier(0.980, 1.560, 0.650, 0.855))
-		transform(perspective(900px) rotateX(0deg))
-		transitionDelay(1s)
-		&.stable
-			transition(all .3s ease-out)
-			transitionDelay(0s)
-	a
-		color #FFF
-
-	.look
-		padding-top 103px
-		display block
-		text-transform uppercase
-		letter-spacing 2.5px
-		font-weight 600
-
-	.dayproject
-		padding-top 3px
-		display block
-		text-transform uppercase
-		letter-spacing 2.5px
-		font-weight 600
-
-	h3
-		padding-top 15px
-		font-size 36px
-		font-weight 800
-		letter-spacing 7px
-
-	.by
-		padding-top 2px
-		font-style italic
-		display block
-
-	.author
-		padding-top 9px
-		display block
-		text-transform uppercase
-		letter-spacing 2.4px
-		font-weight 600
-		padding-bottom 6px
-
-	.discover
-		padding-top 42px
-		display block
-		color #ff7979
-		letter-spacing 4.1px
-		text-decoration none
-
-	.arrow 
-		padding-top 6px
-		display block
-
-h4
-	padding-top 40px
-	display block
-	margin auto
-	text-align center
-	font-size 14px
-	color #7694c2
-	letter-spacing -.3px
+.intro 
+    color blueColor
+    text-align center
+    margin 30px 0
+    font-size 1.2rem
+    font-family "OpenSans-regular"
 
 .artists
-	width 100%
-	overflow auto
-	padding-top 12px
+    width 100%
+    overflow auto
 
 section.artist
 
-	background #FFF
-	width 22%
-	color #dd4b39
-	text-align center
-	margin 1.5%
-	float left
-	position relative
+    background #FFF
+    width 22%
+    color #dd4b39
+    text-align center
+    margin 1.5%
+    float left
+    position relative
 
-	.corner
-		position absolute
-		top 0 
-		right 0
-		width 0px
-		height 0px
-		border-style solid
-		border-width 45px 0 0 45px
-		border-color transparent transparent transparent #f1f1f1
+    .corner
+        position absolute
+        top 0 
+        right 0
+        width 0px
+        height 0px
+        border-style solid
+        border-width 45px 0 0 45px
+        border-color transparent transparent transparent #f1f1f1
 
-	.number
-		font-weight 300
-		font-size 72px
-		padding-top 40px
-		display block
-		margin auto
+    .number
+        font-weight 300
+        font-size 72px
+        padding-top 40px
+        display block
+        margin auto
 
-	h5
-		display block
-		text-transform uppercase
-		font-size 14px
-		font-weight 600
-		letter-spacing 2px
-		padding-top 25px
+    h5
+        display block
+        text-transform uppercase
+        font-size 14px
+        font-weight 600
+        letter-spacing 2px
+        padding-top 25px
 
-	.author
+    .author
 
-		color #dd4b39
-		display block
-		font-size 11px
-		font-weight 600
-		letter-spacing 1px
-		padding-bottom 20px
+        color #dd4b39
+        display block
+        font-size 11px
+        font-weight 600
+        letter-spacing 1px
+        padding-bottom 20px
 
-	.ice 
-		display block
-		margin auto
-		padding-top 20px
-		width 15px
-		height 16px
+    .ice 
+        display block
+        margin auto
+        padding-top 20px
+        width 15px
+        height 16px
 
-	.preview
-		position relative
-		height 182px
-		overflow hidden
+    .preview
+        position relative
+        height 182px
+        overflow hidden
 
-		a
-			opacity 0
-			display block
-			margin auto
+        a
+            opacity 0
+            display block
+            margin auto
 
-		.img
-			position absolute
-			top 0
-			left 0
-			height 182px
-			width 100%
-			z-index 2
+        .img
+            position absolute
+            top 0
+            left 0
+            height 182px
+            width 100%
+            z-index 2
 
-			&.prev1
-				background url("./../img/01/preview.jpg") no-repeat center center
+            &.prev1
+                background url("./../img/01/preview.jpg") no-repeat center center
 
-		.triangle1
-			position absolute
-			top 0
-			left 0
-			z-index 4
-			width 0px
-			height 0px
-			border-style solid
-			border-width 60px 240px 0 0
-			border-color #ffffff transparent transparent transparent
+        .triangle1
+            position absolute
+            top 0
+            left 0
+            z-index 4
+            width 0px
+            height 0px
+            border-style solid
+            border-width 60px 240px 0 0
+            border-color #ffffff transparent transparent transparent
 
-		.mask 
-			z-index 3
-			position absolute
-			top 0
-			left 0
+        .mask 
+            z-index 3
+            position absolute
+            top 0
+            left 0
 
-			background #011437
-			opacity .6
-			height 182px
-			width 100%
+            background #011437
+            opacity .6
+            height 182px
+            width 100%
 
 footer
-	margin auto
-	text-align center
+    margin auto
+    text-align center
 
-	.share
-		padding 30px 0
+    .share
+        padding 30px 0
 
-		.fb_iframe_widget
-			margin-right 5px
+        .fb_iframe_widget
+            margin-right 5px
 
 
 @media screen and (max-width:900px)
-	
-	header
-		#title
-			width 50%
+    
+    header
+        #title
 
-			.inner 
-				width 96%
+            .inner 
+                width 96%
 
-	section.artist
-		width 30%
-		margin 1.6%
+    section.artist
+        width 30%
+        margin 1.6%
 
 @media screen and (max-width:630px)
-	header
-		height 200px
-		#featured
-			display none
+    header
+        height 200px
+        #featured
+            display none
 
-		#title
-			width 100%
-			height 200px
-			.inner 
-				height 200px
-				width 100%
-				border none
+        #title
+            width 100%
+            height 200px
+            .inner 
+                height 200px
+                width 100%
+                border none
 
-				.the
-					padding-top 10px
+                .the
+                    padding-top 10px
 
-			.deco
-				padding-top 20px
-			// 	display none
-			sub
-				display none
+            .deco
+                padding-top 20px
+            //  display none
+            sub
+                display none
 
-			a.about 
-				display none
+            a.about 
+                display none
 
-	#dayProject
-		margin-top 0
-		height 270px
-		.look 
-			padding-top 50px
-		.arrow 
-			display none
-		.discover
-			display none
+    #dayProject
+        margin-top 0
+        height 270px
+        .look 
+            padding-top 50px
+        .arrow 
+            display none
+        .discover
+            display none
 
 
-	section.artist
-		width 96%
-		margin 2%
+    section.artist
+        width 96%
+        margin 2%
 
 @media screen and (min-width:1024px)
-	#main
-		width 1024px
+    #main
+        width 1024px

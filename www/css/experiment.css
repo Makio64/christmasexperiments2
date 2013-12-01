@@ -35,9 +35,10 @@ header .social .share iframe{width:82px !important}
 header .calendar{background:#f4f4f4;overflow:hidden;position:absolute;top:0;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-o-transition:all .3s ease;-ms-transition:all .3s ease;transition:all .3s ease;z-index:0;}
 header .calendar ul{padding:0 0 0 185px;}
 header .calendar ul li{display:block;float:left;text-align:center;width:25px;height:50px;line-height:50px;color:#5a72cb;-webkit-transition:all .3s linear;-moz-transition:all .3s linear;-o-transition:all .3s linear;-ms-transition:all .3s linear;transition:all .3s linear;position:relative;cursor:pointer;}
-header .calendar ul li:before{id:'test';z-index:0;position:absolute;width:100px;height:100px;left:0;top:0;content:url("/img/calendar-thumbs-holder.jpg");opacity:0;}
+header .calendar ul li:before{id:'test';z-index:0;position:absolute;width:100px;height:100px;left:0;top:0;content:url("/img/calendar-thumbs-holder.jpg");opacity:0;background:#5a72cb;}
 header .calendar ul li:before:hover{opacity:0}
-header .calendar ul li:hover{width:100px;}
-header .calendar ul li:hover:before{opacity:1;-webkit-transition:all .15s linear;-moz-transition:all .15s linear;-o-transition:all .15s linear;-ms-transition:all .15s linear;transition:all .15s linear}
-header .calendar.show{top:50px}
+header .calendar ul.day-1:before{content:url("./img/01/preview100x50.jpg")}
+header .calendar ul.day-1:hover{width:100px;}
+header .calendar ul.day-1:hover:before{opacity:1;-webkit-transition:all .15s linear;-moz-transition:all .15s linear;-o-transition:all .15s linear;-ms-transition:all .15s linear;transition:all .15s linear}
+header .calendar.show{-webkit-transform:translate(0,50px);-moz-transform:translate(0,50px);-o-transform:translate(0,50px);-ms-transform:translate(0,50px);transform:translate(0,50px)}
 iframe{padding:0;margin:0}

@@ -1,3 +1,10 @@
+transform()
+    -webkit-transform: arguments
+    -moz-transform: arguments
+    -o-transform: arguments
+    -ms-transform: arguments
+    transform: arguments
+    
 transition()
     -webkit-transition: arguments
     -moz-transition: arguments
@@ -9,6 +16,8 @@ transition()
     -webkit-box-sizing: border-box
     -moz-box-sizing: border-box
     box-sizing: border-box
+
+blueColor = #5a72cb
 
 .blue
     color #5a72cb
@@ -167,10 +176,16 @@ header
                     top:0;
                     content: url('/img/calendar-thumbs-holder.jpg');
                     opacity:0
+                    background blueColor
                     
 
                     &:hover
                         opacity:0
+
+            &.day-1
+
+                &:before
+                    content: url('./img/01/preview100x50.jpg');
 
 
 
@@ -182,7 +197,7 @@ header
                         transition all .15s linear
 
         &.show 
-            top 50px
+            transform( translate(0, 50px) )
 
 iframe 
     padding 0

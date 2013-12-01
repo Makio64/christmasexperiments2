@@ -254,7 +254,7 @@ header
                 .day
                         transitionDelay(0s)
                         opacity 0
-                        transform( scale(1.3) )
+                        // transform( scale(1.3) )
                 .open
                         transition(all 0.35s ease-out)
                         transform(scale(1) )
@@ -279,7 +279,7 @@ header
             top 50%
             left 50%
             margin-left -70px
-            margin-top -10px
+            margin-top -30px
             z-index 10
             background rgba(1, 20, 55, .3)
             width 140px
@@ -289,6 +289,7 @@ header
             text-align center
             line-height 10px
             border 2px solid rgba(255, 255, 255, .3)
+            text-transform uppercase
 
 
 .intro 
@@ -303,6 +304,9 @@ section.experiments
     max-width 972px
     margin 50px auto 0
     height 2562px
+    overflow-y hidden
+    overflow-x scroll
+    -webkit-overflow-scrolling-x: touch;
 
 .experiment
 
@@ -322,6 +326,9 @@ section.experiments
     transform( rotateX(-80deg) )
     -webkit-transform-style: preserve-3d;
     background blueColor
+
+    a 
+        text-decoration none
 
     .preview-image 
         display block
@@ -371,6 +378,7 @@ section.experiments
         text-align center
         line-height 10px
         border 2px solid rgba(255, 255, 255, .3)
+        text-transform uppercase
 
     .desc 
         z-index 2
@@ -381,6 +389,7 @@ section.experiments
         position relative
         transition(all 0.3s ease .0s)
         padding-top 117px
+
 
         .number
             color #dd4b39
@@ -400,21 +409,22 @@ section.experiments
             display block
             font-size 14px
             letter-spacing 2px
-            font-family "OpenSans-regular"
+            font-family "OpenSans-bold"
             margin 40px 0 0 0
             opacity 0
             transition(all 0.3s ease .3s)
             z-index 3
 
 
-            a 
-                color #fe5151
-                display block
-                font-size 11px
-                letter-spacing 1px
-                text-transform uppercase
-                margin 15px 0 0px 0
-                // transition(all 0.3s ease .4s)
+        h4
+            font-family "OpenSans-regular"
+            color #fe5151
+            display block
+            font-size 11px
+            letter-spacing 1px
+            text-transform uppercase
+            margin 15px 0 0px 0
+            transition(all 0.3s ease .3s)
 
         .ice 
             display block
@@ -454,12 +464,15 @@ section.experiments
             margin 30px 0 0 0
             opacity 1
 
+        h4
+            opacity 1
+
         .ice 
             margin 20px auto 0
             opacity 1
 
         .desc 
-            height 245px
+            height 225px
             transition(all 0.3s ease .1s)
 
             .bottom-triangle
@@ -484,7 +497,8 @@ section.experiments
             z-index 3
             transition(all 0.3s ease 0s)
 
-        h3
+        h3,
+        h4
             // margin -90px 0 0 0
             transition(all 0.3s ease 0s)
             opacity 0
@@ -537,59 +551,22 @@ footer
             margin-right 5px
 
 
-@media screen and (max-width:900px)
+
+@media screen and (max-width:1023px)
     
-    header
-        #title
+    section.experiments
+        height 420px
+        
+        .inner 
+            width 5860px
+            height auto
 
-            .inner 
-                width 96%
+            .experiment
+                margin 0 4px 0 0 !important
 
-    .experiment
-        width 30%
-        margin 1.6%
-
-@media screen and (max-width:630px)
-    header
-        height 200px
-        #featured
-            display none
-
-        #title
-            width 100%
-            height 200px
-            .inner 
-                height 200px
-                width 100%
-                border none
-
-                .the
-                    padding-top 10px
-
-            .deco
-                padding-top 20px
-            //  display none
-            sub
-                display none
-
-            a.about 
-                display none
-
-    #dayProject
-        margin-top 0
-        height 270px
-        .look 
-            padding-top 50px
-        .arrow 
-            display none
-        .discover
-            display none
-
-
-    .experiment
-        width 96%
-        margin 2%
 
 @media screen and (min-width:1024px)
-    #main
-        width 1024px
+    section.experiments
+
+        .inner 
+            width 100%

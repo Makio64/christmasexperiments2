@@ -30,7 +30,7 @@ window.XMAS =
 		
 		for i in [ 0 ... @.XMAS.thumbs.length ]
 			thumb = @.XMAS.thumbs[i]
-			if ( thumb.offsetTop > document.body.scrollTop  && ( thumb.offsetTop + 420 ) <= document.body.scrollTop + window.innerHeight ) || $('.experiment-24').hasClass 'show'
+			if ( thumb.offsetTop > document.body.scrollTop  && ( thumb.offsetTop + 200 ) <= document.body.scrollTop + window.innerHeight ) || $('.experiment-24').hasClass 'show'
 				$(thumb).addClass 'show' if thumb.className != "experiment show"
 				idx = i
 		

@@ -526,7 +526,7 @@ window.XMAS = {
     }
     for (i = _i = 0, _ref = _this.XMAS.thumbs.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
       thumb = _this.XMAS.thumbs[i];
-      if ((thumb.offsetTop > document.body.scrollTop && (thumb.offsetTop + 420) <= document.body.scrollTop + window.innerHeight) || $('.experiment-24').hasClass('show')) {
+      if ((thumb.offsetTop > document.body.scrollTop && (thumb.offsetTop + 200) <= document.body.scrollTop + window.innerHeight) || $('.experiment-24').hasClass('show')) {
         if (thumb.className !== "experiment show") {
           $(thumb).addClass('show');
         }

@@ -471,98 +471,55 @@ Point = (function() {
 
 })();
 
-var Main, XMAS,
-  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+var _this = this;
 
-XMAS = {
+window.XMAS = {
+  width: 0,
+  height: 0,
   body: null,
-  timer: null
+  thumbs: null,
+  timer: null,
+  init: function() {
+    var _this = this;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    this.body = document.body;
+    this.thumbs = [];
+    $('.experiment').each(function(idx, obj) {
+      return _this.thumbs.push(obj);
+    });
+    this.initEvents();
+    this.showThumbs();
+    return null;
+  },
+  showThumbs: function(evt) {
+    var i, idx, thumb, _i, _ref;
+    idx = -1;
+    if (_this.XMAS.thumbs.length === 0) {
+      $(window).off('scroll');
+    }
+    for (i = _i = 0, _ref = _this.XMAS.thumbs.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      thumb = _this.XMAS.thumbs[i];
+      if ((thumb.offsetTop > document.body.scrollTop && (thumb.offsetTop + 420) <= document.body.scrollTop + window.innerHeight) || $('.experiment-24').hasClass('show')) {
+        if (thumb.className !== "experiment show") {
+          $(thumb).addClass('show');
+        }
+        idx = i;
+      }
+    }
+    if (idx !== -1) {
+      _this.XMAS.thumbs.splice(idx, 1);
+      idx = -1;
+    }
+    return null;
+  },
+  initEvents: function() {
+    $(window).on('scroll', _this.XMAS.showThumbs);
+    return null;
+  }
 };
 
-Main = (function() {
-  Main.prototype.stage = null;
-
-  Main.prototype.renderer = null;
-
-  Main.prototype.dt = 0;
-
-  Main.prototype.lastTime = 0;
-
-  Main.prototype.pause = false;
-
-  function Main() {
-    this.animate = __bind(this.animate, this);
-    this.pause = false;
-    this.lastTime = Date.now();
-    window.focus();
-    this.resize();
-    $("#title").addClass("activate");
-    this.first = true;
-    $("#dayProject").addClass("activate");
-    setTimeout(this.stabilize, 5000);
-    requestAnimationFrame(this.animate);
-    return;
-  }
-
-  Main.prototype.animate = function() {
-    var dt, t;
-    if (this.first) {
-      $("#featured").addClass("activate");
-      this.resize();
-      this.first = false;
-    }
-    if (this.pause) {
-      t = Date.now();
-      dt = t - this.lastTime;
-      this.lastTime = t;
-      return;
-    }
-    requestAnimationFrame(this.animate);
-    t = Date.now();
-    dt = t - this.lastTime;
-    this.lastTime = t;
-  };
-
-  Main.prototype.resize = function() {
-    var h, w, w2;
-    w = window.innerWidth;
-    h = window.innerHeight;
-    if (w > 900) {
-      w2 = w - 522;
-      if (w2 > 713) {
-        $("#featured").css("width", "50%");
-      } else {
-        $("#featured").css("width", w2 + "px");
-      }
-    } else {
-      $("#featured").css("width", Math.ceil(w / 2) + "px");
-    }
-  };
-
-  Main.prototype.stabilize = function() {
-    $("#title").addClass("stable");
-    $("#dayProject").addClass("stable");
-    return $("#featured").addClass("stable");
-  };
-
-  return Main;
-
-})();
-
 $(function() {
-  var main,
-    _this = this;
-  main = new Main();
-  $(window).blur(function() {
-    main.pause = true;
-    return cancelAnimationFrame(main.animate);
-  });
-  $(window).focus(function() {
-    requestAnimationFrame(main.animate);
-    main.lastTime = Date.now();
-    return main.pause = false;
-  });
-  $(window).resize(function() {
-    return main.resize();
-  });
+  XMAS.init();
+  return null;
 });

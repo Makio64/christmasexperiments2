@@ -15,7 +15,7 @@ body,html{width:100%;height:100%;min-height:100%;min-width:100%;font-family:'Ope
 header{width:100%;height:337px;}
 header #title{opacity:1;width:100%;height:337px;background:#fff;z-index:2;top:-337px;left:0;text-align:center;display:table;}
 header #title a{text-decoration:none}
-header #title .inner{-webkit-transition:all .2s ease;-moz-transition:all .2s ease;-o-transition:all .2s ease;-ms-transition:all .2s ease;transition:all .2s ease;width:100%;max-width:502px;height:327px;margin:5px;border:1px solid #f4f4f4;background:#fff;display:table-cell;vertical-align:middle}
+header #title .inner{-webkit-transition:all .2s ease;-moz-transition:all .2s ease;-o-transition:all .2s ease;-ms-transition:all .2s ease;transition:all .2s ease;width:100%;max-width:502px;height:327px;margin:5px auto;border:1px solid #f4f4f4;background:#fff;display:table-cell;vertical-align:middle}
 header #title .deco{text-decoration:none;margin:auto;display:block;width:13px;height:21px}
 header #title .the{text-decoration:none;padding-top:29px;display:block;font-size:14px;color:#5a72cb}
 header #title .christmas{text-decoration:none;display:block;font-size:36px;font-weight:800;color:#fe5151;text-transform:uppercase;letter-spacing:6px;margin-top:-2px}
@@ -24,7 +24,7 @@ header #title sub{text-decoration:none;display:block;padding-top:25px;color:#769
 header #title a.about{display:block;text-transform:uppercase;text-decoration:underline;color:#5a72cb;padding-top:27px;letter-spacing:2.4px}
 header #title .share{opacity:1;-webkit-transition:all .6s ease-out;-moz-transition:all .6s ease-out;-o-transition:all .6s ease-out;-ms-transition:all .6s ease-out;transition:all .6s ease-out;-webkit-transition-delay:2.1s;-moz-transition-delay:2.1s;-o-transition-delay:2.1s;-ms-transition-delay:2.1s;transition-delay:2.1s;padding-top:37px}
 header #title #twitter-widget-0{padding-left:5px}
-.dayProject{width:100%;max-width:1024px;height:348px;}
+.dayProject{width:100%;width:1024px;height:348px;margin:0 auto;}
 .dayProject .left,.dayProject .right{width:50%;height:100%;float:left}
 .dayProject .left{background:#fe5151;display:table;text-align:center;color:#fff;}
 .dayProject .left .inner{width:auto;height:131px;display:table-cell;vertical-align:middle;}

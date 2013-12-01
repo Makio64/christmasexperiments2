@@ -1,95 +1,56 @@
-XMAS = 
+window.XMAS = 
+	width: 0
+	height: 0
 	body: null
+	thumbs: null
 	timer: null
+
+	init: ->
+		@width 	= window.innerWidth
+		@height = window.innerHeight
+		@body 	= document.body
+		@thumbs	= []
+
+		$('.experiment').each (idx, obj ) =>
+			@thumbs.push obj
+
+		@initEvents()
+
+		@showThumbs()
+
+		null
+
 	
-class Main
 
-	stage 			: null
-	renderer 		: null
-	dt 				: 0
-	lastTime 		: 0
-	pause 			: false
+	showThumbs: ( evt ) =>
+		idx = -1
 
-	constructor:()->		
-		@pause = false
-		# @stage = new PIXI.Stage(0xFFFFFF, true)
-		# @renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, null)
-		# @renderer.view.style.display = "block"
-		# @renderer.view.className = "renderer"
-		# SceneTraveler.getInstance().travelTo(new LoadScene(@stage))
-		@lastTime = Date.now()
-
-		# $("#main").append(@renderer.view)
-
-		window.focus()
-		@resize()
-		$("#title").addClass("activate")
-		@first = true
-		$("#dayProject").addClass("activate")
-		setTimeout(@stabilize,5000)
-		requestAnimationFrame( @animate )
-		return
-
-	animate:()=>
-		if @first
-			$("#featured").addClass("activate")
-			@resize()
-			@first = false
-
-		if @pause
-			t = Date.now()
-			dt = t - @lastTime
-			@lastTime = t
-			return
+		if @.XMAS.thumbs.length == 0
+			$( window ).off 'scroll'
 		
-		requestAnimationFrame( @animate )
-		t = Date.now()
-		dt = t - @lastTime
-		@lastTime = t
+		for i in [ 0 ... @.XMAS.thumbs.length ]
+			thumb = @.XMAS.thumbs[i]
+			if ( thumb.offsetTop > document.body.scrollTop  && ( thumb.offsetTop + 420 ) <= document.body.scrollTop + window.innerHeight ) || $('.experiment-24').hasClass 'show'
+				$(thumb).addClass 'show' if thumb.className != "experiment show"
+				idx = i
+		
+		if idx != -1
+			@.XMAS.thumbs.splice(idx,1);
+			idx = -1
 
-		return
+		null
 
-	resize:()->
-		w = window.innerWidth
-		h = window.innerHeight
-		if w > 900
-			w2 = (w - 522)
-			if w2 > 713
-				$("#featured").css("width", "50%");
-				# $("#featured .content").css("backgroundSize", "auto auto")
-			else
-				$("#featured").css("width", w2+"px");
-				# $("#featured .content").css("backgroundSize", "auto auto")
 
-				
-			
-		else 
-			$("#featured").css("width", Math.ceil(w/2)+"px");
-		# @renderer.resize(window.innerWidth,window.innerHeight)
 
-		return
+	initEvents: =>
+		$( window ).on 'scroll', @.XMAS.showThumbs
 
-	stabilize:()->
-		$("#title").addClass("stable")
-		$("#dayProject").addClass("stable")
-		$("#featured").addClass("stable")
-
+		null
 
 $ ->
-	main = new Main()
 	
-	$(window).blur(()->
-		main.pause = true
-		cancelAnimationFrame(main.animate)
-	)
+	XMAS.init()
 
-	$(window).focus(()->
-		requestAnimationFrame( main.animate )
-		main.lastTime = Date.now()
-		main.pause = false
-	)
+	# window.addEventListener
 
-	$(window).resize(()=>
-		main.resize()
-	)
-	return
+	null

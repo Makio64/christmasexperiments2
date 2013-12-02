@@ -2050,11 +2050,11 @@ WinterManagerSingleton = (function() {
       if (this.percent < .1 && percent >= .1) {
         this._notifyGap(.15);
       }
-      if (this.percent < .2 && percent >= .2) {
+      if (this.percent < .15 && percent >= .15) {
         this._notifyGap(.3);
-      } else if (this.percent < .4 && percent >= .4) {
+      } else if (this.percent < .2 && percent >= .2) {
         this._notifyGap(1);
-      } else if (this.percent < .48 && percent >= .5) {
+      } else if (this.percent < .35 && percent >= .35) {
         this._notifyWinter();
       }
       this.percent = percent;

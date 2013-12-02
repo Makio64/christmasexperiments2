@@ -172,17 +172,18 @@ header
                 position relative
                 cursor pointer
 
+                a   
+                    text-decoration none
+                    color blueColor
+
                 &:before
-                    id:'test';
                     z-index: 0;
                     position:absolute;
                     width:100px;
                     height:50px;
                     left:0;
                     top:0;
-                    content: url('/img/calendar-thumbs-holder.jpg');
                     opacity:0
-                    background blueColor
                     
 
                     &:hover
@@ -194,16 +195,20 @@ header
                         content: url('../img/01/preview100x50.jpg');
 
 
-
-                    &:hover 
+                &.activate:hover 
                         width 100px
 
                         &:before
                             opacity:1
                             transition all .15s linear
 
+                &.desactivate 
+                    opacity .3
+
         &.show 
             transform( translate(0, 50px) )
+
+
 
 iframe 
     padding 0

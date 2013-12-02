@@ -143,7 +143,7 @@ header
                 text-align center
 
             iframe 
-                width 82px !important
+                width 60px !important
         .like    
             iframe 
                 width 90px !important
@@ -175,32 +175,35 @@ header
                 a   
                     text-decoration none
                     color blueColor
+                    display block
+                    width 100%
+                    height 100%
 
-                &:before
-                    z-index: 0;
-                    position:absolute;
-                    width:100px;
-                    height:50px;
-                    left:0;
-                    top:0;
-                    opacity:0
-                    
+                    .background 
+                        position absolute
+                        top 0
+                        left 0
+                        opacity 0
+                        width 100%
+                        height 100%
+                        transition all .15s linear
 
-                    &:hover
-                        opacity:0
+
 
                 &.day-1
+                    .background
+                        background url('../img/01/preview100x50.jpg');
 
-                    &:before
-                        content: url('../img/01/preview100x50.jpg');
-
+                &.day-2
+                    .background
+                        background url('../img/02/preview100x50.jpg');
 
                 &.activate:hover 
                         width 100px
 
-                        &:before
+                        .background
                             opacity:1
-                            transition all .15s linear
+                            transition all .3s linear
 
                 &.desactivate 
                     opacity .3

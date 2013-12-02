@@ -1,77 +1,76 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
 
-<!-- 
+    <title>Bring Christmas</title>
 
-    ▒▒▒▒▒
-  ▒▒▒▒▒▒▒▒▒
-  ▓▓▓░░▓░
- ▓░▓░░░▓░░░
- ▓░▓▓░░░▓░░░
- ▓▓░░░░▓▓▓▓
-  ░░░░░░░░
-  ▓▓▒▓▓▓▒▓▓
- ▓▓▓▒▓▓▓▒▓▓▓
-▓▓▓▓▒▒▒▒▒▓▓▓▓
-░░▓▒░▒▒▒░▒▓░░
-░░░▒▒▒▒▒▒▒░░░
-░░▒▒▒▒▒▒▒▒▒░░
-  ▒▒▒   ▒▒▒
- ▓▓▓    ▓▓▓
-▓▓▓▓    ▓▓▓▓ 
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/tradegothic.css">
+    <link rel="stylesheet" href="css/main.css">
 
-Wooohoooooo ! Here we go !
+  </head>
+  <body>
+    <div id="scene"></div>
 
-I apologyze for the code, it s veryyyy bad, change my idea last night !
-
-==============================================================================
-
-Author : David Ronai aka @Makio64 / http://makiopolis.com
-
-Github Source : https://github.com/ipfix/
-
-==============================================================================
-
--->
-
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Christmas Experiments - DAY 1</title>
-        <meta name="description" content="">
-        <meta property="og:title" content=""/>
-        <meta property="og:url" content=""/>
-        <meta property="og:type" content="game"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
-        <script src="./js/vendors/modernizr-2.6.2.min.js"></script>
-    </head>
-    <body>
-        <div id="main">
-            <div id="loading2"></div>
-            <div id="progressbar"></div>
-            <div id="loading"><div class="t1">LOADING</div><div class="t2"> CLICK TO OPEN IT! ^_^</div></div>
-            <div id="slogan">PACK THE FUN, CHRISTMAS IS COMING !</div>
+    <div id="loading">
+      <img id="background_loading" src="img/background_home_blur.jpg" width="2560" height="1412" />
+      <div id="content">
+        <img id="logo" src="img/logo.png" width="800" height="436" />
+        <div id="loading-text">LOADING...</div>
+        <div id="loading-details">...SOME CANDIES FOR YOUR EARS</div>
+        <div id="bts">
+          <a href="#" id="bt_low-def" class="bt">LOW DEF</a>
+          <a href="#" id="bt_high-def" class="bt">HIGH DEF</a>
         </div>
-        <script src="js/plugins.js"></script>
-        <script src="js/vendors/greensock/TweenMax.min.js"></script>
-        <script src="js/vendors/jquery-2.0.3.min.js"></script>
-        <script src="js/vendors/datgui.js"></script>
-        <script src="js/vendors/threejs/three.js"></script>
-        <script src="js/SpiritShader.js"></script>
-        <script src="js/vendors/threejs/shaders/CopyShader.js"></script>
-        <script src="js/vendors/threejs/shaders/VignetteShader.js"></script>
-        <script src="js/vendors/threejs/shaders/FilmShader.js"></script>
-        <script src="js/vendors/threejs/shaders/FocusShader.js"></script>
-        <script src="js/vendors/threejs/shaders/FXAAShader.js"></script>
-        <script src="js/MarioShader.js"></script>
-        <script src="js/vendors/threejs/ColladaLoader.js"></script>
-        <script src="js/vendors/threejs/postprocessing/EffectComposer.js"></script>
-        <script src="js/vendors/threejs/postprocessing/MaskPass.js"></script>
-        <script src="js/vendors/threejs/postprocessing/RenderPass.js"></script>
-        <script src="js/vendors/threejs/postprocessing/FilmPass.js"></script>
-        <script src="js/vendors/threejs/postprocessing/ShaderPass.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+      </div>
+    </div>
+
+    <div id="textures">
+      <img id="texture-noise" class="texture" src="img/map_noise_pow2_blurred_mul2.png" width="512" height="128"/>
+      <img id="texture-height" class="texture" src="img/map_height_mul2.png" width="256" height="128"/>
+      <img id="texture-displacement-r" class="texture" src="img/normal_map_r4_circle.png" width="64" height="64" />
+      <img id="texture-displacement-g" class="texture" src="img/normal_map_g_circle.png" width
+      ="64" height="64" />
+      <img id="texture-displacement-b" class="texture" src="img/normal_map_b_circle.png" width
+      ="64" height="64" />
+      <img id="texture-color" class="texture" src="img/color_winter.png" width
+      ="32" height="32" />
+    </div>
+
+    <div id="maps">
+      <canvas id="map-displacement-r" width="512" height="256"></canvas>
+      <canvas id="map-displacement-g" width="512" height="256"></canvas>
+      <canvas id="map-displacement-b" width="512" height="256"></canvas>
+      <canvas id="map-color" width="512" height="256"></canvas>
+    </div>
+
+    <div id="colors">
+      <img id="color-summer" src="img/colors_summer.png" width="256" height="128" />
+      <img id="color-winter" src="img/colors_winter.png" width="256" height="128" />
+    </div>
+
+    <img id="title_end" src="img/title_end.png" width="531" height="63" />
+
+    <script type="text/javascript" src="js/vendor/RequestAnimationFrame.js"></script>
+    <script type="text/javascript" src="js/vendor/threejs/three.min.js"></script>
+    <script type="text/javascript" src="js/vendor/threejs/plugins/shaders/VignetteShader.js"></script>
+    <script type="text/javascript" src="js/vendor/threejs/plugins/shaders/CopyShader.js"></script>
+    <script type="text/javascript" src="js/vendor/threejs/plugins/shaders/ConvolutionShader.js"></script>
+    <script type="text/javascript" src="js/vendor/threejs/plugins/postprocessing/EffectComposer.js"></script>
+    <script type="text/javascript" src="js/vendor/threejs/plugins/postprocessing/RenderPass.js"></script>
+    <script type="text/javascript" src="js/vendor/threejs/plugins/postprocessing/ShaderPass.js"></script>
+    <script type="text/javascript" src="js/vendor/threejs/plugins/postprocessing/BloomPass.js"></script>
+    <script type="text/javascript" src="js/vendor/threejs/plugins/postprocessing/MaskPass.js"></script>
+    <script type="text/javascript" src="js/vendor/Stats.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vendor/howler.min.js"></script>
+    <script type="text/javascript" src="js/vendor/pxloader/PxLoader.js"></script>
+    <script type="text/javascript" src="js/vendor/pxloader/PxLoaderImage.js"></script>
+    <script type="text/javascript" src="js/vendor/pxloader/PxLoaderSound.js"></script>
+    <script type="text/javascript" src="js/vendor/Utils.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+  </body>
 </html>

@@ -1,0 +1,200 @@
+/* line 5, ../../src/sass/main.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 10, ../../src/sass/main.scss */
+body {
+  background: #fff;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  overflow: hidden;
+  font-family: 'TradeGothic';
+}
+
+/* line 19, ../../src/sass/main.scss */
+#scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* line 28, ../../src/sass/main.scss */
+#textures {
+  display: none;
+}
+
+/* line 32, ../../src/sass/main.scss */
+#maps {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* line 39, ../../src/sass/main.scss */
+#colors {
+  display: none;
+}
+
+/* line 43, ../../src/sass/main.scss */
+#loading {
+  position: absolute;
+  z-index: 1;
+}
+
+/* line 48, ../../src/sass/main.scss */
+#background_loading {
+  position: relative;
+  opacity: 1;
+}
+/* line 51, ../../src/sass/main.scss */
+#background_loading.invisible {
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+  -webkit-transition-delay: 0.5s;
+  -moz-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+  opacity: 0;
+}
+
+/* line 58, ../../src/sass/main.scss */
+#content {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -400px;
+  width: 800px;
+  height: 436px;
+  opacity: 1;
+}
+/* line 67, ../../src/sass/main.scss */
+#content.invisible {
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+  -webkit-transition-delay: 3s;
+  -moz-transition-delay: 3s;
+  -o-transition-delay: 3s;
+  transition-delay: 3s;
+  opacity: 0;
+}
+
+/* line 74, ../../src/sass/main.scss */
+#loading-text {
+  color: #fff;
+  text-align: center;
+  position: relative;
+  margin-top: 20px;
+  font-size: 18px;
+  opacity: 1;
+}
+/* line 82, ../../src/sass/main.scss */
+#loading-text.invisible {
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+  -webkit-transition-delay: 1s;
+  -moz-transition-delay: 1s;
+  -o-transition-delay: 1s;
+  transition-delay: 1s;
+  opacity: 0;
+}
+
+/* line 89, ../../src/sass/main.scss */
+#loading-details {
+  text-align: center;
+  position: relative;
+  margin-top: 5px;
+  color: #fff;
+  font-size: 12px;
+  opacity: 1;
+}
+/* line 97, ../../src/sass/main.scss */
+#loading-details.invisible {
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+  -webkit-transition-delay: 1s;
+  -moz-transition-delay: 1s;
+  -o-transition-delay: 1s;
+  transition-delay: 1s;
+  opacity: 0;
+}
+
+/* line 104, ../../src/sass/main.scss */
+#title_end {
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  margin-left: -265px;
+  opacity: 0;
+}
+/* line 111, ../../src/sass/main.scss */
+#title_end.visible {
+  -webkit-transition: opacity 1s ease-out;
+  -moz-transition: opacity 1s ease-out;
+  -o-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
+  opacity: 1;
+}
+/* line 116, ../../src/sass/main.scss */
+#title_end.invisible {
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+  opacity: 0;
+}
+
+/* line 122, ../../src/sass/main.scss */
+#bts {
+  position: relative;
+  margin-top: 30px;
+  text-align: center;
+  opacity: 0;
+}
+/* line 128, ../../src/sass/main.scss */
+#bts.visible {
+  -webkit-transition: all 2s ease-out;
+  -moz-transition: all 2s ease-out;
+  -o-transition: all 2s ease-out;
+  transition: all 2s ease-out;
+  opacity: 1;
+}
+/* line 133, ../../src/sass/main.scss */
+#bts.invisible {
+  -webkit-transition: all 0.8s ease-out;
+  -moz-transition: all 0.8s ease-out;
+  -o-transition: all 0.8s ease-out;
+  transition: all 0.8s ease-out;
+  opacity: 0;
+}
+
+/* line 139, ../../src/sass/main.scss */
+.bt {
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  padding: 15px 20px 12px 20px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.25);
+  font-size: 16px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+  border-radius: 18px;
+}
+/* line 149, ../../src/sass/main.scss */
+.bt:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}

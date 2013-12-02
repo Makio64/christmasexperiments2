@@ -121,12 +121,13 @@ header
         line-height 50px
         float left
 
-        .author 
-            text-transform uppercase
+        // .author 
+        //     text-transform uppercase
 
     .social 
         float right
 
+        .like,
         .share,
         .follow
             float left
@@ -141,12 +142,13 @@ header
             iframe
                 text-align center
 
-        .share
-            border-right 1px solid rgba(0, 0, 0, .2)
-
             iframe 
                 width 82px !important
-
+        .like    
+            iframe 
+                width 90px !important
+                &.fb_iframe_widget_lift
+                    width 450px !important
     .calendar 
         background #f4f4f4
         overflow hidden

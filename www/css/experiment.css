@@ -16,23 +16,23 @@ body{overflow:hidden}
 header{width:100%;height:50px;font-family:"OpenSans-bold";}
 header > div{width:100%;height:50px}
 header .main{background:#fff;position:absolute;z-index:1}
-header .icon-home{color:#5a72cb;width:50px;height:50px;position:relative;text-align:center;line-height:50px;-webkit-transition:all .3s ease-out 0s;-moz-transition:all .3s ease-out 0s;-o-transition:all .3s ease-out 0s;-ms-transition:all .3s ease-out 0s;transition:all .3s ease-out 0s;float:left;display:block;text-decoration:none;}
+header .icon-home{color:#5a72cb;width:50px;height:50px;position:relative;text-align:center;line-height:50px;-webkit-transition:all .3s ease-out 0;-moz-transition:all .3s ease-out 0;-o-transition:all .3s ease-out 0;-ms-transition:all .3s ease-out 0;transition:all .3s ease-out 0;float:left;display:block;text-decoration:none;}
 header .icon-home .background{position:absolute;bottom:0;width:100%;height:5px;background:#5a72cb;-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;-o-transition:all .2s ease-out;-ms-transition:all .2s ease-out;transition:all .2s ease-out;z-index:0}
-header .icon-home:hover{color:#fff;-webkit-transition:all .3s ease-out 0s;-moz-transition:all .3s ease-out 0s;-o-transition:all .3s ease-out 0s;-ms-transition:all .3s ease-out 0s;transition:all .3s ease-out 0s;}
+header .icon-home:hover{color:#fff;-webkit-transition:all .3s ease-out 0;-moz-transition:all .3s ease-out 0;-o-transition:all .3s ease-out 0;-ms-transition:all .3s ease-out 0;transition:all .3s ease-out 0;}
 header .icon-home:hover .background{height:100%}
 header .date{width:135px;height:50px;float:left;border-left:1px solid rgba(0,0,0,0.2);border-right:1px solid rgba(0,0,0,0.2);padding:0 10px;line-height:50px;}
 header .date .day{float:left;margin:0 10px 0 0;}
 header .date .day .red{margin:0 0 0 5px}
-header .date .more{width:35px;height:35px;border-radius:18px;border:2px solid rgba(90,114,203,0.5);float:right;cursor:pointer;margin:7px 0 0 0;-webkit-transition:all .15s linear;-moz-transition:all .15s linear;-o-transition:all .15s linear;-ms-transition:all .15s linear;transition:all .15s linear;-webkit-transform-origin:50% 50%;background:url("/img/more-day-btn.png") no-repeat center -30px;}
+header .date .more{width:35px;height:35px;border-radius:18px;border:2px solid rgba(90,114,203,0.5);float:right;cursor:pointer;margin:7px 0 0 0;-webkit-transition:all .15s linear;-moz-transition:all .15s linear;-o-transition:all .15s linear;-ms-transition:all .15s linear;transition:all .15s linear;-webkit-transform-origin:50% 50%;background:url("../img/more-day-btn.png") no-repeat center -30px;}
 header .date .more:hover,header .date .more.opened{border:2px solid #5a72cb}
-header .date .more.opened{background:url("/img/more-day-btn.png") no-repeat center 10px}
-header .desc{width:auto;height:50px;padding:0 0 0 10px;line-height:50px;float:left;}
-header .desc .author{text-transform:uppercase}
+header .date .more.opened{background:url("../img/more-day-btn.png") no-repeat center 10px}
+header .desc{width:auto;height:50px;padding:0 0 0 10px;line-height:50px;float:left}
 header .social{float:right;}
-header .social .share,header .social .follow{float:left;width:auto;height:50px;border-left:1px solid rgba(0,0,0,0.2);text-align:-999;line-height:58px;padding:0 10px;}
-header .social .share iframe,header .social .follow iframe{text-align:center}
-header .social .share{border-right:1px solid rgba(0,0,0,0.2);}
-header .social .share iframe{width:82px !important}
+header .social .like,header .social .share,header .social .follow{float:left;width:auto;height:50px;border-left:1px solid rgba(0,0,0,0.2);text-align:-999;line-height:58px;padding:0 10px;}
+header .social .like iframe,header .social .share iframe,header .social .follow iframe{text-align:center}
+header .social .like iframe,header .social .share iframe,header .social .follow iframe{width:82px !important}
+header .social .like iframe{width:90px !important;}
+header .social .like iframe.fb_iframe_widget_lift{width:450px !important}
 header .calendar{background:#f4f4f4;overflow:hidden;position:absolute;top:0;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-o-transition:all .3s ease;-ms-transition:all .3s ease;transition:all .3s ease;z-index:0;}
 header .calendar ul{padding:0 0 0 185px;}
 header .calendar ul li{display:block;float:left;text-align:center;width:25px;height:50px;line-height:50px;color:#5a72cb;-webkit-transition:all .3s linear;-moz-transition:all .3s linear;-o-transition:all .3s linear;-ms-transition:all .3s linear;transition:all .3s linear;position:relative;cursor:pointer;}

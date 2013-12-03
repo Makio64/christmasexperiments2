@@ -24,11 +24,7 @@ header #title sub{text-decoration:none;display:block;padding-top:25px;color:#769
 header #title a.about{display:block;text-transform:uppercase;text-decoration:underline;color:#5a72cb;padding-top:27px;letter-spacing:2.4px}
 header #title .share{opacity:1;-webkit-transition:all .6s ease-out;-moz-transition:all .6s ease-out;-o-transition:all .6s ease-out;-ms-transition:all .6s ease-out;transition:all .6s ease-out;-webkit-transition-delay:2.1s;-moz-transition-delay:2.1s;-o-transition-delay:2.1s;-ms-transition-delay:2.1s;transition-delay:2.1s;padding-top:37px;}
 header #title .share .fb_iframe_widget{margin-right:8px}
-header #title #twitter-widget-0{padding-left:5px;max-width:107px;max-height:20px}
-header #title #twitter-widget-2{max-width:137px;max-height:20px}
-#twitter-widget-3{max-width:80px;max-height:20px}
-#twitter-widget-1{max-width:107px;max-height:20px}
-#twitter-widget-4{max-width:137px;max-height:20px}
+header #title #twitter-widget-0{padding-left:5px}
 .dayProject{width:100%;max-width:1024px;height:348px;margin:0 auto;}
 .dayProject .left,.dayProject .right{width:50%;height:100%;float:left}
 .dayProject .left{background:#dd4b39;display:table;text-align:center;color:#fff;}
@@ -39,7 +35,7 @@ header #title #twitter-widget-2{max-width:137px;max-height:20px}
 .dayProject .left .inner .author{font-family:"OpenSans-italic";margin:0 0 5px 0;}
 .dayProject .left .inner .author a{margin:10px 0;font-family:"OpenSans-bold";text-transform:uppercase}
 .dayProject .right{opacity:1;overflow:hidden;cursor:pointer;position:relative;}
-.dayProject .right .content{background:url("./../img/03/featured.jpg") no-repeat center center;background-size:auto auto;height:100%;width:100%;position:relative;-webkit-transition:all .8s ease-out;-moz-transition:all .8s ease-out;-o-transition:all .8s ease-out;-ms-transition:all .8s ease-out;transition:all .8s ease-out;}
+.dayProject .right .content{background:url("./../img/02/featured.jpg") no-repeat center center;background-size:auto auto;height:100%;width:100%;position:relative;-webkit-transition:all .8s ease-out;-moz-transition:all .8s ease-out;-o-transition:all .8s ease-out;-ms-transition:all .8s ease-out;transition:all .8s ease-out;}
 .dayProject .right .content .day{-webkit-transition:all .4s ease;-moz-transition:all .4s ease;-o-transition:all .4s ease;-ms-transition:all .4s ease;transition:all .4s ease;position:absolute;top:50%;left:50%;margin-left:-38px;margin-top:-35px;z-index:10;background:#fff;width:70px;height:70px;padding-top:19px;font-size:30px;color:#dd4b39;border-bottom:5px solid #dd4b39;text-align:center;-webkit-transition-delay:.4s;-moz-transition-delay:.4s;-o-transition-delay:.4s;-ms-transition-delay:.4s;transition-delay:.4s}
 .dayProject .right .mask{position:absolute;top:0;left:0;opacity:.3;background:#011437;width:50%;min-height:100%;height:100%;z-index:8;left:0;-webkit-transition:all .8s ease-out;-moz-transition:all .8s ease-out;-o-transition:all .8s ease-out;-ms-transition:all .8s ease-out;transition:all .8s ease-out;-webkit-transform:perspective(300px) rotateX(0) rotateY(0) rotateZ(0);-moz-transform:perspective(300px) rotateX(0) rotateY(0) rotateZ(0);-o-transform:perspective(300px) rotateX(0) rotateY(0) rotateZ(0);-ms-transform:perspective(300px) rotateX(0) rotateY(0) rotateZ(0);transform:perspective(300px) rotateX(0) rotateY(0) rotateZ(0)}
 .dayProject .right:hover .content{-webkit-transform:scale(1.2);-moz-transform:scale(1.2);-o-transform:scale(1.2);-ms-transform:scale(1.2);transform:scale(1.2)}
@@ -50,7 +46,7 @@ header #title #twitter-widget-2{max-width:137px;max-height:20px}
 .dayProject .right .mask2{left:auto;right:0}
 .dayProject .right .open{-webkit-transition:all .6s ease;-moz-transition:all .6s ease;-o-transition:all .6s ease;-ms-transition:all .6s ease;transition:all .6s ease;-webkit-transition-delay:0;-moz-transition-delay:0;-o-transition-delay:0;-ms-transition-delay:0;transition-delay:0;-webkit-transform:scale(.85);-moz-transform:scale(.85);-o-transform:scale(.85);-ms-transform:scale(.85);transform:scale(.85);opacity:0;position:absolute;top:50%;left:50%;margin-left:-70px;margin-top:-30px;z-index:10;background:rgba(1,20,55,0.3);width:140px;height:40px;font-size:14px;color:#fff;text-align:center;line-height:10px;border:2px solid rgba(255,255,255,0.3);text-transform:uppercase}
 .intro{color:#5a72cb;text-align:center;margin:30px 0;font-size:1.2rem;font-family:"OpenSans-regular"}
-section.experiments{width:100%;max-width:972px;margin:50px auto 0;height:2562px;overflow-y:hidden;-webkit-overflow-scrolling-x:touch}
+section.experiments{width:100%;max-width:972px;margin:50px auto 0;height:2562px;overflow-y:hidden;overflow-x:scroll;-webkit-overflow-scrolling-x:touch}
 .experiment{width:240px;height:420px;color:#dd4b39;text-align:center;margin-right:4px;float:left;position:relative;overflow:hidden;opacity:0;display:block;-webkit-perspective:1000px;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease;transition:all .5s ease;-webkit-transform-origin:50% 0%;-moz-transform-origin:50% 0%;-o-transform-origin:50% 0%;-ms-transform-origin:50% 0%;transform-origin:50% 0%;-webkit-transform:rotateX(-80deg);-moz-transform:rotateX(-80deg);-o-transform:rotateX(-80deg);-ms-transform:rotateX(-80deg);transform:rotateX(-80deg);-webkit-transform-style:preserve-3d;background:#fcfcfc;}
 .experiment a{text-decoration:none;}
 .experiment a *{text-decoration:none}

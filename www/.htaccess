@@ -1,5 +1,6 @@
 SetEnv PHP_VER 5_3
 SetEnv REGISTER_GLOBALS 0
+
 Redirect permanent /25/index.html http://christmasexperiments.com
 
 Redirect permanent /1/ http://christmasexperiments.com/2012/1/

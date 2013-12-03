@@ -43,14 +43,15 @@ body {
 #loading {
   position: absolute;
   z-index: 1;
+  width: 100%;
 }
 
-/* line 48, ../../src/sass/main.scss */
+/* line 49, ../../src/sass/main.scss */
 #background_loading {
   position: relative;
   opacity: 1;
 }
-/* line 51, ../../src/sass/main.scss */
+/* line 52, ../../src/sass/main.scss */
 #background_loading.invisible {
   -webkit-transition: opacity 2s ease-out;
   -moz-transition: opacity 2s ease-out;
@@ -63,17 +64,16 @@ body {
   opacity: 0;
 }
 
-/* line 58, ../../src/sass/main.scss */
+/* line 59, ../../src/sass/main.scss */
 #content {
   position: absolute;
-  top: 100px;
+  top: 10%;
   left: 50%;
-  margin-left: -400px;
-  width: 800px;
-  height: 436px;
+  margin-left: -360px;
+  width: 720px;
   opacity: 1;
 }
-/* line 67, ../../src/sass/main.scss */
+/* line 68, ../../src/sass/main.scss */
 #content.invisible {
   -webkit-transition: opacity 2s ease-out;
   -moz-transition: opacity 2s ease-out;
@@ -86,16 +86,16 @@ body {
   opacity: 0;
 }
 
-/* line 74, ../../src/sass/main.scss */
+/* line 75, ../../src/sass/main.scss */
 #loading-text {
   color: #fff;
   text-align: center;
   position: relative;
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 18px;
   opacity: 1;
 }
-/* line 82, ../../src/sass/main.scss */
+/* line 83, ../../src/sass/main.scss */
 #loading-text.invisible {
   -webkit-transition: opacity 2s ease-out;
   -moz-transition: opacity 2s ease-out;
@@ -108,7 +108,7 @@ body {
   opacity: 0;
 }
 
-/* line 89, ../../src/sass/main.scss */
+/* line 90, ../../src/sass/main.scss */
 #loading-details {
   text-align: center;
   position: relative;
@@ -117,7 +117,7 @@ body {
   font-size: 12px;
   opacity: 1;
 }
-/* line 97, ../../src/sass/main.scss */
+/* line 98, ../../src/sass/main.scss */
 #loading-details.invisible {
   -webkit-transition: opacity 2s ease-out;
   -moz-transition: opacity 2s ease-out;
@@ -130,7 +130,7 @@ body {
   opacity: 0;
 }
 
-/* line 104, ../../src/sass/main.scss */
+/* line 105, ../../src/sass/main.scss */
 #title_end {
   position: absolute;
   top: 90px;
@@ -138,7 +138,7 @@ body {
   margin-left: -265px;
   opacity: 0;
 }
-/* line 111, ../../src/sass/main.scss */
+/* line 112, ../../src/sass/main.scss */
 #title_end.visible {
   -webkit-transition: opacity 1s ease-out;
   -moz-transition: opacity 1s ease-out;
@@ -146,7 +146,7 @@ body {
   transition: opacity 1s ease-out;
   opacity: 1;
 }
-/* line 116, ../../src/sass/main.scss */
+/* line 117, ../../src/sass/main.scss */
 #title_end.invisible {
   -webkit-transition: opacity 2s ease-out;
   -moz-transition: opacity 2s ease-out;
@@ -155,14 +155,14 @@ body {
   opacity: 0;
 }
 
-/* line 122, ../../src/sass/main.scss */
+/* line 123, ../../src/sass/main.scss */
 #bts {
   position: relative;
   margin-top: 30px;
   text-align: center;
   opacity: 0;
 }
-/* line 128, ../../src/sass/main.scss */
+/* line 129, ../../src/sass/main.scss */
 #bts.visible {
   -webkit-transition: all 2s ease-out;
   -moz-transition: all 2s ease-out;
@@ -170,7 +170,7 @@ body {
   transition: all 2s ease-out;
   opacity: 1;
 }
-/* line 133, ../../src/sass/main.scss */
+/* line 134, ../../src/sass/main.scss */
 #bts.invisible {
   -webkit-transition: all 0.8s ease-out;
   -moz-transition: all 0.8s ease-out;
@@ -179,7 +179,7 @@ body {
   opacity: 0;
 }
 
-/* line 139, ../../src/sass/main.scss */
+/* line 140, ../../src/sass/main.scss */
 .bt {
   border: 2px solid rgba(255, 255, 255, 0.75);
   padding: 15px 20px 12px 20px;
@@ -194,7 +194,7 @@ body {
   -o-border-radius: 18px;
   border-radius: 18px;
 }
-/* line 149, ../../src/sass/main.scss */
+/* line 150, ../../src/sass/main.scss */
 .bt:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }

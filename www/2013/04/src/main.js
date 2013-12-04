@@ -52,7 +52,10 @@ function onAssetsLoaded() {
 	document.addEventListener('mousemove', onMouseMove);
 	document.addEventListener('keydown', onKeyDown);
 	document.addEventListener('keyup', onKeyUp);
-	window.onresize = resizeApp;
+	window.addEventListener( 'resize', resizeApp, false );
+	document.addEventListener('touchstart', onTouchStart, false);
+	document.addEventListener('touchend', onTouchEnd, false);
+	document.addEventListener('touchmove', onTouchMove, false);
 
 	// Start loop
 	Leap.loop(onLeapLoop);
@@ -66,10 +69,10 @@ function onLeapLoop(frame) {
 	}
 }
 
-function resizeApp() {
-	game.renderer.view.setAttribute('width', window.innerWidth);
-	game.renderer.view.setAttribute('height', window.innerHeight);
-	game.resize(window.innerWidth, window.innerHeight);
+function resizeApp(e) {
+	// game.renderer.view.setAttribute('width', window.innerWidth);
+	// game.renderer.view.setAttribute('height', window.innerHeight);
+	// game.resize(window.innerWidth, window.innerHeight);
 }
 
 function onKeyDown(e) {
@@ -98,6 +101,22 @@ function onKeyUp(e) {
 			game.state.shooting = false;
 		break;
 	}
+}
+
+function onTouchStart(e) {
+	e.preventDefault();
+	game.mouse.x = e.touches[0].pageX;
+	game.state.shooting = true;
+}
+
+function onTouchEnd(e) {
+	e.preventDefault();
+	game.state.shooting = false;
+}
+
+function onTouchMove(e) {
+	game.mouse.x = e.touches[0].pageX;
+	e.preventDefault();
 }
 
 function onMouseDown(e) {

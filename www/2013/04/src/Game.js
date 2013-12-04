@@ -8,6 +8,8 @@ var Game = (function(){
 
 		this.width = width;
 		this.height = height;
+		this.initWidth = width;
+		this.initHeight = height;
 		this.renderer = PIXI.autoDetectRenderer(width, height);
 		this.stage = new PIXI.Stage(0xEEEEEE, true);
 
@@ -320,9 +322,9 @@ var Game = (function(){
 		RESIZE
 	===============================================================*/
 	Game.prototype.resize = function(width, height) {
+		this.renderer.resize(width, height);
 		this.floor.resize(width, height);
 		this.trees.resize(width, height);
-		this.renderer.resize(width, height);
 	};
 
 	/*===============================================================

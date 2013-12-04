@@ -52,7 +52,7 @@ function onAssetsLoaded() {
 	document.addEventListener('mousemove', onMouseMove);
 	document.addEventListener('keydown', onKeyDown);
 	document.addEventListener('keyup', onKeyUp);
-	window.onresize = resizeApp;
+	window.addEventListener( 'resize', resizeApp, false );
 
 	// Start loop
 	Leap.loop(onLeapLoop);
@@ -66,10 +66,10 @@ function onLeapLoop(frame) {
 	}
 }
 
-function resizeApp() {
-	game.renderer.view.setAttribute('width', window.innerWidth);
-	game.renderer.view.setAttribute('height', window.innerHeight);
-	game.resize(window.innerWidth, window.innerHeight);
+function resizeApp(e) {
+	// game.renderer.view.setAttribute('width', window.innerWidth);
+	// game.renderer.view.setAttribute('height', window.innerHeight);
+	// game.resize(window.innerWidth, window.innerHeight);
 }
 
 function onKeyDown(e) {

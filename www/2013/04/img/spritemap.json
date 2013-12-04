@@ -1,0 +1,100 @@
+{"frames": {
+
+"boss-0.png":
+{
+	"frame": {"x":664,"y":2,"w":128,"h":152},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":152},
+	"sourceSize": {"w":128,"h":152}
+},
+"boss-1.png":
+{
+	"frame": {"x":534,"y":2,"w":128,"h":152},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":152},
+	"sourceSize": {"w":128,"h":152}
+},
+"bullet.png":
+{
+	"frame": {"x":518,"y":162,"w":28,"h":28},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":28,"h":28},
+	"sourceSize": {"w":28,"h":28}
+},
+"gingerbread-man-0.png":
+{
+	"frame": {"x":704,"y":156,"w":76,"h":92},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":92},
+	"sourceSize": {"w":76,"h":92}
+},
+"gingerbread-man-1.png":
+{
+	"frame": {"x":626,"y":156,"w":76,"h":92},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":92},
+	"sourceSize": {"w":76,"h":92}
+},
+"gingerbread-man-2.png":
+{
+	"frame": {"x":548,"y":156,"w":76,"h":92},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":92},
+	"sourceSize": {"w":76,"h":92}
+},
+"shrapnel.png":
+{
+	"frame": {"x":424,"y":224,"w":20,"h":20},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":20},
+	"sourceSize": {"w":20,"h":20}
+},
+"snowman-arm.png":
+{
+	"frame": {"x":424,"y":162,"w":92,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":92,"h":60},
+	"sourceSize": {"w":92,"h":60}
+},
+"snowman-body.png":
+{
+	"frame": {"x":794,"y":2,"w":180,"h":132},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":180,"h":132},
+	"sourceSize": {"w":180,"h":132}
+},
+"snowman-head.png":
+{
+	"frame": {"x":424,"y":2,"w":108,"h":158},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":158},
+	"sourceSize": {"w":108,"h":158}
+},
+"title.png":
+{
+	"frame": {"x":2,"y":2,"w":420,"h":232},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":232},
+	"sourceSize": {"w":420,"h":232}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "spritemap.png",
+	"format": "RGBA8888",
+	"size": {"w":976,"h":250},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0eee523bf002eebab4ec99b3ab50507d:bf0f2a543c311d5a739ec9a7a2edb464:ad91097d697bdc0602faa58582bd8892$"
+}
+}

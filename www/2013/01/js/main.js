@@ -783,6 +783,7 @@ StartScene = (function(_super) {
     this.focus = main.focus;
     this.vignette = main.vignette;
     this.vignette2 = main.vignette2;
+    $("body").css("cursor", "pointer");
     this.camera.position.y = 150;
     this.camera.position.x = 0;
     this.camera.lookAt(this.scene.position);
@@ -862,6 +863,7 @@ StartScene = (function(_super) {
     $("#slogan").addClass("activate");
     fx = new Snd("./sfx/clear.mp3");
     fx.play();
+    $("body").css("cursor", "auto");
   };
 
   StartScene.prototype.mouseDown = function(e) {
@@ -1364,7 +1366,7 @@ Hammer = (function(_super) {
     var geometry, geometry2, m;
     this.scene = scene;
     this.unlock = __bind(this.unlock, this);
-    this.limit = 150;
+    this.limit = 140;
     this.state = "x";
     THREE.Object3D.call(this);
     geometry = new THREE.CubeGeometry(180, 60, 60, 1, 1, 1);
@@ -1412,6 +1414,9 @@ Hammer = (function(_super) {
     if (this.blocked) {
       return;
     }
+    if (this.state === "x") {
+      this.limit -= 10;
+    }
     this.fx = new Snd("./sfx/machine.mp3");
     this.fx.play();
     this.blocked = true;
@@ -1454,12 +1459,12 @@ Hammer = (function(_super) {
         break;
       case "z":
         this.state = "x";
-        this.limit -= 10;
+        this.limit -= 30;
         TweenLite.to(this.rotation, .4, {
           y: 0
         });
     }
-    if (this.limit <= 120) {
+    if (this.limit <= 100) {
       this.scene.packGift();
       TweenLite.to(this.material, .6, {
         delay: .1,

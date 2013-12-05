@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>First Person Santa - Just Cause Giving Feels Good</title>
+  		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+
+		<style type="text/css">
+			body { background:#000000; }
+			canvas { z-index: 1; position: absolute; }
+			#soundbutton { text-align:right; margin:0em 0 0em 0em; z-index:2; position:absolute; top:0; right:0; display:block; padding: 8px; opacity: 0.0; }
+			#hud { text-align:left; font-family: 'Chewy', cursive; font-size: 11px; z-index:3; position:absolute; top:0; left:0; color:#aaa; padding: 12px; vertical-align:middle; opacity: 0.0; }
+			#touch { text-align:left; z-index:4; position:absolute; bottom:0; left:0; padding: 0px; opacity: 0.0; display:none; }
+			#fps_title { text-align:center; font-family: 'Chewy', cursive; font-size: 30px; color:#aaa; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index:10; width: 300px; height: 240px; }
+
+			.loader {
+			  width: 20px;
+			  height: 20px;
+			  border-style: solid;
+			  border-color: rgba(0,0,0,0);
+			  border-top-color: #ffffff;
+			  border-width: 1px 1px 0px 0px;
+			  
+			  overflow: auto;
+			  margin: auto;
+			  position: absolute;
+			  top: 0; left: 0; bottom: 0; right: 0;
+			  z-index:10;
+
+			  -webkit-border-radius: 50%;
+			     -moz-border-radius: 50%;
+			          border-radius: 50%;
+			  
+			  -webkit-animation: spin 1.0s infinite linear;
+			     -moz-animation: spin 1.0s infinite linear;
+			       -o-animation: spin 1.0s infinite linear;
+			          animation: spin 1.0s infinite linear;
+			}
+
+			@-webkit-keyframes spin {
+			  from {-webkit-transform: rotate(0deg);}
+			  to   {-webkit-transform: rotate(359deg);}
+			}
+
+			@-moz-keyframes spin {
+			  from {-moz-transform: rotate(0deg);}
+			  to   {-moz-transform: rotate(359deg);}
+			}
+
+			@-o-keyframes spin {
+			  from {-o-transform: rotate(0deg);}
+			  to   {-o-transform: rotate(359deg);}
+			}
+
+			@keyframes spin{
+			  from {transform: rotate(0deg);}
+			  to   {transform: rotate(359deg);}
+			}
+
+		</style>
+
+		<script src="js/three.min.js"></script>
+		<script src="js/cannon.min.js"></script>
+		<script src="js/tween.min.js"></script>
+		<script src="js/WebAudio.js"></script>
+		<script src="js/SubdivisionModifier.js"></script>
+
+		<script src="js/shaders/CopyShader.js"></script>
+		<script src="js/shaders/SSAOShader.js"></script>
+		<script src="js/shaders/FXAAShader.js"></script>
+		<script src="js/shaders/ConvolutionShader.js"></script>
+		
+		<script src="js/postprocessing/EffectComposer.js"></script>
+		<script src="js/postprocessing/RenderPass.js"></script>
+		<script src="js/postprocessing/MaskPass.js"></script>
+		<script src="js/postprocessing/ShaderPass.js"></script>
+		
+		<!--Fog/Clouds-->
+
+		<script id="fog_vs" type="x-shader/x-vertex">
+
+			uniform float globalTime;
+
+			attribute vec3 direction;
+			attribute float size;
+			attribute float seed;
+			attribute vec3 customColor;
+			
+			varying vec2 vUv;
+			varying vec3 vColor;
+
+			void main() {
+
+				vColor = customColor;
+
+				vec3 animated = position;
+
+				float localSeed = seed + globalTime;
+
+				float rotation = localSeed*12.0;
+				if (seed < 0.5) {
+					rotation *= -1.0;
+				}
+
+				float s = sin(rotation);
+				float c = cos(rotation);
+
+				mat3 rotY = mat3(
+			        vec3( c,  0.0, -s),
+			        vec3( 0.0,1.0,  0.0),
+			        vec3( s,  0.0,  c)
+			    );
+
+				vec3 rotatedDirection = direction*rotY;
+
+				animated += rotatedDirection*size;
+
+				vUv = uv;
+
+				vec4 mvPosition = modelViewMatrix * vec4( animated, 1.0 );
+
+				gl_Position = projectionMatrix * mvPosition;
+
+			}
+
+		</script>
+
+		<script id="fog_fs" type="x-shader/x-fragment">
+
+			uniform sampler2D map;
+			uniform float globalAlpha;
+
+			uniform vec3 fogColor;
+			uniform float fogNear;
+			uniform float fogFar;
+
+			varying vec2 vUv;
+			varying vec3 vColor;
+
+			void main() {
+
+				float depth = gl_FragCoord.z / gl_FragCoord.w;
+				float fogFactor = smoothstep( fogNear, fogFar, depth );
+
+				gl_FragColor = texture2D( map, vUv ) * vec4(vColor.xyz, 1.0);
+				vec4 color = mix( gl_FragColor, vec4( fogColor, 1.0 ), fogFactor );
+				gl_FragColor = vec4( color.xyz , min(0.15, gl_FragColor.w)*globalAlpha );
+			}
+
+		</script>
+
+		<!--Snowfall-->
+		<script type="x-shader/x-vertex" id="p_vs">
+
+			attribute float size;
+			attribute float time;
+			uniform float globalTime;
+			uniform float baseSize;
+
+			void main() {
+
+				vec3 pos = position; 
+
+				// time
+				float localTime = time + globalTime;
+				float modTime = mod( localTime, 1.0 );
+				float accTime = modTime * modTime;
+
+				pos.x += cos(modTime*32.0 + (position.z))*3.0; 
+				pos.z += sin(modTime*24.0 + (position.x))*1.5; 
+
+				vec3 animated = vec3( pos.x, pos.y * accTime, pos.z );
+
+				vec4 mvPosition = modelViewMatrix * vec4( animated, 1.0 );
+
+				gl_PointSize = max(baseSize*0.75, size * ( 200.0 / length( mvPosition.xyz ) ) );
+
+				gl_Position = projectionMatrix * mvPosition;
+
+			}
+
+		</script>
+
+		<script type="x-shader/x-fragment" id="p_fs">
+
+			uniform vec3 color;
+			uniform sampler2D texture;
+
+			void main() {
+
+				// fog
+				float depth = gl_FragCoord.z / gl_FragCoord.w;
+				float near = 0.0;
+				float far = 250.0;
+				float fog = 0.0 + smoothstep( near, far, depth );
+
+				vec4 outColor = texture2D( texture, gl_PointCoord );
+				if ( outColor.a < 0.2 ) discard; // alpha be gone
+
+				gl_FragColor = outColor * vec4( color, 1.0 );
+
+				gl_FragColor = mix( gl_FragColor, vec4( vec3(0.0,0.0,0.0), gl_FragColor.w ), fog );
+				
+			}
+
+		</script>
+
+		<script src="js/FirstPersonSanta.js"></script>
+
+ </head>
+
+<body>
+
+	<div id="fps_title">
+		First Person Santa<br>
+		<span id="instructions" style="font-size: 14px; color:#777">( Mousedown to give )</span>
+	</div>
+
+	<div id="loading_spinner" class="loader">
+	</div>
+
+	<div id="hud">
+		<img style="width:19px; height:16px; vertical-align:middle" src="assets/package.png"><span>0 / 0</span>
+	</div>
+
+	<div id="touch">
+		<img src="assets/button.png" id="touchimage" border="0">
+	</div>
+
+	<div id="soundbutton">
+		<a href="#"><img src="assets/sound_on.png" id="soundimage" border="0"></a>
+	</div>
+	
+	<script>
+		
+		FirstPersonSanta.init();
+
+	</script>
+	
+</body>
+</html>

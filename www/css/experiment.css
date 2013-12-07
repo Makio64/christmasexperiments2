@@ -16,9 +16,9 @@ body{overflow:hidden}
 header{width:100%;height:50px;font-family:"OpenSans-bold";}
 header > div{width:100%;height:50px}
 header .main{background:#fff;position:absolute;z-index:1}
-header .icon-home{color:#5a72cb;width:50px;height:50px;position:relative;text-align:center;line-height:50px;-webkit-transition:all .3s ease-out 0s;-moz-transition:all .3s ease-out 0s;-o-transition:all .3s ease-out 0s;-ms-transition:all .3s ease-out 0s;transition:all .3s ease-out 0s;float:left;display:block;text-decoration:none;}
+header .icon-home{color:#5a72cb;width:50px;height:50px;position:relative;text-align:center;line-height:50px;-webkit-transition:all .3s ease-out 0;-moz-transition:all .3s ease-out 0;-o-transition:all .3s ease-out 0;-ms-transition:all .3s ease-out 0;transition:all .3s ease-out 0;float:left;display:block;text-decoration:none;}
 header .icon-home .background{position:absolute;bottom:0;width:100%;height:5px;background:#5a72cb;-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;-o-transition:all .2s ease-out;-ms-transition:all .2s ease-out;transition:all .2s ease-out;z-index:0}
-header .icon-home:hover{color:#fff;-webkit-transition:all .3s ease-out 0s;-moz-transition:all .3s ease-out 0s;-o-transition:all .3s ease-out 0s;-ms-transition:all .3s ease-out 0s;transition:all .3s ease-out 0s;}
+header .icon-home:hover{color:#fff;-webkit-transition:all .3s ease-out 0;-moz-transition:all .3s ease-out 0;-o-transition:all .3s ease-out 0;-ms-transition:all .3s ease-out 0;transition:all .3s ease-out 0;}
 header .icon-home:hover .background{height:100%}
 header .date{width:135px;height:50px;float:left;border-left:1px solid rgba(0,0,0,0.2);border-right:1px solid rgba(0,0,0,0.2);padding:0 10px;line-height:50px;}
 header .date .day{float:left;margin:0 10px 0 0;}
@@ -66,5 +66,8 @@ header .calendar ul li.day-24 .background{background:url("../img/24/preview100x5
 header .calendar ul li.activate:hover{width:100px;}
 header .calendar ul li.activate:hover .background{opacity:1;-webkit-transition:all .3s linear;-moz-transition:all .3s linear;-o-transition:all .3s linear;-ms-transition:all .3s linear;transition:all .3s linear}
 header .calendar ul li.desactivate{opacity:.3}
-header .calendar.show{-webkit-transform:translate(0,50px);-moz-transform:translate(0,50px);-o-transform:translate(0,50px);-ms-transform:translate(0,50px);transform:translate(0,50px)}
+header .calendar.show{z-index:3;-webkit-transform:translate(0,50px);-moz-transform:translate(0,50px);-o-transform:translate(0,50px);-ms-transform:translate(0,50px);transform:translate(0,50px)}
 iframe{padding:0;margin:0;width:100%;height:100%}
+#flashAnim{padding:0;margin:0;width:800px;height:500px;position:absolute;top:50%;left:50%;margin-top:-224px;margin-left:-400px;display:block;background:#d5d3d5;}
+#flashAnim object{width:100%;height:100%;border:0}
+#flashAnim iframe{width:100% !important;height:100% !important}

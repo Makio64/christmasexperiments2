@@ -234,12 +234,12 @@ var soundMap = [];
 
             // Right
             else if (positive) {
-                face.color.setHSB(0.113888889,0.34,1);
+                face.color.setHSB(0.113888889,0.34,.66);
             }
 
             // Left
             else {
-                face.color.setHSB(0.113888889,0.34,.66);
+                face.color.setHSB(0.113888889,0.34,1);
             }
         }
     }

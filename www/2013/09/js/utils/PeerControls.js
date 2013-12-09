@@ -40,7 +40,7 @@ THREE.PeerControls.prototype.update = function(x) {
     // Camera
     var angle = Math.acos(pos/this.settings.distance);
     
-    this.camera.position.z += (Math.sin(angle) * this.settings.distance-this.camera.position.z)*.05;
-    this.camera.position.x += (pos- this.camera.position.x)*.05;
+    this.camera.position.z += (Math.sin(angle) * this.settings.distance - this.camera.position.z)*0.5;
+    this.camera.position.x += (pos - this.camera.position.x) *.05;
     this.camera.lookAt(this.settings.lookAt);
 }

@@ -20,6 +20,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
         this.ready    = false;
         this.playing  = false;
         this.source   = null;
+        this.loop     = true;
         this.context  = new AudioContext();
         this.filter   = this.context.createBiquadFilter();
 
@@ -56,9 +57,6 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
                 this.source.onended = this.settings.onEnd.bind(this);
                 this.settings.onReady.call(this);
                 if (this.settings.autoplay) {
-                    this.source.loopStart = 4.450;
-                    this.source.loopEnd = 8.144;
-                    this.source.loop = true;
                     this.play();
                 }
             }.bind(this), function(err){
@@ -70,12 +68,18 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
     APP.SoundManager.prototype.play = function() {
         if (!this.ready) return;
+        if (this.loop) {
+            this.source.loopStart = 4.450;
+            this.source.loopEnd = 8.144;
+            this.source.loop = true;
+        }
         this.source.start(this.startAt);
         this.settings.onStart.call(this);
     };
 
     APP.SoundManager.prototype.stopLoop = function() {
         this.introLapse = this.getTime();
+        this.loop = false;
         if (this.source)
             this.source.loop = false;
         TweenLite.to(this.filter.frequency,1,{

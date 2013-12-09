@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moose Rhythm</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="intro">
+
+<div id="intro">
+  <div class="inner">
+    <h1>MOOSE RHYTHM</h1>
+    <a href="#" class="btn">start</a>
+  </div>
+</div>
+
+<div id="container"></div>
+
+<div id="infos">
+  <h1>Moose Rythm<em>by Franco Bouly</em></h1>
+  <p>Music by The Drifters.</p> 
+  <p>Special thanks to <a href="https://twitter.com/Superguigui">@Superguigui</a>, <a href="https://twitter.com/makio64">@Makio64</a> and <a href="https://twitter.com/dmmn_">@dmmn_</a></p>
+  <p class="links">
+    <a href="https://github.com/rayfranco" target="_parent" class="btn">github</a>
+    <a href="https://twitter.com/rayfranco" target="_parent" class="btn">twitter</a>
+  </p>
+  <a href="#" class="btn close">×</a>
+</div>
+
+<div id="links">
+  <a href="#" class="btn">Infos</a>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+  var APP = {};
+  (function(){
+    var $body = $('body');
+    $('#links a, #infos a.close').on('click',function(e){
+      e.preventDefault();
+      $body.toggleClass('infos');
+    });
+
+    $('#intro a').on('click',function(e){
+      e.preventDefault();
+      APP.music.stopLoop();
+      $body.removeClass('intro');
+      setTimeout(function(){
+        $('#intro').hide();
+      },1000)
+    });
+  })();
+</script>
+<script src="js/vendor/dat.gui.js"></script>
+<script src="js/vendor/three.min.js"></script>
+<script src="js/vendor/TweenLite.js"></script>
+<script src="js/utils/PeerControls.js"></script>  
+<script src="js/utils/Moose.js"></script>
+<script src="js/utils/SoundManager.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

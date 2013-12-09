@@ -1,0 +1,157 @@
+@font-face {
+  font-family: 'bebas';
+  src: url('../fonts/bebas.otf');
+}
+
+#intro {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background-color: rgba(234,68,55,0.8);
+  opacity: 0;
+  pointer-event: none;
+}
+
+.intro #intro {
+  opacity: 1; 
+}
+
+#intro .inner {
+  width: 600px;
+  text-align: center;
+  height: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -175px 0 0 -300px;
+  background: rgb;
+  pointer-event: none;
+}
+
+#intro h1 {
+  font-size: 90px;
+  color: #fff;
+}
+
+#intro .btn {
+  border-color: #fff;
+  color: #fff;
+  font-size: 45px;
+}
+
+#intro .btn:hover {
+  background: #fff;
+  color: #333F47;
+}
+
+#infos {
+  width: 480px;
+  height: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -175px 0 0 -275px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.9);
+  color: #333F47;
+  padding: 40px;
+  opacity: 0;
+  -webkit-transform: translate3d(0,500px,0) rotate3d(1,0,0,90deg);
+  -webkit-transition: all 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+h1 {
+  font-family: bebas;
+  font-size: 45px;
+}
+
+h1 em {
+  font-size: 30px;
+}
+
+p {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+p.links {
+  margin-top: 50px;
+  text-align: center;
+}
+
+a {
+  color: #EA4437;
+}
+
+a.btn {
+  border: 1px solid #EA4437;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: bebas;
+  font-size: 18px;
+}
+
+a.btn:hover {
+  background: #EA4437;
+  color: #fff;
+}
+
+a.btn.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  text-align: center;
+}
+
+#links{
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  z-index: 4;
+  -webkit-transition: opacity .75s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+#links a.btn {
+  color: #333F47;
+  border-color: #333F47;
+}
+
+#links a.btn:hover {
+  background: #333F47;
+  color: #fff;
+}
+
+body {
+  background: #333F47;
+  margin: 0;
+  padding: 0;
+}
+
+#context {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+}
+
+/* Active stuff */
+
+.infos #infos {
+  opacity: 1;
+  z-index: 4;
+  -webkit-transform: translate3d(0,0,0) rotate3d(1,0,0,0deg);
+}
+
+.infos #container {
+  -webkit-filter: blur(10px);
+  }
+
+.infos #links, .intro #links {
+  opacity: 0;
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>loca loco</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--<link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>-->
+        <!--<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>-->
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+
+
+        <div id="scene3d" style="display:block;" onclick="void(0)" >
+
+            <div id="webgl" style="position: absolute"></div>
+
+            <div id="holder">
+
+
+                <div id="container" class="container" style="display: block;">
+
+
+                       <div id="howto" class="block" style="min-width:250px;max-width: 300px; cursor:pointer;">
+
+                           <span class="title">LOCA<br>LOCO</span>
+                           <hr/>
+
+                           <span class="res_title">LOCA mad, crazy, hectic<br/></span>
+                           <span class="res_title">LOCO engine, driving force<br></span>
+
+                           <br/>
+
+                           <dl class="res_list">
+
+                               <dd>
+                                   <strong>ARROWS</strong><span style="cursor:pointer;">&nbsp;to drive</span>
+                               </dd>
+                               <dd><strong>SPACE</strong><span style="cursor:pointer;"> to use propeller<span class="sup">1</span></span>
+                               </dd>
+                               <dd>
+                                   <span style="cursor:pointer;"><strong>B</strong> to drop a wagon</span>
+                               </dd>
+                               <dd>
+                                   <span style="cursor:pointer;"><strong>C</strong> to append a wagon (buggy)</span>
+                               </dd>
+                               <dd>
+                                   <span style="cursor:pointer;"><strong>R</strong> to reset the train</span>
+                               </dd>
+                               <dd>
+                                   <span style="cursor:pointer;"><strong>S</strong> to switch the sound on/off</span>
+                               </dd>
+                               <dd>
+                                   <span class="instructions">&#8859;</span>
+                                   <span>click on the ground to become the almighty master of chaos</span>
+                               </dd>
+
+                           </dl>
+                           <br><br>
+                           <div class="note"><span class="sup">1</span> if any, that would be the rotating thing</div>
+
+                       </div>
+                       <hr>
+                       <div class="note" align="center">don't expect anything smooth</div><br/>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="preload" style="padding:10px 10px 10px 10px; position:absolute;">
+           <span class="title">now loading:</span><br/>
+           <div id="progress"></div>
+       </div>
+        <script src="js/three/Detector.js"></script>
+
+        <script>
+
+
+            if ( !Detector.webgl )
+           	{
+
+                $('.container').css({ display:    'none' });
+//           		Detector.addGetWebGLMessage();
+
+                var msg = '<div style="textAlign:center; margin = 5em auto 0; width:100%">'
+                msg += 'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">WebGL</a>.<br />Find out how to get it <a href="http://get.webgl.org/" style="color:#000">here</a>.<br>';
+                msg += 'but rejoice ! here is a screencast of the experiment:<br> <iframe src="//player.vimeo.com/video/81324187" width="960" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br>';
+                msg += "</div>";
+                document.write( msg );
+           	}
+            else
+            {
+
+                (function($){
+
+                $.fn.disableSelection = function() {
+                    return this.each(function() {
+                        $(this).attr('unselectable', 'on')
+                               .css({
+                                   '-ms-user-select':'none',
+                                   '-moz-user-select':'none',
+                                   '-webkit-user-select':'none',
+                                   'user-select':'none'
+                               })
+                               .each(function() {
+                                   this.onselectstart = function() { return false; };
+                               });
+                    });
+                };
+
+                })(jQuery);
+
+
+                $( window ).resize(function()
+                {
+                    $( "#holder").show();
+
+                    $('.container').css({
+
+                        display:    'block',
+                        position:   'absolute',
+                        left: ($(window).width() - $('.container').outerWidth())/2,
+                        top: ($(window).height() - $('.container').outerHeight())/2
+                    });
+
+    //                $('#container').css({display:    'block'});
+
+                    $( "#scene3d" ).css( {
+
+                        "position":"absolute",
+                        "width": "100%",
+                        "height":$(window).height(),
+
+                        "-webkit-perspective"               : "1000px",
+                        "-webkit-perspective-orign"         : "center center",
+                        "-webkit-transform-style"           : "preserve-3d"
+
+                    } );
+
+                });
+                $( window ).resize();
+            }
+
+        </script>
+
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs>
+                <filter id="posterize">
+                  <feComponentTransfer>
+                    <feFuncR type="discrete"    tableValues="0 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1"></feFuncR>
+                    <feFuncG type="discrete"    tableValues="0 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1"></feFuncG>
+                    <feFuncB type="discrete"    tableValues="0 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1"></feFuncB>
+                  </feComponentTransfer>
+                </filter>
+                <filter id="blur">
+                  <feGaussianBlur stdDeviation="3"/>
+                </filter>
+            </defs>
+        </svg>
+
+
+
+        <script> $('#progress').html( $('#progress').html()+"a Tween engine - tween.js<br>" ); $( window ).resize(); </script>
+        <script src="js/min/tween.min.js"></script>
+        <script> $('#progress').html( $('#progress').html()+"an audio API - howler.js<br>" ); $( window ).resize(); </script>
+        <script src="js/min/howler.min.js"></script>
+        <script> $('#progress').html( $('#progress').html()+" and some sounds...<br>" ); $( window ).resize(); </script>
+        <audio style="display:none">
+
+            <source src="./audio/clap.ogg" type="audio/ogg">
+            <source src="./audio/clap.mp3" type="audio/mpeg">
+
+        </audio>
+        <audio style="display:none">
+            <source src="./audio/pouet.ogg" type="audio/ogg">
+            <source src="./audio/pouet.mp3" type="audio/mpeg">
+
+        </audio>
+        <audio style="display:none">
+            <source src="./audio/musicbox.ogg" type="audio/ogg">
+            <source src="./audio/musicbox.mp3" type="audio/mpeg">
+
+        </audio>
+        <script src="js/min/howler.min.js"></script>
+
+        <script> $('#progress').html( $('#progress').html()+"a 3d engine THREE.js<br>" ); $( window ).resize(); </script>
+        <script src="js/min/three.min.js"></script>
+        <script> $('#progress').html( $('#progress').html()+"a custom typeafce - Typeface.js<br>" ); $( window ).resize(); </script>
+        <script src="js/font/custom.js"></script>
+        <script> $('#progress').html( $('#progress').html()+"a FAAAAAAT 3d Physics engine - Ammo.js<br>" ); $( window ).resize(); </script>
+        <script src="js/physi/ammo.js"></script>
+        <script> $('#progress').html( $('#progress').html()+"a 3d Physics Wrapper - PhysiJS<br>" ); $( window ).resize(); </script>
+        <script src="js/physi/physi.js"></script>
+
+
+        <script> $('#progress').html( $('#progress').html()+"some post-processing effects<br>" ); $( window ).resize(); </script>
+        <script src="js/three/postprocessing/EffectComposer.js"></script>
+        <script src="js/three/postprocessing/MaskPass.js"></script>
+        <script src="js/three/postprocessing/RenderPass.js"></script>
+        <script src="js/three/postprocessing/ShaderPass.js"></script>
+        <script src="js/three/shaders/CopyShader.js"></script>
+
+        <script src="js/three/shaders/VerticalBlurShader.js"></script>
+        <script src="js/three/shaders/HorizontalBlurShader.js"></script>
+        <script src="js/three/shaders/VignetteShader.js"></script>
+        <script src="js/utils/composer.js"></script>
+
+        <script> $('#progress').html( $('#progress').html()+"my humble contribution<br>" ); $( window ).resize(); </script>
+
+        <!--/ materials /-->
+        <script src="js/skybox.js"></script>
+        <script src="js/materials.js"></script>
+
+        <!--/ utils /-->
+        <script src="js/utils/springcam.js"></script>
+        <script src="js/utils/sound_manager.js"></script>
+
+        <!--/ modules /-->
+        <script src="js/modules/ball.js"></script>
+        <script src="js/modules/factory.js"></script>
+        <script src="js/modules/geom.js"></script>
+        <script src="js/modules/module.js"></script>
+        <script src="js/modules/train.js"></script>
+        <script src="js/modules/title.js"></script>
+        <script src="js/modules/satellite.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <script> $('#progress').html( $('#progress').html()+"<br>WHEEEEEEEE!<br><br><br>" ); $( window ).resize(); </script>
+
+        <script>
+
+            function hidePreloader()
+            {
+                $( "#preload").hide( 1000, showInstrutions() )
+            }
+
+            function showInstrutions()
+            {
+                $( "#preload").remove();
+                $( window ).resize();
+
+                document.addEventListener( 'keydown', go, false );
+                document.addEventListener( 'mousedown', go, false );
+            }
+
+            hidePreloader();
+
+            function go(e)
+            {
+                document.removeEventListener( 'mousedown', go, false );
+                document.removeEventListener( 'keydown', go, false );
+
+                $( "#holder").animate( { opacity:0 }, 500 );
+                start();
+            }
+
+        </script>
+    </body>
+</html>

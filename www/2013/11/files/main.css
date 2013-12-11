@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+/* http://meyerweb.com/eric/tools/css/reset/ - v2.0 | 20110126 */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+
+*{box-sizing:border-box;backface-visibility:hidden;animation-fill-mode:both;}
+html, body {height:100%; overflow:hidden; text-rendering:optimizeLegibility; font-smoothing:antialiased !important; text-shadow:1px 1px 1px rgba(0,0,0,0.004);}
+
+
+/* HTML */
+.body {background:#181d28; z-index:0;}
+.article {display:none;}
+.header .mask, .header .world {animation:none;}
+
+/* Text */
+.header h1, .article h2, .article h3 {z-index:999999; text-align:center; width:100%; position:absolute; top:50%; font-family:'Josefin Slab'; font-size:100px; color:#e41e3f; text-transform:uppercase;}
+.header h1 {margin-top:-200px;}
+.article h2, .article h3 {animation:show 1s backwards;}
+.article h2 {margin-top:-230px; animation-delay:11s;}
+.article h3 {margin-top:130px; animation-delay:11.3s;}
+
+@keyframes show {from{opacity:0;}}
+
+
+/* Load/Play */
+.play {width:76px; height:76px; position:absolute; top:50%; left:50%; margin:-38px 0 0 -38px; z-index:999999; cursor:pointer; transition:all .5s; border-radius:100px;}
+.play p {width:0; height:0; position:absolute; top:50%; left:50%; margin:-11px 0 0 -6px; border-left:20px solid #fff; border-top:12px solid transparent; border-bottom:12px solid transparent; display:none;}
+.play:hover {background:rgba(255,255,255,.2);}
+.play span {width:38px; height:38px; position:absolute; top:50%; left:50%; margin:-19px 0 0 -19px; border:2px solid #fff; border-radius:100px; border-top:2px solid transparent; border-bottom:2px solid transparent; animation:load 12s linear infinite;}
+
+@keyframes load
+{0%{transform:rotate(0) origin;} 100%{transform:rotate(360deg);}}
+
+
+/* Mask */
+.mask {width:3400px; height:3400px; position:absolute; left:50%; top:50%; margin:-1700px 0 0 -1700px; border:1650px solid #fff; border-radius:2000px; overflow:hidden; display:block; box-sizing:border-box; animation:maskzero 2.2s linear forwards, maskone 1s 2.2s forwards, masktwo 1s 9s forwards; z-index:99;
+}
+
+@keyframes maskzero {from{border-width:1650px;} to{border-width:1630px;}}
+@keyframes maskone {from{border-width:1630px;} to{border-width:200px;}}
+@keyframes masktwo {from{border-width:200px;} to{border-width:1590px;}}
+
+
+/* Tree */
+.tree {display:block; height:0; width:0; border-style: solid; border-width: 0 30px 100px 30px; border-color: transparent transparent #526d44 transparent; position:absolute; top:0; left:50%; left:0; margin:-273px 0 0 -31px; margin:452px 0 0 -253px; z-index:11; transform:rotate(-90deg);}
+.tree:after {content:''; display:block; width: 0px; height: 0px; border-style: solid; border-width: 100px 0 0 30px; border-color: transparent transparent transparent rgba(0,0,0,.1);}
+.tree:before {width:20px; height:12px; background:#804b00; content:''; position:absolute; top:100px; left:-10px;}
+
+.base {width:1000px; height:1000px; background:#fff; position:absolute; transform:rotate(45deg); border-radius:100px; z-index:10;}
+
+
+/* World */
+.world {width:1000px; height:1000px; position:absolute; top:50%; left:50%; margin:212px 0 0 -500px; z-index:10; animation:uptwo 1.4s 1.8s cubic-bezier(0.860, 0.000, 0.070, 1.000) backwards, rotate 1.2s 6s forwards;}
+
+@keyframes rotate {to{transform:rotate(90deg);}}
+@keyframes uptwo {from{margin-top:800px} to{margin-top:212px;}}
+
+
+/* Mountains */
+.mountains li {width:1000px; height:1000px; position:absolute; top:50%; left:50%; transform:rotate(45deg); border-radius:100px; display:block; animation:up 1.4s cubic-bezier(0.860, 0.000, 0.070, 1.000) backwards;}
+
+@keyframes up {from{margin-top:800px}}
+
+.mountains li:nth-child(1) {background:#434a59; z-index:9; margin:300px 0 0 -860px; animation-delay:2.4s;}
+.mountains li:nth-child(2) {background:#434a59; z-index:9; margin:240px 0 0 40px; animation-delay:2.5s;}
+.mountains li:nth-child(3) {background:#373e4c; z-index:8; margin:180px 0 0 -120px; animation-delay:2.6s;}
+.mountains li:nth-child(4) {background:#373e4c; z-index:8; margin:20px 0 0 -960px; animation-delay:2.8s;}
+.mountains li:nth-child(5) {background:#222732; z-index:7; margin:-60px 0 0 -50px; animation-delay:3.0s;}
+.mountains li:nth-child(6) {background:#1d222c; z-index:6; margin:-200px 0 0 -600px; animation-delay:3.2s;}
+
+
+/* Trees */
+.mountains li i {display:block; height:0; width:0; border-style: solid; border-width: 0 15px 50px 15px; position:absolute; transform:rotate(-45deg); animation:fall .8s cubic-bezier(0.175, 0.885, 0.320, 1.275) backwards;}
+
+.mountains li i:nth-child(1n+1) {animation-delay:4.6s}
+.mountains li i:nth-child(2n+2) {animation-delay:4.7s}
+.mountains li i:nth-child(3n+3) {animation-delay:4.8s}
+.mountains li i:nth-child(4n+4) {animation-delay:4.9s}
+.mountains li i:nth-child(5n+5) {animation-delay:5.0s}
+.mountains li i:nth-child(6n+1) {animation-delay:5.1s}
+.mountains li i:nth-child(7n+2) {animation-delay:5.2s}
+.mountains li i:nth-child(8n+3) {animation-delay:5.3s}
+.mountains li i:nth-child(9n+4) {animation-delay:5.4s}
+.mountains li i:nth-child(10n+5) {animation-delay:5.5s}
+.mountains li i:nth-child(11n+1) {animation-delay:5.6s}
+.mountains li i:nth-child(12n+2) {animation-delay:5.7s}
+.mountains li i:nth-child(13n+3) {animation-delay:5.8s}
+.mountains li i:nth-child(14n+4) {animation-delay:5.9s}
+.mountains li i:nth-child(15n+5) {animation-delay:6.0s}
+.mountains li i:nth-child(16n+1) {animation-delay:6.1s}
+.mountains li i:nth-child(17n+2) {animation-delay:6.2s}
+.mountains li i:nth-child(18n+3) {animation-delay:6.3s}
+.mountains li i:nth-child(19n+4) {animation-delay:6.4s}
+
+@keyframes fall
+{from{margin:80px 0 0 80px; opacity:0;}to{margin:0;}}
+
+.mountains i:nth-child(2n+1) {border-width: 0 12px 44px 12px;}
+.mountains i:nth-child(2n+2) {border-width: 0 8px 32px 8px;}
+
+.mountains .one i {border-color: transparent transparent #4e5463 transparent;}
+.mountains .two i {border-color: transparent transparent #474d5a transparent;}
+.mountains .three i {border-color: transparent transparent #262c38 transparent;}
+.mountains .four i {border-color: transparent transparent #212630 transparent;}
+
+
+/* Stars */
+.stars li {background:#8990a0; width:2px; height:2px; position:absolute;}
+.stars li:nth-child(2n+2) {width:1px; height:1px;}
+
+
+/* Lights */
+.light li {position:absolute; z-index:100; border-radius:10px; animation:lights .6s backwards;}
+.light.green li {background:#1cedbf; width:6px; height:6px;}
+.light.green li:nth-child(1) {top:528px; left:-177px; animation-delay:7.4s;}
+.light.green li:nth-child(2) {top:499px; left:-177px; animation-delay:7.5s;}
+.light.green li:nth-child(3) {top:470px; left:-177px; animation-delay:7.6s;}
+
+.light.red li {background:#ed1c66; width:5px; height:5px;}
+.light.red li:nth-child(1) {top:519px; left:-209px; animation-delay:7.8s;}
+.light.red li:nth-child(2) {top:499px; left:-204px; animation-delay:7.9s;}
+.light.red li:nth-child(3) {top:480px; left:-209px; animation-delay:8.0s;}
+
+.light.yellow li {background:#edc81c; width:4px; height:4px;}
+.light.yellow li:nth-child(1) {top:512px; left:-235px; animation-delay:8.2s;}
+.light.yellow li:nth-child(2) {top:500px; left:-230px; animation-delay:8.3s;}
+.light.yellow li:nth-child(3) {top:488px; left:-235px; animation-delay:8.4s;}
+
+@keyframes lights {
+	0% {opacity: 0; transform: scale(.3);}
+	50% {opacity: 1; transform: scale(1.05);}
+	70% {transform: scale(.9);}
+	100% {transform: scale(1);}
+}
+
+.topstar {font-size:50px; color:#ffa200; position:absolute; top:50%; left:0; margin:-22px 0 0 -290px; z-index:99; transform:rotate(30deg); animation:enter 3s 8.6s backwards;}
+
+@keyframes enter
+{0%{transform:rotate(30deg) origin; opacity:0;} 100%{transform:rotate(390deg);}}

@@ -1,0 +1,13 @@
+/* YUI 3 CSS Reset */
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}input,textarea,select{*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
+
+/* Experiment styles */
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+html, body{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: 'Lato', sans-serif; }
+#playground{ padding: 0; margin: 0; background: radial-gradient(#2e3754, #141929); cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important; }
+#infoBtn{ width: 18px; height: 18px; background: url( ../img/about.png ); position: absolute; z-index: 15; top: 25px; right: 25px; }
+#info{ width: 260px; height: 320px; margin-top: -160px; position: absolute; z-index: 15; top: 50%; right: 25px; color: #fff; text-align: right; }
+p{ font-size: 12px; color: #dedede; margin: 25px 0 25px 0; }
+p.title{ font-weight: bold; font-size: 18px; color: #fff; margin: 0; }
+a{ color: #fff; }

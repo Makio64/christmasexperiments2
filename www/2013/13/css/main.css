@@ -1,0 +1,35 @@
+*{margin:0;padding:0}
+body{background:#000;overflow:hidden}
+.overlay{width:100%;height:100%;background:rgba(0,0,0,0.3)}
+.startInstructions{width:200px;height:165px;background:#000;position:absolute;top:50%;left:50%;margin:-82px 0 0 -100px;border:1px solid #333;text-align:center;color:#fff;font-family:"Arial";-webkit-transition:all .2s linear;opacity:0;}
+.startInstructions.show{opacity:1}
+.startInstructions .loader{width:100%;height:60px;padding:20px 0;-webkit-transition:all .2s linear;}
+.startInstructions .loader img{height:60px;-webkit-transition:all .2s linear}
+.startInstructions .loader span{position:absolute;width:100%;opacity:0;left:0;line-height:60px;font-family:"Arial";font-style:italic;font-size:10px}
+.startInstructions .loader:hover img{opacity:0}
+.startInstructions .loader:hover span{opacity:1}
+.startInstructions .startButtons{position:absolute;opacity:0;width:186px;height:30px;left:14px;top:36px;-webkit-transition:all .2s linear;}
+.startInstructions .startButtons .button{float:left;border:1px solid #810f0e;width:80px;height:30px;text-align:center;text-transform:uppercase;font-family:"Arial";font-weight:100;font-size:12px;line-height:30px;margin:0 10px 0 0;-webkit-transition:all .2s linear;}
+.startInstructions .startButtons .button:hover{background:#810f0e}
+.startInstructions.loaded .startButtons{opacity:1;}
+.startInstructions.loaded .startButtons .button{cursor:pointer}
+.startInstructions.loaded .loader{opacity:0}
+.startInstructions .separator{width:100px;height:1px;background:#fff}
+.startInstructions h1{font-family:"Tahoma";font-size:20px;text-transform:uppercase;margin:10px 0;font-weight:100;width:100px;margin:0 auto;border-top:1px solid #fff;padding-top:20px}
+.startInstructions h2{font-family:"Arial";font-size:16px;font-weight:100}
+.score{width:auto;font-size:100px;position:absolute;top:0;right:0;opacity:.15;color:#fff;font-family:Arial;font-style:italic;opacity:0;-webkit-transition:all .3s linear 5s;}
+.score.show{opacity:1}
+.posesInstructions{width:77px;height:160px;position:absolute;bottom:150px;left:50%;margin:0 0 0 -38px;-webkit-transition:all .3s linear 5s;opacity:0;}
+.posesInstructions.show{opacity:1}
+.posesInstructions.tutu .poses{background:url("../assets/img/tutuPose.png") center center no-repeat}
+.posesInstructions.tutu p{-webkit-transform:rotate(0)}
+.posesInstructions.ballerina .poses{background:url("../assets/img/ballerinaPose.png") center center no-repeat}
+.posesInstructions.ballerina p{-webkit-transform:rotate(90deg)}
+.posesInstructions.kungfu .poses{background:url("../assets/img/kungfuPose.png") center center no-repeat}
+.posesInstructions.kungfu p{-webkit-transform:rotate(-90deg)}
+.posesInstructions.happyGuyOnTheBeach .poses{background:url("../assets/img/happyEndGuyOnTheBeachPose.png") center center no-repeat}
+.posesInstructions.happyGuyOnTheBeach p{-webkit-transform:rotate(180deg)}
+.posesInstructions .poses{width:100%;height:130px;position:relative}
+.posesInstructions .separator{width:100%;height:1px;margin:20px 0;background:#fff}
+.posesInstructions p{-webkit-transition:all .1s linear;color:#fff;text-align:center}
+.dg{right:inherit !important}

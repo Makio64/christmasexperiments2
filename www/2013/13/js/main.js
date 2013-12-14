@@ -77,8 +77,8 @@ GUIControls = (function() {
     this.el = new dat.GUI;
     this.el.domElement.style.right = 'inherit !important';
     soundFolder = this.el.addFolder('Sound');
-    soundFolder.add(sound, 'averageHit', 0, 255).name('Hit point');
-    soundFolder.add(sound, 'signal', 0, 255).name('UV Meter');
+    soundFolder.add(sound, 'averageHit', 0, 255).name('Breakpoint');
+    soundFolder.add(sound, 'signal', 0, 255).name('Sound intensity');
     soundFolder.open();
     null;
   }
@@ -122,8 +122,6 @@ PoseInstructionGenerator = (function() {
 
   PoseInstructionGenerator.prototype.canGenerate = true;
 
-  PoseInstructionGenerator.prototype.canPressKey = false;
-
   PoseInstructionGenerator.prototype.instructionsOnDOM = null;
 
   PoseInstructionGenerator.prototype.timerOut = null;
@@ -145,6 +143,7 @@ PoseInstructionGenerator = (function() {
     this.onKeyPressed = __bind(this.onKeyPressed, this);
     this.checkKey = __bind(this.checkKey, this);
     this.update = __bind(this.update, this);
+    this.displayIntruction = __bind(this.displayIntruction, this);
     this.generateInstruction = __bind(this.generateInstruction, this);
     this.initEvents = __bind(this.initEvents, this);
     this.instructionsOnDOM = [];
@@ -153,6 +152,7 @@ PoseInstructionGenerator = (function() {
     this.posesContainer = $('.poses')[0];
     this.arrowContainer = $('.posesInstructions p')[0];
     this.scoreContainer = $('.score')[0];
+    this.scoreValue = $('.score .value')[0];
     this.initEvents();
     null;
   }
@@ -163,31 +163,27 @@ PoseInstructionGenerator = (function() {
   };
 
   PoseInstructionGenerator.prototype.generateInstruction = function() {
-    var tempInstructionLabel;
     if (this.timeBeforeNextPose > 0 || this.currentInstruction !== null) {
       return;
     }
-    tempInstructionLabel = this.availableInstructionsLabel[NumberUtils.random(0, 4)];
-    this.displayIntruction(tempInstructionLabel);
+    this.canGenerate = false;
+    this.currentInstructionLabel = this.availableInstructionsLabel[Math.floor(NumberUtils.random(0, 4))];
+    this.displayIntruction();
     return null;
   };
 
   PoseInstructionGenerator.prototype.displayIntruction = function(tempInstructionLabel) {
-    if (tempInstructionLabel === this.currentInstructionLabel) {
-      this.generateInstruction();
-      return;
-    }
     if (autoMode) {
       this.timeBeforeNextPose = 300;
     } else {
-      this.timeBeforeNextPose = 1000;
+      this.timeBeforeNextPose = 700;
     }
-    this.canPressKey = true;
     if (!introEnded) {
       return;
     }
-    this.currentInstructionLabel = tempInstructionLabel;
-    this.posesInstructions.className = 'posesInstructions show ' + this.currentInstructionLabel;
+    if (!autoMode) {
+      this.posesInstructions.className = 'posesInstructions show ' + this.currentInstructionLabel;
+    }
     if (autoMode) {
       if (this.currentInstructionLabel === 'tutu') {
         santa.poseLikeATutuDancer(true, .2);
@@ -199,7 +195,6 @@ PoseInstructionGenerator = (function() {
         santa.poseLikeAHappyGuyOnTheBeach(true, .2);
       }
     } else {
-      this.totalAppeared++;
       this.updateScore();
     }
     return null;
@@ -213,27 +208,29 @@ PoseInstructionGenerator = (function() {
   };
 
   PoseInstructionGenerator.prototype.checkKey = function(evt) {
-    if (!this.canPressKey) {
-      return;
+    this.canGenerate = true;
+    console.log(evt.keyCode, this.currentInstructionLabel);
+    if (autoMode) {
+      this.timeBeforeNextPose = 300;
+    } else {
+      this.timeBeforeNextPose = 700;
     }
-    console.log(evt);
-    console.log(evt.keyIdentifier, this.currentInstructionLabel);
-    if (evt.keyIdentifier === 'Up') {
+    if (evt.keyCode === 38) {
       santa.poseLikeATutuDancer(true, .2);
       if (this.currentInstructionLabel === 'tutu') {
         this.onGoodKeyPress();
       }
-    } else if (evt.keyIdentifier === 'Down') {
+    } else if (evt.keyCode === 37) {
       santa.poseLikeABallerina(true, .2);
       if (this.currentInstructionLabel === 'ballerina') {
         this.onGoodKeyPress();
       }
-    } else if (evt.keyIdentifier === 'Left') {
+    } else if (evt.keyCode === 39) {
       santa.poseLikeAKungFuPanda(true, .2);
       if (this.currentInstructionLabel === 'kungfu') {
         this.onGoodKeyPress();
       }
-    } else if (evt.keyIdentifier === 'Right') {
+    } else if (evt.keyCode === 40) {
       santa.poseLikeAHappyGuyOnTheBeach(true, .2);
       if (this.currentInstructionLabel === 'happyGuyOnTheBeach') {
         this.onGoodKeyPress();
@@ -241,8 +238,7 @@ PoseInstructionGenerator = (function() {
     } else {
       this.onWrongKeyPressed();
     }
-    this.currentInstructionLabel = null;
-    this.currentInstruction = null;
+    this.canGenerate = false;
     return null;
   };
 
@@ -261,13 +257,13 @@ PoseInstructionGenerator = (function() {
   };
 
   PoseInstructionGenerator.prototype.updateScore = function() {
-    this.scoreContainer.innerHTML = this.currentScore + '/' + this.totalAppeared;
+    this.scoreValue.innerHTML = this.currentScore;
     return null;
   };
 
   PoseInstructionGenerator.prototype.show = function(autoMode) {
-    this.posesInstructions.className = 'posesInstructions show tutu';
     if (!autoMode) {
+      this.posesInstructions.className = 'posesInstructions show tutu';
       this.scoreContainer.className = 'score show';
     }
     return null;
@@ -1367,10 +1363,10 @@ Sound = (function() {
     var buffer;
     if (autoMode) {
       buffer = this.bufferTwo;
-      this.averageHit = 70;
+      this.averageHit = 50;
     } else {
       buffer = this.bufferOne;
-      this.averageHit = 100;
+      this.averageHit = 80;
     }
     this.sourceNode.buffer = buffer;
     this.sourceNode.start(0);
@@ -1578,11 +1574,9 @@ init = function() {
   initSnow();
   initSanta();
   initSound();
-  initGUI();
   initTrackBallControls();
   santa.onLoaded = function() {
-    checkIfAllLoaded();
-    return guiControls.initSantaControls();
+    return checkIfAllLoaded();
   };
   sound.onLoaded = checkIfAllLoaded;
   woodScene.onLoaded = checkIfAllLoaded;
@@ -1791,6 +1785,7 @@ onPlayIntroComplete = function() {
   });
   introEnded = true;
   $('.startInstructions').hide();
+  initGUI();
   return null;
 };
 
@@ -1804,12 +1799,14 @@ getElapsedTime = function() {
 };
 
 update = function() {
-  controls.update();
+  if (!autoMode) {
+    controls.update();
+  }
   camera.position.distanceTo(woodScene.mesh.position);
   snow.update(getElapsedTime());
   poseInstructionGenerator.update(getElapsedTime());
   santa.update();
-  if (!target || !introEnded) {
+  if (!target || !introEnded || !autoMode) {
     return;
   }
   camera.position.x = target.position.x + 400 * Math.cos(cameraSpeed * getElapsedTime());
@@ -1827,7 +1824,9 @@ animate = function() {
   window.requestAnimationFrame(animate);
   update();
   render();
-  guiControls.update();
+  if (guiControls) {
+    guiControls.update();
+  }
   return null;
 };
 

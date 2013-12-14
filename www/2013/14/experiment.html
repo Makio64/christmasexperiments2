@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Christmas Experiment 2013 - Gregoire Divaret</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				margin: 0px;
+				overflow: hidden;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div id="container"></div>
+
+		<script type="x-shader/x-vertex" id="vSimplexPart">
+
+			/* Created by Nikita Miropolskiy, nikat/2013
+			 * This work is licensed under a 
+			 * Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
+			 * http://creativecommons.org/licenses/by-nc-sa/3.0/
+			 *  - You must attribute the work in the source code 
+			 *    (link to https://www.shadertoy.com/view/XsX3zB).
+			 *  - You may not use this work for commercial purposes.
+			 *  - You may distribute a derivative work only under the same license.
+			 */
+
+			/* discontinuous pseudorandom uniformly distributed in [-0.5, +0.5]^3 */
+			vec3 random3(vec3 c) {
+				float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
+				vec3 r;
+				r.z = fract(512.0*j);
+				j *= .125;
+				r.x = fract(512.0*j);
+				j *= .125;
+				r.y = fract(512.0*j);
+				return r-0.5;
+			}
+
+			/* skew constants for 3d simplex functions */
+			const float F3 =  0.3333333;
+			const float G3 =  0.1666667;
+
+			/* 3d simplex noise */
+			float simplex3d(vec3 p) {
+				 /* 1. find current tetrahedron T and it's four vertices */
+				 /* s, s+i1, s+i2, s+1.0 - absolute skewed (integer) coordinates of T vertices */
+				 /* x, x1, x2, x3 - unskewed coordinates of p relative to each of T vertices*/
+				 
+				 /* calculate s and x */
+				 vec3 s = floor(p + dot(p, vec3(F3)));
+				 vec3 x = p - s + dot(s, vec3(G3));
+				 
+				 /* calculate i1 and i2 */
+				 vec3 e = step(vec3(0.0), x - x.yzx);
+				 vec3 i1 = e*(1.0 - e.zxy);
+				 vec3 i2 = 1.0 - e.zxy*(1.0 - e);
+				 	
+				 /* x1, x2, x3 */
+				 vec3 x1 = x - i1 + G3;
+				 vec3 x2 = x - i2 + 2.0*G3;
+				 vec3 x3 = x - 1.0 + 3.0*G3;
+				 
+				 /* 2. find four surflets and store them in d */
+				 vec4 w, d;
+				 
+				 /* calculate surflet weights */
+				 w.x = dot(x, x);
+				 w.y = dot(x1, x1);
+				 w.z = dot(x2, x2);
+				 w.w = dot(x3, x3);
+				 
+				 /* w fades from 0.6 at the center of the surflet to 0.0 at the margin */
+				 w = max(0.6 - w, 0.0);
+				 
+				 /* calculate surflet components */
+				 d.x = dot(random3(s), x);
+				 d.y = dot(random3(s + i1), x1);
+				 d.z = dot(random3(s + i2), x2);
+				 d.w = dot(random3(s + 1.0), x3);
+				 
+				 /* multiply d by w^4 */
+				 w *= w;
+				 w *= w;
+				 d *= w;
+				 
+				 /* 3. return the sum of the four surflets */
+				 return dot(d, vec4(52.0));
+			}
+
+			float simplex3d_fractal(vec3 m) {
+			    return   0.5333333*simplex3d(m)
+						+0.2666667*simplex3d(2.0*m)
+						+0.1333333*simplex3d(4.0*m)
+						+0.0666667*simplex3d(8.0*m);
+			}
+		</script>
+		<script type="x-shader/x-vertex" id="vWordShader">
+
+
+			varying vec3 vPos;
+			varying vec3 vNormal;
+			uniform float time;
+			attribute float vertexID;
+			varying float vVertexID;
+
+			void main() {
+				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+				vPos = position.xyz;
+				vec3 tpos = position.xyz;
+				tpos *= vec3(0.005, 0.005, 0.005);
+				tpos.y += 0.001 * time + float(vertexID);
+				tpos.x += 0.001 * time;
+				mvPosition.x += 20.0 * simplex3d_fractal(tpos.xyz);
+				mvPosition.y += 30.0 * simplex3d_fractal(tpos.yzx);
+				mvPosition.z += 200.0 * simplex3d_fractal(tpos.zxy);
+				//mvPosition.xyz += 50.0 * normal * simplex3d_fractal(tpos.xyz);
+
+				vVertexID = vertexID;
+				gl_Position = projectionMatrix * mvPosition;
+				vNormal = normal;
+
+			}
+
+
+
+		</script>
+
+		<script type="x-shader/x-fragment" id="fWordShader">
+
+			uniform vec3 color;
+			varying vec3 vPos;
+			varying vec3 vNormal;
+			varying float vVertexID;
+
+			void main() {
+				float c = (0.5 * vPos.z / 200.0 + 0.5);
+				gl_FragColor = vec4(c * color.r, c * color.g, c * color.b, 1.0);
+			}
+		</script>
+
+
+
+		<script type="x-shader/x-vertex" id="vSnowShader">
+
+
+			uniform float time;
+			uniform float radius;
+
+			void main() {
+				//vec3 pos = radius * normalize(position);
+				vec3 pos = position.xyz;
+				vec3 tpos = position.xyz;
+				tpos *= vec3(0.005, 0.005, 0.005);
+				tpos.y += 0.001 * time;
+				tpos.x += 0.001 * time;
+				pos.x += 50.0 * simplex3d_fractal(tpos.xyz);
+				pos.y += 50.0 * simplex3d_fractal(tpos.yzx);
+				pos.z += 50.0 * simplex3d_fractal(tpos.zxy);
+				pos = 0.5 * (radius - 10.0) * normalize(pos);
+				vec4 mvPosition = modelViewMatrix * vec4( pos, 1.0 );
+				gl_Position = projectionMatrix * mvPosition;
+
+			}
+		</script>
+
+		<script type="x-shader/x-fragment" id="fSnowShader">
+
+			uniform vec3 color;
+			varying vec3 vNormal;
+
+			vec3 random3(vec3 c) {
+				float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
+				vec3 r;
+				r.z = fract(512.0*j);
+				j *= .125;
+				r.x = fract(512.0*j);
+				j *= .125;
+				r.y = fract(512.0*j);
+				return r-0.5;
+			}
+			void main() {
+
+				gl_FragColor = vec4(color.r, color.g, color.b, 1.0);
+
+			}
+		</script>
+
+		<script type="x-shader/x-vertex" id="vQuatPart">
+			
+			vec3 rotateVectorByQuaternion( vec3 v, vec4 q ) {
+
+				vec3 dest = vec3( 0.0 );
+
+				float x = v.x, y  = v.y, z  = v.z;
+				float qx = q.x, qy = q.y, qz = q.z, qw = q.w;
+
+				// calculate quaternion * vector
+
+				float ix =  qw * x + qy * z - qz * y,
+					  iy =  qw * y + qz * x - qx * z,
+					  iz =  qw * z + qx * y - qy * x,
+					  iw = -qx * x - qy * y - qz * z;
+
+				// calculate result * inverse quaternion
+
+				dest.x = ix * qw + iw * -qx + iy * -qz - iz * -qy;
+				dest.y = iy * qw + iw * -qy + iz * -qx - ix * -qz;
+				dest.z = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+
+				return dest;
+
+			}
+
+			vec4 axisAngleToQuaternion( vec3 axis, float angle ) {
+
+				vec4 dest = vec4( 0.0 );
+
+				float halfAngle = angle / 2.0,
+					  s = sin( halfAngle );
+
+				dest.x = axis.x * s;
+				dest.y = axis.y * s;
+				dest.z = axis.z * s;
+				dest.w = cos( halfAngle );
+
+				return dest;
+
+			}
+		</script>
+
+
+		<script type="x-shader/x-vertex" id="vBarsShader">
+
+			float PI = 3.141592654;
+			uniform float time;
+			uniform float radius;
+			varying vec3 vPos;
+			attribute float cubeBarId;
+			attribute vec3 aColor;
+			varying vec3 vColor;
+			varying float vCubeBarId;
+			varying float vDist;
+			void main() {
+				//vec3 pos = radius * normalize(position);
+				float len = length(position) * (0.5 * (0.5 + 0.5 * cos(0.01 * time + cubeBarId)) + 0.5);
+
+				vec3 pos = len * normalize(position.xyz);
+				vDist = 2.0 * len / radius;
+				vec3 axis = normalize(random3(vec3(cubeBarId, cubeBarId, cubeBarId)));
+				float angle = random3(vec3(cubeBarId + 1.0, cubeBarId, cubeBarId)).x * 2.0 * PI;
+				vec4 quaternion = axisAngleToQuaternion(axis, angle);
+				pos = rotateVectorByQuaternion(pos, quaternion);
+				vec4 mvPosition = modelViewMatrix * vec4( pos, 1.0 );
+				gl_Position = projectionMatrix * mvPosition;
+				vCubeBarId = cubeBarId;
+				vColor = aColor;
+
+			}
+		</script>
+
+		<script type="x-shader/x-fragment" id="fBarsShader">
+
+			uniform vec3 color;
+			varying vec3 vNormal;
+			varying vec3 vPos;
+			varying vec3 vColor;
+			varying float vDist;
+			varying float vCubeBarId;
+
+			void main() {
+				vec3 c = vColor;
+				c *= vDist;
+				gl_FragColor = vec4(c.r, c.g, c.b, 1.0);
+
+			}
+		</script>
+
+
+		<script type="x-shader/x-vertex" id="vCubesShader">
+
+			float PI = 3.141592654;
+			vec3 upAxis = vec3(0.0, 1.0, 0.0);
+			vec3 frontAxis = vec3(0.0, 0.0, 1.0);
+			uniform float time;
+			uniform float radius;
+			varying vec3 vPos;
+			attribute float cubeBarId;
+			attribute vec3 aColor;
+			attribute vec3 aCubeOffset;
+			varying vec3 vColor;
+			varying float vCubeBarId;
+			varying float vDist;
+			void main() {
+				//vec3 pos = radius * normalize(position);
+				float len = length(position) * (0.5 * (0.5 + 0.5 * cos(0.01 * time + cubeBarId)) + 0.5);
+
+				vec3 pos = position.xyz;
+
+				float angle = atan(aCubeOffset.z, aCubeOffset.x);
+				vec4 quaternion = axisAngleToQuaternion(upAxis, angle);
+				pos = rotateVectorByQuaternion(pos, quaternion);
+
+				vec3 directionAxis = rotateVectorByQuaternion(frontAxis, quaternion);
+
+				angle = 0.3 * (simplex3d(0.5 * vec3(aCubeOffset.x + 0.05 * time, aCubeOffset.y, aCubeOffset.z))) * PI;
+				quaternion = axisAngleToQuaternion(directionAxis, angle);
+				pos = rotateVectorByQuaternion(pos, quaternion);
+				pos += aCubeOffset;
+				vDist = 3.0 * length(pos) / radius;
+				vPos = pos;
+				vec4 mvPosition = modelViewMatrix * vec4( pos, 1.0 );
+				gl_Position = projectionMatrix * mvPosition;
+				vCubeBarId = cubeBarId;
+				vColor = aColor;
+
+			}
+		</script>
+
+		<script type="x-shader/x-fragment" id="fCubesShader">
+
+			uniform vec3 color;
+			varying vec3 vNormal;
+			varying vec3 vPos;
+			varying vec3 vColor;
+			varying float vDist;
+			varying float vCubeBarId;
+
+
+
+			void main() {
+				vec3 c = mix(vDist * vColor, color, 0.1);
+				gl_FragColor = vec4(c.r, c.g, c.b, 1.0);
+
+			}
+		</script>
+
+		<script src="js/libs/three.min.js"></script>
+		<script src="js/libs/tools/tools.js"></script>
+		<script src="js/libs/tools/Tween.js"></script>
+		<script src="js/Path.js"></script>
+		<script src="js/Word.js"></script>
+		<script src="js/Ball.js"></script>
+		<script src="js/SnowBall.js"></script>
+		<script src="js/Cubes.js"></script>
+		<script src="js/Bars.js"></script>
+		<script src="js/script.js"></script>
+
+	</body>
+</html>

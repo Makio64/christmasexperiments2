@@ -35,5 +35,5 @@ requirejs.config({
 
 require(libs, function()
 {
-    require(['main']);
+    require(['main.min']);
 });

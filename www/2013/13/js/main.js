@@ -209,7 +209,6 @@ PoseInstructionGenerator = (function() {
 
   PoseInstructionGenerator.prototype.checkKey = function(evt) {
     this.canGenerate = true;
-    console.log(evt.keyCode, this.currentInstructionLabel);
     if (autoMode) {
       this.timeBeforeNextPose = 300;
     } else {
@@ -220,12 +219,12 @@ PoseInstructionGenerator = (function() {
       if (this.currentInstructionLabel === 'tutu') {
         this.onGoodKeyPress();
       }
-    } else if (evt.keyCode === 37) {
+    } else if (evt.keyCode === 39) {
       santa.poseLikeABallerina(true, .2);
       if (this.currentInstructionLabel === 'ballerina') {
         this.onGoodKeyPress();
       }
-    } else if (evt.keyCode === 39) {
+    } else if (evt.keyCode === 37) {
       santa.poseLikeAKungFuPanda(true, .2);
       if (this.currentInstructionLabel === 'kungfu') {
         this.onGoodKeyPress();

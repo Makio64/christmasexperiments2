@@ -67,7 +67,7 @@ header .calendar ul li.day-24 .background{background:url("../img/24/preview100x5
 header .calendar ul li.activate:hover{width:100px;}
 header .calendar ul li.activate:hover .background{opacity:1;-webkit-transition:all .3s linear;-moz-transition:all .3s linear;-o-transition:all .3s linear;-ms-transition:all .3s linear;transition:all .3s linear}
 header .calendar ul li.desactivate{opacity:.3}
-header .calendar.show{z-index:3;-webkit-transform:translate(0,50px);-moz-transform:translate(0,50px);-o-transform:translate(0,50px);-ms-transform:translate(0,50px);transform:translate(0,50px)}
+header .calendar.show{z-index:0;-webkit-transform:translate(0,50px);-moz-transform:translate(0,50px);-o-transform:translate(0,50px);-ms-transform:translate(0,50px);transform:translate(0,50px)}
 iframe{padding:0;margin:0;width:100%;height:100%}
 #flashAnim{padding:0;margin:0;width:800px;height:500px;position:absolute;top:50%;left:50%;margin-top:-224px;margin-left:-400px;display:block;background:#d5d3d5;}
 #flashAnim object{width:100%;height:100%;border:0}

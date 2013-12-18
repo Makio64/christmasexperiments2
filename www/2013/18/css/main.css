@@ -1,0 +1,217 @@
+@font-face {
+  font-family: 'blindfold';
+  src: url("../fonts/blindfold-webfont.eot");
+  src: url("../fonts/blindfold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/blindfold-webfont.woff") format("woff"), url("../fonts/blindfold-webfont.ttf") format("truetype"), url("../fonts/blindfold-webfont.svg#blindfoldregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #3676be; }
+
+body {
+  color: #222222; }
+
+#container {
+  height: 100%;
+  width: 100%;
+  cursor: default; }
+
+.splashscreen {
+  background: -webkit-radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url("../img/splashscreen-bg.jpg") repeat;
+  background: -moz-radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url("../img/splashscreen-bg.jpg") repeat;
+  background: -ms-radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url("../img/splashscreen-bg.jpg") repeat;
+  background: -o-radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url("../img/splashscreen-bg.jpg") repeat;
+  background: radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url("../img/splashscreen-bg.jpg") repeat;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: 400ms opacity ease;
+  -ms-transition: 400ms opacity ease;
+  -moz-transition: 400ms opacity ease;
+  -o-transition: 400ms opacity ease;
+  transition: 400ms opacity ease; }
+  .splashscreen.visible {
+    opacity: 1; }
+
+.title-container {
+  height: 27%;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 30%; }
+  .title-container .title {
+    height: 100%;
+    width: auto; }
+
+.loading-bar-container {
+  width: 100%;
+  height: 2.5%;
+  max-height: 25px;
+  position: absolute;
+  top: 64.5%;
+  left: 0; }
+  .loading-bar-container .loading-bar {
+    background: url("../img/bar-bg.png") repeat-x;
+    margin: 0 auto;
+    height: 100%;
+    width: 20%;
+    border-radius: 12px;
+    box-shadow: inset 0 7px 0 rgba(0, 0, 0, 0.2);
+    -webkit-animation: loading 1s linear infinite;
+    -ms-animation: loading 1s linear infinite;
+    -moz-animation: loading 1s linear infinite;
+    -o-animation: loading 1s linear infinite;
+    animation: loading 1s linear infinite; }
+  .loading-bar-container .text {
+    font-family: 'blindfold', serif;
+    text-align: center;
+    color: #eee;
+    word-spacing: -2px;
+    margin-top: 25px;
+    font-size: 24px;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+    -webkit-font-smoothing: antialiased;
+    -ms-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased; }
+
+.instruction {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -63px 0 0 -228px;
+  background: url("../img/instruction-bg.png");
+  width: 456px;
+  height: 126px;
+  text-align: center;
+  line-height: 95px;
+  color: #fff;
+  font-family: 'blindfold', serif;
+  word-spacing: -2px;
+  font-size: 24px;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+  -webkit-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-indent: 30px;
+  pointer-events: none;
+  -webkit-transition: 600ms all ease;
+  -ms-transition: 600ms all ease;
+  -moz-transition: 600ms all ease;
+  -o-transition: 600ms all ease;
+  transition: 600ms all ease;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  opacity: 0; }
+  .instruction.visible {
+    opacity: 1; }
+
+.buttons {
+  position: absolute;
+  bottom: 30px;
+  right: 30px; }
+  .buttons div {
+    height: 39px;
+    width: 40px;
+    float: left;
+    cursor: pointer;
+    opacity: 0.75; }
+    .buttons div:hover {
+      opacity: 1; }
+  .buttons .mute-button {
+    margin-right: 10px; }
+
+.mute-button {
+  background: url("../img/mute-button.png"); }
+  .mute-button.active {
+    background-position: 0 -39px; }
+
+.about-button {
+  background: url("../img/about-button.png"); }
+
+.about {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 384px;
+  width: 629px;
+  margin: -192px 0 0 -314.5px;
+  background: url("../img/about-bg.png");
+  text-align: center;
+  color: #fff;
+  font-family: 'blindfold', serif;
+  word-spacing: -2px;
+  font-size: 24px;
+  -webkit-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-transition: 600ms all ease;
+  -ms-transition: 600ms all ease;
+  -moz-transition: 600ms all ease;
+  -o-transition: 600ms all ease;
+  transition: 600ms all ease;
+  opacity: 0;
+  pointer-events: none; }
+  .about.visible {
+    opacity: 1;
+    pointer-events: auto; }
+  .about p {
+    margin-top: 240px;
+    line-height: 30px; }
+  .about p span {
+    font-size: 80%; }
+  .about a {
+    color: #eae49b;
+    text-decoration: none; }
+    .about a:hover {
+      color: #f7f5da; }
+
+@keyframes loading {
+  0% {
+    background-position: 0 0; }
+
+  100% {
+    background-position: -45px 0; } }
+
+@-webkit-keyframes loading {
+  0% {
+    background-position: 0 0; }
+
+  100% {
+    background-position: -45px 0; } }
+
+@-moz-keyframes loading {
+  0% {
+    background-position: 0 0; }
+
+  100% {
+    background-position: -45px 0; } }
+
+.no-transitions * {
+  -webkit-transition: none !important;
+  -ms-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important; }

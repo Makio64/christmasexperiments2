@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<!--
+.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.
+.     *                                       .
+.    /.\      "Paper Christmas" experiment    .
+.   /..'\                                     .
+.   /'.'\     Libraries used:                 .
+.  /.''.'\    three.js, RequireJS, SoundJS,   .
+.  /.'.'.\    jQuery, Underscore              .
+. /'.''.'.\                                   .
+. ^^^[_]^^^   Made by: littleworkshop.fr      .
+.                                             .
+.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.
+-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Paper Christmas</title>
+  <link rel='stylesheet' href='css/normalize.css' type='text/css'>
+  <link rel='stylesheet' href='css/main.css' type='text/css'>
+</head>
+<body class="no-transitions">
+
+  <div class="splashscreen visible">
+    <div class="title-container">
+      <img src="img/title.png" alt="" class="title">
+    </div>
+    <div class="loading-bar-container">
+      <div class="loading-bar"></div>
+      <div class="text">loading, please wait</div>
+    </div>
+  </div>
+
+  <div class="instruction">Click and drag to explore</div>
+
+  <div class="about">
+    <div class="title-small"></div>
+    <p>a WebGL experiment by <a href="http://www.littleworkshop.fr">Little Workshop</a><br>
+      <span>made with <a href="http://threejs.org/">three.js</a></span></p>
+  </div>
+
+  <div class="buttons">
+    <div class="mute-button"></div>
+    <div class="about-button"></div>
+  </div>
+
+  <div id="container"></div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="js/christmas.js"></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-10740897-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <script type="text/javascript" src="http://include.reinvigorate.net/re_.js"></script>
+  <script type="text/javascript">
+  try {
+  reinvigorate.track("08x8g-416j69n79i");
+  } catch(err) {}
+  </script>
+</body>
+</html>

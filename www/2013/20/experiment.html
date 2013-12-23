@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Jingle Balls</title>
+        <meta name="author" content="Justin Windle - http://soulwire.co.uk">
+        <link rel="stylesheet" href="styles/50096eb0.main.css">
+    </head>
+    <body>
+        <div id="container"></div>
+        <div class="ui hidden">
+            <div class="group">
+                <label>Tempo</label>
+                <input class='slider tempo' type='range' min="0" max="1" step="0.01" value='0.5'/>
+                <label>Size</label>
+                <input class='slider size' type='range' min="0" max="1" step="0.01" value='0.5'/>
+            </div>
+            <div class="group">
+                <button class="toggle playing">Pause</button>
+                <button class="clear">Clear</button>
+                <button class="save">Share</button>
+            </div>
+        </div>
+        <div class="error">
+            <h2>Sorry, this experiment uses the latest Web Audio API</h2>
+            <p>Looks like this browser doesn't have the right Web Audio features available.</p>
+            <p>Please try checking it out in <a href="http://google.com/chrome" target="_blank">Chrome</a></p>
+        </div>
+        <script src="scripts/9c354fa5.app.min.js"></script>
+    </body>
+</html>

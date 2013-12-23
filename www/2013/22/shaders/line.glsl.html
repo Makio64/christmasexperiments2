@@ -1,0 +1,83 @@
+<script type="x-shader/x-vertex" id="multiline-vertex-data">
+
+uniform sampler2D dataTexture;
+uniform vec2 dataResolution;
+
+uniform float lineWidth;
+uniform float zBias;
+
+attribute vec2 line;
+uniform vec2 dataPointer;
+
+void main() {
+  vec2 uv = fract((vec2(position.x, position.y) + dataPointer) * dataResolution);
+  vec3 left, right;
+  vec3 center = texture2D(dataTexture, uv).xyz;
+
+  float edge = line.x;
+  float offset = line.y;
+
+  vec3 joinBitangent;
+
+  if (edge > 0.5) {
+    right = center;
+  }
+  else {
+    right = texture2D(dataTexture, uv + vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  if (edge < -0.5) {
+    left = center;
+  }
+  else {
+    left = texture2D(dataTexture, uv - vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  vec3 viewLeft = (modelViewMatrix * vec4(left.xyz, 1.0)).xyz;
+  vec3 viewRight = (modelViewMatrix * vec4(right.xyz, 1.0)).xyz;
+	vec3 viewCenter = (modelViewMatrix * vec4(center.xyz, 1.0)).xyz;
+
+  vec3 joinNormal = viewCenter;
+
+  vec3 legLeft = viewCenter - viewLeft;
+  vec3 legRight = viewRight - viewCenter;
+
+  if (edge > 0.5) {
+    joinBitangent = normalize(cross(joinNormal, legLeft));
+  }
+  else if (edge < -0.5) {
+    joinBitangent = normalize(cross(joinNormal, legRight));
+  }
+  else {
+    vec3 jb1 = normalize(cross(joinNormal, legLeft));
+    vec3 jb2 = normalize(cross(joinNormal, legRight));
+    float scale = min(2.0, tan(acos(dot(jb1, jb2)*.999) * .5) * .5);
+    joinBitangent = normalize(jb1 + jb2) * sqrt(1.0 + scale * scale);
+  }
+
+	vec4 glPosition = projectionMatrix * vec4(viewCenter.xyz + joinBitangent * offset * lineWidth, 1.0);
+  glPosition.z -= zBias * .0001;
+
+  gl_Position = glPosition;
+}
+</script>
+
+<script type="x-shader/x-fragment" id="multiline-fragment">
+
+uniform vec4 color;
+
+void main() {
+	gl_FragColor = color;
+}
+
+</script>
+
+<script type="x-shader/x-fragment" id="multiline-fragment-color">
+
+varying vec4 vColor;
+
+void main() {
+	gl_FragColor = vColor;
+}
+
+</script>

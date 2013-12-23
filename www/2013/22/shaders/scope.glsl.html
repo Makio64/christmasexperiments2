@@ -1,0 +1,623 @@
+<script type="x-shader/x-vertex" id="multiline-vertex-grid">
+
+uniform sampler2D dataTexture;
+uniform vec2 dataResolution;
+
+uniform float lineWidth;
+uniform float zBias;
+uniform vec4 color;
+
+attribute vec2 line;
+uniform vec2 dataPointer;
+
+varying vec2 vUV;
+varying vec4 vColor;
+varying float vIndex;
+
+void main() {
+  vec2 uv = fract((vec2(position.x, position.y) + dataPointer) * dataResolution);
+  vec3 left, right;
+  vec3 center = texture2D(dataTexture, uv).xyz;
+
+  float edge = line.x;
+  float offset = line.y;
+
+  vec3 joinBitangent;
+
+  if (edge > 0.5) {
+    right = center;
+  }
+  else {
+    right = texture2D(dataTexture, uv + vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  if (edge < -0.5) {
+    left = center;
+  }
+  else {
+    left = texture2D(dataTexture, uv - vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  vec3 viewLeft = (modelViewMatrix * vec4(left.xyz, 1.0)).xyz;
+  vec3 viewRight = (modelViewMatrix * vec4(right.xyz, 1.0)).xyz;
+	vec3 viewCenter = (modelViewMatrix * vec4(center.xyz, 1.0)).xyz;
+
+  vec3 joinNormal = viewCenter;
+
+  vec3 legLeft = viewCenter - viewLeft;
+  vec3 legRight = viewRight - viewCenter;
+
+  if (edge > 0.5) {
+    joinBitangent = normalize(cross(joinNormal, legLeft));
+  }
+  else if (edge < -0.5) {
+    joinBitangent = normalize(cross(joinNormal, legRight));
+  }
+  else {
+    vec3 jb1 = normalize(cross(joinNormal, legLeft));
+    vec3 jb2 = normalize(cross(joinNormal, legRight));
+    float scale = min(2.0, tan(acos(dot(jb1, jb2)*.999) * .5) * .5);
+    joinBitangent = normalize(jb1 + jb2) * sqrt(1.0 + scale * scale);
+  }
+
+	vec4 glPosition = projectionMatrix * vec4(viewCenter.xyz + joinBitangent * offset * lineWidth, 1.0);
+  glPosition.z -= zBias * .0001;
+
+  gl_Position = glPosition;
+  vColor = color;
+  vUV = uv;
+  vIndex = (position.x + mod(position.y, 2.0)) * dataResolution.x;
+}
+</script>
+
+
+<script type="x-shader/x-vertex" id="multiline-vertex-grid-scope">
+
+uniform sampler2D dataTexture;
+uniform vec2 dataResolution;
+
+uniform float lineWidth;
+uniform float zBias;
+uniform vec4 color;
+
+attribute vec2 line;
+uniform vec2 dataPointer;
+
+varying vec2 vUV;
+varying vec4 vColor;
+varying float vIndex;
+
+uniform float scopeFold;
+
+void fold(inout vec3 pos) {
+  float th = (pos.x *.5) * scopeFold * 24.0;
+  float c = cos(th);
+  float s = sin(th);
+  pos.yz *= mat2(c, s, -s, c);
+}
+
+void main() {
+  vec2 uv = fract((vec2(position.x, position.y) + dataPointer) * dataResolution);
+  vec3 left, right;
+  vec3 center = texture2D(dataTexture, uv).xyz;
+
+  float edge = line.x;
+  float offset = line.y;
+
+  vec3 joinBitangent;
+
+  if (edge > 0.5) {
+    right = center;
+  }
+  else {
+    right = texture2D(dataTexture, uv + vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  if (edge < -0.5) {
+    left = center;
+  }
+  else {
+    left = texture2D(dataTexture, uv - vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  fold(left);
+  fold(center);
+  fold(right);
+
+  vec3 viewLeft = (modelViewMatrix * vec4(left.xyz, 1.0)).xyz;
+  vec3 viewRight = (modelViewMatrix * vec4(right.xyz, 1.0)).xyz;
+	vec3 viewCenter = (modelViewMatrix * vec4(center.xyz, 1.0)).xyz;
+
+  vec3 joinNormal = viewCenter;
+
+  vec3 legLeft = viewCenter - viewLeft;
+  vec3 legRight = viewRight - viewCenter;
+
+  if (edge > 0.5) {
+    joinBitangent = normalize(cross(joinNormal, legLeft));
+  }
+  else if (edge < -0.5) {
+    joinBitangent = normalize(cross(joinNormal, legRight));
+  }
+  else {
+    vec3 jb1 = normalize(cross(joinNormal, legLeft));
+    vec3 jb2 = normalize(cross(joinNormal, legRight));
+    float scale = min(2.0, tan(acos(dot(jb1, jb2)*.999) * .5) * .5);
+    joinBitangent = normalize(jb1 + jb2) * sqrt(1.0 + scale * scale);
+  }
+
+	vec4 glPosition = projectionMatrix * vec4(viewCenter.xyz + joinBitangent * offset * lineWidth, 1.0);
+  glPosition.z -= zBias * .0001;
+
+  gl_Position = glPosition;
+  vColor = color;
+  vUV = uv;
+  vIndex = (position.x + mod(position.y, 2.0)) * dataResolution.x;
+}
+</script>
+
+<script type="x-shader/x-vertex" id="multiline-vertex-scope">
+
+uniform sampler2D dataTexture;
+uniform vec2 dataResolution;
+
+uniform float lineWidth;
+uniform float zBias;
+uniform vec4 color;
+
+attribute vec2 line;
+uniform vec2 dataPointer;
+
+varying vec2 vUV;
+varying vec4 vColor;
+
+uniform float scopeFold;
+
+void fold(inout vec3 pos) {
+  float th = (pos.x *.5) * scopeFold * 24.0;
+  float c = cos(th);
+  float s = sin(th);
+  pos.yz *= mat2(c, s, -s, c);
+}
+
+void main() {
+  vec2 uv = fract((vec2(position.x, -position.y) + dataPointer) * dataResolution);
+  vec3 left, right;
+  vec3 center = texture2D(dataTexture, uv).xyz;
+
+  float edge = line.x;
+  float offset = line.y;
+
+  vec3 joinBitangent;
+
+  if (edge > 0.5) {
+    right = center;
+  }
+  else {
+    right = texture2D(dataTexture, uv + vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  if (edge < -0.5) {
+    left = center;
+  }
+  else {
+    left = texture2D(dataTexture, uv - vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  float z = position.y * dataResolution.y;
+  float fade = ((1.0 - z) * (1.0 - z) + (1.0 - z)) * .5;
+  vColor = vec4(sqrt(color.xyz * color.xyz * vec3(fade * fade * fade, fade * fade, fade)), color.w);
+
+  z *= -.1;
+
+  left.z += z;
+  center.z += z;
+  right.z += z;
+
+  fold(left);
+  fold(center);
+  fold(right);
+
+  vec3 viewLeft = (modelViewMatrix * vec4(left.xyz, 1.0)).xyz;
+  vec3 viewRight = (modelViewMatrix * vec4(right.xyz, 1.0)).xyz;
+	vec3 viewCenter = (modelViewMatrix * vec4(center.xyz, 1.0)).xyz;
+
+  vec3 joinNormal = viewCenter;
+
+  vec3 legLeft = viewCenter - viewLeft;
+  vec3 legRight = viewRight - viewCenter;
+
+  if (edge > 0.5) {
+    joinBitangent = normalize(cross(joinNormal, legLeft));
+  }
+  else if (edge < -0.5) {
+    joinBitangent = normalize(cross(joinNormal, legRight));
+  }
+  else {
+    vec3 jb1 = normalize(cross(joinNormal, legLeft));
+    vec3 jb2 = normalize(cross(joinNormal, legRight));
+    float scale = min(2.0, tan(acos(dot(jb1, jb2)*.99) * .5) * .5);
+    joinBitangent = normalize(jb1 + jb2) * sqrt(1.0 + scale * scale);
+  }
+
+	vec4 glPosition = projectionMatrix * vec4(viewCenter.xyz + joinBitangent * offset * lineWidth, 1.0);
+  glPosition.z -= zBias * .0001;
+
+  gl_Position = glPosition;
+
+  vUV = uv;
+}
+</script>
+
+<script type="x-shader/x-vertex" id="multiline-vertex-integrate">
+
+uniform sampler2D dataTexture;
+uniform vec2 dataResolution;
+
+uniform float lineWidth;
+uniform float zBias;
+uniform vec4 color;
+
+attribute vec2 line;
+uniform vec2 dataPointer;
+
+varying vec2 vUV;
+varying vec4 vColor;
+varying float vIndex;
+
+void main() {
+  vec2 uv = fract((vec2(position.x, -position.y) + dataPointer) * dataResolution);
+  vec3 left, right;
+  vec3 center = texture2D(dataTexture, uv).xyz;
+
+  float edge = line.x;
+  float offset = line.y;
+
+  vec3 joinBitangent;
+
+  if (edge > 0.5) {
+    right = center;
+  }
+  else {
+    right = texture2D(dataTexture, uv + vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  if (edge < -0.5) {
+    left = center;
+  }
+  else {
+    left = texture2D(dataTexture, uv - vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  float z = position.y * dataResolution.y;
+  float fade = ((1.0 - z) * (1.0 - z) + (1.0 - z)) * .5;
+  vColor = vec4(sqrt(color.xyz * color.xyz * vec3(fade * fade * fade, fade * fade, fade)), color.w);
+
+  vec3 viewLeft = (modelViewMatrix * vec4(left.xyz, 1.0)).xyz;
+  vec3 viewRight = (modelViewMatrix * vec4(right.xyz, 1.0)).xyz;
+	vec3 viewCenter = (modelViewMatrix * vec4(center.xyz, 1.0)).xyz;
+
+  vec3 joinNormal = viewCenter;
+
+  vec3 legLeft = viewCenter - viewLeft;
+  vec3 legRight = viewRight - viewCenter;
+
+  if (edge > 0.5) {
+    joinBitangent = normalize(cross(joinNormal, legLeft));
+  }
+  else if (edge < -0.5) {
+    joinBitangent = normalize(cross(joinNormal, legRight));
+  }
+  else {
+    vec3 jb1 = normalize(cross(joinNormal, legLeft));
+    vec3 jb2 = normalize(cross(joinNormal, legRight));
+    float scale = min(2.0, tan(acos(dot(jb1, jb2)*.999) * .5) * .5);
+    joinBitangent = normalize(jb1 + jb2) * sqrt(1.0 + scale * scale);
+  }
+
+	vec4 glPosition = projectionMatrix * vec4(viewCenter.xyz + joinBitangent * offset * lineWidth, 1.0);
+  glPosition.z -= (zBias - position.y * dataResolution.y) * .0001 ;
+
+  gl_Position = glPosition;
+  vUV = uv;
+  vIndex = (position.x + mod(position.y, 2.0)) * dataResolution.x;
+}
+</script>
+
+<script type="x-shader/x-vertex" id="multiline-vertex-fourier">
+
+uniform sampler2D dataTexture;
+uniform vec2 dataResolution;
+
+uniform float lineWidth;
+uniform float zBias;
+uniform float zMove;
+uniform vec4 color;
+
+attribute vec2 line;
+uniform vec2 dataPointer;
+
+varying vec2 vUV;
+varying vec4 vColor;
+varying float vIndex;
+
+void main() {
+  vec2 uv = fract((vec2(position.x, -position.y) + dataPointer) * dataResolution);
+  vec3 left, right;
+  vec3 center = texture2D(dataTexture, uv).xyz;
+
+  float edge = line.x;
+  float offset = line.y;
+
+  vec3 joinBitangent;
+
+  if (edge > 0.5) {
+    right = center;
+  }
+  else {
+    right = texture2D(dataTexture, uv + vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  if (edge < -0.5) {
+    left = center;
+  }
+  else {
+    left = texture2D(dataTexture, uv - vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  float z = position.y * dataResolution.y * 16.6;
+  float fade = ((1.0 - z) * (1.0 - z) + (1.0 - z)) * .5;
+  vColor = vec4(sqrt(color.xyz * color.xyz * vec3(fade * fade * fade, fade * fade, fade)), color.w);
+
+  z *= zMove;
+
+  left.z += z;
+  center.z += z;
+  right.z += z;
+
+  vec3 viewLeft = (modelViewMatrix * vec4(left.xyz, 1.0)).xyz;
+  vec3 viewRight = (modelViewMatrix * vec4(right.xyz, 1.0)).xyz;
+	vec3 viewCenter = (modelViewMatrix * vec4(center.xyz, 1.0)).xyz;
+
+  vec3 joinNormal = viewCenter;
+
+  vec3 legLeft = viewCenter - viewLeft;
+  vec3 legRight = viewRight - viewCenter;
+
+  if (edge > 0.5) {
+    joinBitangent = normalize(cross(joinNormal, legLeft));
+  }
+  else if (edge < -0.5) {
+    joinBitangent = normalize(cross(joinNormal, legRight));
+  }
+  else {
+    vec3 jb1 = normalize(cross(joinNormal, legLeft));
+    vec3 jb2 = normalize(cross(joinNormal, legRight));
+    float scale = min(2.0, tan(acos(dot(jb1, jb2)) * .5) * .5);
+    joinBitangent = normalize(jb1 + jb2) * sqrt(1.0 + scale * scale);
+  }
+
+	vec4 glPosition = projectionMatrix * vec4(viewCenter.xyz + joinBitangent * offset * lineWidth, 1.0);
+  glPosition.z -= zBias * .0001 ;
+
+  gl_Position = glPosition;
+  vUV = uv;
+  vIndex = (position.x + mod(position.y, 2.0)) * dataResolution.x;
+}
+</script>
+
+<script type="x-shader/x-vertex" id="multiline-vertex-onset">
+
+uniform sampler2D dataTexture;
+uniform vec2 dataResolution;
+
+uniform float lineWidth;
+uniform float zBias;
+uniform vec4 color;
+
+attribute vec2 line;
+uniform vec2 dataPointer;
+
+varying vec2 vUV;
+varying vec4 vColor;
+varying float vIndex;
+
+void main() {
+  vec2 uv = fract((vec2(position.x, -position.y) + dataPointer) * dataResolution);
+  vec3 left, right;
+  vec3 center = texture2D(dataTexture, uv).xyz;
+
+  float edge = line.x;
+  float offset = line.y;
+
+  vec3 joinBitangent;
+
+  if (edge > 0.5) {
+    right = center;
+  }
+  else {
+    right = texture2D(dataTexture, uv + vec2(0.0, dataResolution.y)).xyz;
+  }
+
+  if (edge < -0.5) {
+    left = center;
+  }
+  else {
+    left = texture2D(dataTexture, uv - vec2(0.0, dataResolution.y)).xyz;
+  }
+
+  float z = position.y * dataResolution.y;
+  float fade = min(1.0, 10.0 - z * 10.0);
+  vColor = color * vec4(fade * fade * fade, fade * fade, fade, 1.0);
+
+  z *= 4.0;
+  z -= 2.0;
+
+  left.z += z - dataResolution.y * 4.0;
+  center.z += z;
+  right.z += z + dataResolution.y * 4.0;
+
+  vec3 viewLeft = (modelViewMatrix * vec4(left.xyz, 1.0)).xyz;
+  vec3 viewRight = (modelViewMatrix * vec4(right.xyz, 1.0)).xyz;
+	vec3 viewCenter = (modelViewMatrix * vec4(center.xyz, 1.0)).xyz;
+
+  vec3 joinNormal = viewCenter;
+
+  vec3 legLeft = viewCenter - viewLeft;
+  vec3 legRight = viewRight - viewCenter;
+
+  if (edge > 0.5) {
+    joinBitangent = normalize(cross(joinNormal, legLeft));
+  }
+  else if (edge < -0.5) {
+    joinBitangent = normalize(cross(joinNormal, legRight));
+  }
+  else {
+    vec3 jb1 = normalize(cross(joinNormal, legLeft));
+    vec3 jb2 = normalize(cross(joinNormal, legRight));
+    float scale = min(2.0, tan(acos(dot(jb1, jb2)) * .5) * .5);
+    joinBitangent = normalize(jb1 + jb2) * sqrt(1.0 + scale * scale);
+  }
+
+	vec4 glPosition = projectionMatrix * vec4(viewCenter.xyz + joinBitangent * offset * lineWidth, 1.0);
+  glPosition.z -= zBias * .0001 ;
+
+  gl_Position = glPosition;
+  vUV = uv;
+  vIndex = (position.y + mod(position.x, 2.0)) * dataResolution.y;
+}
+</script>
+
+<script type="x-shader/x-fragment" id="multiline-fragment-grid">
+
+varying vec2 vUV;
+varying vec4 vColor;
+varying float vIndex;
+
+uniform sampler2D dataTexture;
+uniform float lineClip;
+
+void main() {
+//	gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+//  vec3 sample = texture2D(dataTexture, vUV).xyz;
+  if (lineClip < vIndex) discard;
+	gl_FragColor = vColor;
+}
+
+</script>
+
+
+
+
+<script type="x-shader/x-vertex" id="surface-vertex-fourier">
+
+uniform sampler2D dataTexture;
+uniform vec2 dataResolution;
+
+uniform float xClip;
+uniform float yClip;
+uniform float zBias;
+
+attribute vec2 edge;
+uniform vec2 dataPointer;
+
+varying vec2 vUV;
+varying vec3 vColor;
+//varying vec3 vNormal;
+//varying vec3 vLightDirection;
+
+varying float vFade;
+
+void main() {
+  vec2 pos = position.xy;
+  pos = min(vec2(xClip, yClip) / dataResolution, pos);
+  vec2 uv = fract((vec2(pos.x, -pos.y) + dataPointer) * dataResolution);
+  vec3 left, right, up, down;
+  vec3 center = texture2D(dataTexture, uv).xyz;
+
+/*
+  if (edge.x > 0.5) {
+    right = center;
+  }
+  else {
+    right = texture2D(dataTexture, uv + vec2(dataResolution.x, 0.0)).xyz;
+  }
+
+  if (edge.x < -0.5) {
+    left = center;
+  }
+  else {
+    left = texture2D(dataTexture, uv - vec2(dataResolution.x, 0.0)).xyz;
+  }
+*/
+  if (edge.y > 0.5) {
+    up = center;
+  }
+  else {
+    up = texture2D(dataTexture, uv + vec2(0.0, dataResolution.y)).xyz;
+  }
+
+  if (edge.y < -0.5) {
+    down = center;
+  }
+  else {
+    down = texture2D(dataTexture, uv - vec2(0.0, dataResolution.y)).xyz;
+  }
+
+  float z = pos.y * dataResolution.y;
+  vFade = 1.0 - z;
+
+  z *= 4.0;
+
+//  left.z += z;
+  center.z += z;
+//  right.z += z;
+//  up.z += z - dataResolution.y;
+//  down.z += z + dataResolution.y;
+
+  float height = sqrt(center.y);
+  float shade = vFade * (1.0 + (down.y - up.y) * 10.0) * .35;
+  vColor = .2 * shade * normalize(vec3(height) * vec3(height * height, height, 1.0));
+
+//  vec3 viewLeft = (modelViewMatrix * vec4(left.xyz, 1.0)).xyz;
+//  vec3 viewRight = (modelViewMatrix * vec4(right.xyz, 1.0)).xyz;
+//  vec3 viewUp = (modelViewMatrix * vec4(up.xyz, 1.0)).xyz;
+//  vec3 viewDown = (modelViewMatrix * vec4(down.xyz, 1.0)).xyz;
+	vec3 viewCenter = (modelViewMatrix * vec4(center.xyz, 1.0)).xyz;
+
+//  vec3 tangent = normalize(viewRight - viewLeft);
+//  vec3 bitangent = normalize(viewUp - viewDown);
+//  vec3 normal = cross(tangent, bitangent);
+
+//  vec3 lightPosition = (viewMatrix * vec4(1.0, 2.0, -.8, 0.0)).xyz;
+//  vec3 lightDirection = normalize(lightPosition);
+
+	vec4 glPosition = projectionMatrix * vec4(viewCenter.xyz, 1.0);
+  glPosition.z -= zBias * .0001;
+
+  gl_Position = glPosition;
+//  vNormal = normal;
+//  vLightDirection = lightDirection;
+  vUV = uv;
+}
+</script>
+
+
+<script type="x-shader/x-fragment" id="surface-fragment-fourier">
+
+varying vec2 vUV;
+varying vec3 vColor;
+//varying vec3 vNormal;
+//varying vec3 vLightDirection;
+varying float vFade;
+
+void main() {
+//	gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+//  vec3 sample = texture2D(dataTexture, vUV).xyz;
+  float fade = vFade;
+//  float diffuse = max(0.0, dot(normalize(vNormal), vLightDirection) * .5 + .15);
+  float glow = max(0.0, fade * 20.0 - 19.0);
+	gl_FragColor = vec4(vec3(glow * glow) * .5 + sqrt(vColor.xyz), 1.0);
+}
+
+</script>

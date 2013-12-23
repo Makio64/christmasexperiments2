@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Snowman</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Play in the snow and create your own snowman" />
+  <meta property="og:title" content="Snowman" />
+  <!--<meta property="og:url" content="http://inear.se/plusminus/" />-->
+  <!--<link rel="image_src" href="http://inear.se/plusminus/assets/images/plusminus.jpg" />-->
+  <!--<meta property="og:image" content="http://inear.se/plusminus/assets/images/plusminus.jpg" />-->
+  <meta property="og:description" content="Play in the snow and create your own snowman" />
+  <link href='http://fonts.googleapis.com/css?family=Delius+Swash+Caps' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Sniglet:800' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div id="stage">
+    <canvas id="builderCanvas"></canvas>
+    <canvas id="c" class="trail-canvas" width="1024" height="1024"></canvas>
+  </div>
+  <div id="instructions" class="inactive">
+    <div class="snowman-icon"></div>
+    <div class="instruction">
+      <div id="instructionContent" class="bubble-content"></div>
+      <div class="bubble-arrow-mask"><div class="bubble-arrow"></div></div>
+    </div>
+  </div>
+  <div id="uiContainer"></div>
+  <div id="errorWrapper" class="inactive table">
+    <div id="error" class="table-cell"></div>
+  </div>
+  <div class="font-fooler">test</div>
+  <!--[if lt IE 10]>
+  <script src='vendors/history.min.js'></script>
+  <script src='vendors/es5-shim.js'></script>
+  <![endif]-->
+
+  <!--<script type="text/javascript" src="vendors/dat.gui.js"></script>-->
+
+  <script src="js/scripts.js"></script>
+
+  <!--<script src='app.js'></script>-->
+  <script>require('snowbuilder/app');</script>
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-46637020-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

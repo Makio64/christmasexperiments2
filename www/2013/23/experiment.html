@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>POP! crackART</title>
+        <meta name="description" content="">
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
+ 
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/main.css">
+        
+        <script type="text/javascript">
+            document.writeln('<script src=”//apps.mcdonalds.co.uk/uk/js/festiveutils.js?seed=' + Math.random().toString(36).substr(2,16) + '"><\/script>');
+        </script>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/TweenLite.min.js"></script>
+         <script src="js/TweenLite.min.js"></script>
+        <script src="js/EasePack.min.js"></script>
+        <script src="js/CSSPlugin.min.js"></script>
+        
+        <script src="js/pixi.dev.js"></script>
+        <script src="js/howler.min.js"></script>
+
+        
+        <script src="../../pixi.js/bin/pixi.dev.js"></script>
+        <script src="js/shooting_star.min.js"></script>
+        <style type="text/css">
+
+            body{
+                padding: 0;
+                margin: 0;
+                background: #000000;
+                overflow: hidden;
+            }
+
+            #infoBox{
+
+                width:100%;
+                //height:100px;
+                position:absolute;
+                left:50px;
+                bottom: 10px;
+                z-index: 10;
+                float:left;
+                display:none;
+            }
+
+            #infoBox img{
+
+                margin-right: 20px;
+            }
+
+        </style>
+    </head>
+  
+    <body>
+        
+        <div id="infoBox">
+
+            <a href="http://open.spotify.com/track/2TQZxFq8l1soq4X7LANHqW" ><img src ="img/trackLink.png" /></a>
+            <a href="http://www.pixijs.com/" ><img src ="img/pixiLink.png" /></a>
+            
+        </div>
+
+
+      <script type="text/javascript">
+
+     // return;
+        $(document).ready(onReady)
+        $(window).resize(onResize)
+
+
+        function onReady()
+        {
+            app = new CrackerAPP();
+            onResize();
+        }
+
+        function onResize()
+        {
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+
+            if(app)app.resize(w, h);
+
+        }
+
+      </script>
+  
+    </body>
+</html>

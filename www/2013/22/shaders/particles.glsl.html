@@ -1,0 +1,53 @@
+<script type="x-shader/x-vertex" id="particles-vertex-data">
+
+uniform sampler2D dataTexture;
+uniform vec2 dataResolution;
+uniform vec2 dataPointer;
+
+uniform float pointScale;
+uniform float pointSize;
+uniform float pointClip;
+uniform float zBias;
+
+attribute vec2 particle;
+
+varying vec2 vParticle;
+varying float vScreenSize;
+
+void main() {
+  vec2 pos = position.xy;
+  vec2 uv = fract((vec2(pos.x, -pos.y) + dataPointer) * dataResolution);
+
+  vec3 center = texture2D(dataTexture, uv).xyz;
+	vec3 viewCenter = (modelViewMatrix * vec4(center.xyz, 1.0)).xyz;
+
+  viewCenter.xy += particle * pointSize;
+  vScreenSize = abs(pointSize / viewCenter.z) * pointScale;
+
+	vec4 glPosition = projectionMatrix * vec4(viewCenter.xyz, 1.0);
+  glPosition.z -= zBias * .0001;
+
+  gl_Position = glPosition;
+
+  vParticle = particle;
+}
+</script>
+
+<script type="x-shader/x-fragment" id="particles-fragment">
+
+uniform float pointSize;
+uniform vec4 color;
+
+varying vec2 vParticle;
+varying float vScreenSize;
+
+void main() {
+  float c = dot(vParticle, vParticle);
+  if (c > 1.0) {
+    discard;
+  }
+  float edgeAlpha = min(1.0, vScreenSize * (1.0 - c));
+  gl_FragColor = vec4(color.xyz, color.w * edgeAlpha);
+}
+
+</script>

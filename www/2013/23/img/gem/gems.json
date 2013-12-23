@@ -1,0 +1,132 @@
+{"frames": {
+
+"gem1.png":
+{
+	"frame": {"x":327,"y":229,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+},
+"gem10.png":
+{
+	"frame": {"x":0,"y":240,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+},
+"gem11.png":
+{
+	"frame": {"x":0,"y":120,"w":124,"h":118},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":118},
+	"sourceSize": {"w":124,"h":118}
+},
+"gem12.png":
+{
+	"frame": {"x":378,"y":0,"w":124,"h":118},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":118},
+	"sourceSize": {"w":124,"h":118}
+},
+"gem13.png":
+{
+	"frame": {"x":252,"y":0,"w":124,"h":118},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":118},
+	"sourceSize": {"w":124,"h":118}
+},
+"gem14.png":
+{
+	"frame": {"x":126,"y":0,"w":124,"h":118},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":118},
+	"sourceSize": {"w":124,"h":118}
+},
+"gem15.png":
+{
+	"frame": {"x":0,"y":0,"w":124,"h":118},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":118},
+	"sourceSize": {"w":124,"h":118}
+},
+"gem2.png":
+{
+	"frame": {"x":218,"y":338,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+},
+"gem3.png":
+{
+	"frame": {"x":218,"y":229,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+},
+"gem4.png":
+{
+	"frame": {"x":344,"y":120,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+},
+"gem5.png":
+{
+	"frame": {"x":235,"y":120,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+},
+"gem6.png":
+{
+	"frame": {"x":109,"y":349,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+},
+"gem7.png":
+{
+	"frame": {"x":126,"y":120,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+},
+"gem8.png":
+{
+	"frame": {"x":109,"y":240,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+},
+"gem9.png":
+{
+	"frame": {"x":0,"y":349,"w":107,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":107},
+	"sourceSize": {"w":107,"h":107}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "gems.png",
+	"format": "RGBA8888",
+	"size": {"w":502,"h":456},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0ad59131102c54d206b71525e09ccb78$"
+}
+}

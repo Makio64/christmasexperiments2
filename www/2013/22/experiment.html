@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dark Sunrise</title>
+  
+  <link rel="stylesheet" href="frontend.css" type="text/css" media="screen" charset="utf-8">
+
+  <script type="text/javascript" charset="utf-8" src="vendor/domready.js"></script>
+  <script type="text/javascript" charset="utf-8" src="vendor/lodash.js"></script>
+  <script type="text/javascript" charset="utf-8" src="vendor/microajax.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/common.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/preload.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/bootstrap.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    DomReady.ready(function() {
+      new Acko.Bootstrap(
+        ['DomReady', 'THREE', 'Done'],
+        [
+          'assets/scroller.png',
+          'vendor/ThreeRTT.glsl.html',
+          'shaders/particles.glsl.html',
+          'shaders/line.glsl.html',
+          'shaders/surface.glsl.html',
+          'shaders/scope.glsl.html',
+          'shaders/advect.glsl.html',
+          'shaders/background.glsl.html',
+          'shaders/compose.glsl.html',
+          ['assets/dark-sunrise.mp3', 'music'],
+        ]);
+    });
+  </script>
+
+</head>
+<body> 
+
+  <section id="front">
+    <div class="box">
+      <h1>Dark Sunrise</h1>
+
+      <div id="loading">
+        <div class="spin">★</div>
+        <p>Loading...</p>
+      </div>
+
+      <div id="crunch">
+        <div class="wait">√∞</div>
+        <p>Crunching Numbers...</p>
+      </div>
+
+      <div id="ready">
+        <p><button id="start">►</button></p>
+        <div id="debug"></div>
+        <form>
+          <label for="fullscreen"><input type="checkbox" id="fullscreen" checked> Fullscreen</label><br>
+          <label for="resolution">Resolution</label> <select id="resolution">
+            <option value="540">540p</option>
+            <option value="720">720p</option>
+            <option value="900">900p</option>
+            <option value="1080">1080p</option>
+            <option value="0">Native</option>
+          </select>
+        </form>
+      </div>
+
+      <div id="firefox">
+        <p>Note: If the audio skips, try Chrome instead of Firefox.</p>
+      </div>
+
+      <div id="browser">
+        <p>This demo requires WebGL and Web Audio support.<br>Please use <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a> or <a href="http://getfirefox.com">Mozilla Firefox</a> to view it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="back" class="box">
+      <p>Demo by <a href="http://acko.net/">Steven Wittens</a>. &nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:demo.replay();" class="again">Play Again</a></p>
+      <p>Music: <a href="https://soundcloud.com/omunit/om-unit-dark-sunrise">Om Unit – Dark Sunrise (Kromestars Lean'in Mix)</a></p>
+      <p><em>Tip: Press Q to unlock the camera. Use WASD / mouse to move/rotate.</em></p>
+  </section>
+
+  <div id="holder"></div>
+
+  <script type="text/javascript" charset="utf-8" src="vendor/microevent.js"></script>
+  <script type="text/javascript" charset="utf-8" src="vendor/three.js"></script>
+  <script type="text/javascript" charset="utf-8" src="vendor/ThreeRTT-core.js"></script>
+  <script type="text/javascript" charset="utf-8" src="vendor/ThreeAudio.js"></script>
+  <script type="text/javascript" charset="utf-8" src="vendor/controls.js"></script>
+  <script type="text/javascript" charset="utf-8" src="vendor/stats.js"></script>
+  <script type="text/javascript" charset="utf-8" src="vendor/fxaa.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/palette.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/time.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/renderer.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/demo.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/beat.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/script.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/track.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/geo/buffer.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/geo/texture.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/geo/particles.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/geo/particlesgeometry.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/geo/line.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/geo/linegeometry.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/geo/surface.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/geo/surfacegeometry.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/fx/effect.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/fx/camera.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/fx/audio.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/fx/scope.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/fx/advect.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/fx/director.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/fx/background.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/fx/compose.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/bench.js"></script>
+  
+</body>
+</html>

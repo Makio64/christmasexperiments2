@@ -1,0 +1,299 @@
+<script type="x-shader/x-fragment" id="advect-fragment">
+uniform vec2 sampleStep;
+
+uniform float fadeOut;
+uniform float field;
+uniform float time;
+
+uniform sampler2D texture;
+varying vec2 vUV;
+
+float randf(vec2 xy) {
+  return fract(sin(dot(xy, vec2(3.1380, 7.41)) * 13.414) * 1414.32);
+}
+
+const float c = .9999875;
+const float s = .005;
+const mat2 roto1 = mat2(c, s, -s, c);
+const mat2 roto2 = mat2(c, -s, s, c);
+
+const float c2 = .9998;
+const float s2 = .02;
+const mat2 roto3 = mat2(c2, -s2, s2, c2);
+
+vec2 rotozoom(vec2 xy) {
+  float r = sqrt(dot(xy, xy));
+  xy *= (7.0 * r + sin(r)) * .125 / r;
+  xy *= roto1;
+
+  return xy;
+}
+
+vec2 planeproject(vec2 xy) {
+  float f = .0625 * (15.0 + 1.0 / (-xy.y + 1.5));
+  xy *= f;
+  xy *= roto2;
+
+  return xy;
+}
+
+vec2 ball(vec2 xy) {
+  float r = sqrt(dot(xy, xy));
+  xy *= (3.0 + 1.75 * tan(r * .5) / r) * .25;
+  xy *= roto3;
+
+  return xy;
+}
+
+vec2 swirl(vec2 xy) {
+  vec2 a = xy * 2.25 * 6.28;
+  xy += vec2(sin(a.y), sin(a.x)) * .01;
+
+  vec2 b = xy * 4.5 * 6.28;
+  xy += vec2(-sin(b.y), sin(b.x)) * .01;
+
+  vec2 c = xy * 9.0 * 6.28;
+  xy += vec2(-sin(c.y), -sin(c.x)) * .01;
+  return xy;
+}
+
+vec2 warp(vec2 xy, float q) {
+
+  float r = sqrt(dot(xy, xy));
+  float th = atan(xy.y, xy.x) * 6.0;
+  float f = .99 * (r + sin(r * r * q * .5 + time + sin(th) * 2.0) * .02) / r;
+
+  return xy * f;
+}
+
+vec2 tiles(vec2 xy) {
+
+  vec2 grid = floor(xy * 9.0);
+  float index = mod(grid.x + grid.y + (1.0 + grid.x) * grid.x * grid.y * 3.0, 4.0);
+
+  float d = .01;
+  if (index < .5) {
+    xy.x += d;
+  }
+  else if (index < 1.5) {
+    xy.x -= d;
+  }
+  else if (index < 2.5) {
+    xy.y += d;
+  }
+  else {
+    xy.y -= d;
+  }
+
+  return xy;
+}
+
+vec2 flower(vec2 xy) {
+  vec2 orig = xy;
+  float r = sqrt(dot(xy, xy));
+  float th = atan(xy.y, xy.x);
+
+  float th2 = th + sin(r * 64.0);
+  float r2 = r + sin(th * 64.0);
+
+  return mix(orig, vec2(cos(th2) * r2, sin(th2) * r2), .01);
+}
+
+vec2 rotate(vec2 xy, vec2 ref, float a) {
+  vec2 diff = xy - ref;
+  float c = cos(a);
+  float s = sin(a);
+  return ref + diff * mat2(c, -s, s, c);
+}
+
+void main() {
+  vec2 xy = (vUV * 2.0 - 1.0) * vec2(16.0/9.0, 1.0);
+  vec2 pos = xy;
+
+  if (field > 0.0) {
+
+    if (field < 1.0) {
+      xy = mix(xy, rotozoom(pos), clamp(field, 0.0, 1.0));
+    }
+    else if (field < 2.0) {
+      xy = rotozoom(pos);
+      xy = mix(xy, planeproject(pos), clamp(field - 1.0, 0.0, 1.0));
+    }
+    else if (field < 3.0) {
+      xy = planeproject(pos);
+      xy = mix(xy, ball(pos), clamp(field - 2.0, 0.0, 1.0));
+    }
+    else if (field < 4.0) {
+      xy = ball(pos);
+      xy = mix(xy, rotate(xy, pos, time), clamp(field - 3.0, 0.0, 1.0));
+    }
+    else if (field < 5.0) {
+      xy = ball(pos);
+      xy = rotate(xy, pos, time);
+      xy = mix(xy, rotate(swirl(pos), pos, time), clamp(field - 4.0, 0.0, 1.0) * .5);
+    }
+    else if (field < 6.0) {
+      xy = ball(pos);
+      xy = rotate(xy, pos, time);
+      xy = mix(xy, rotate(swirl(pos), pos, time), .5);
+      xy = mix(xy, mix(rotate(warp(pos * 1.131, 32.0) / 1.131, pos, -time * 1.711), rotate(warp(pos, 27.0), pos, time), .5), clamp(field - 5.0, 0.0, 1.0));
+    }
+    else if (field < 7.0) {
+      xy = mix(rotate(warp(pos * 1.131, 32.0) / 1.131, pos, -time * 1.711), rotate(warp(pos, 27.0), pos, time), .5);
+      xy = mix(xy, rotate(tiles(pos), pos, -time), clamp(field - 6.0, 0.0, 1.0));
+    }
+    else {//if (field < 8.0) {
+      xy = rotate(tiles(pos), pos, -time) * .995;
+      xy = mix(xy, flower(pos), clamp(field - 7.0, 0.0, 1.0));
+    }
+
+    xy += sampleStep * .2;
+  }
+
+  xy *= vec2(9.0/16.0, 1.0);
+
+  vec2 uv = fract(xy * .5 + .5);
+  vec4 sample = texture2D(texture, uv);
+
+  gl_FragColor = vec4(sample.xyz - vec3(fadeOut), 1.0);
+
+//  vec2 pixel = (vUV / sampleStep);
+//  gl_FragColor = vec4(vec3(fract((pixel.x + pixel.y)*.5) - .5) * 2.0, 1.0);
+}
+</script>
+
+<script type="application/x-glsl" id="advect-fragment-compose">
+uniform sampler2D texture;
+varying vec2 vUV;
+
+uniform float palette;
+
+vec3 neonblue(vec3 rgb) {
+  float c = rgb.x;
+  float c2 = c * c;
+  return vec3(c2, c2, c) * vec3(c, (1.0 - c) * .5 + 1.0, 1.0);
+}
+
+vec3 ruby(vec3 rgb) {
+  float c = rgb.x;
+  float c2 = c * c * 2.0;
+  return .65 * vec3(c, c2, c2) * vec3((1.0 - c) * .5 + 1.0, c, 1.0);
+}
+
+vec3 purplehaze(vec3 rgb) {
+  float c = rgb.x * .9;
+  float c2 = c * c * 2.0;
+  return .7 * vec3( max(0.0, c2 * (1.0 - c2)) + c, c2, c);
+}
+
+vec3 acid(vec3 rgb) {
+  float c = rgb.x;
+  float c2 = c * c * 2.0;
+  float ic = max(0.0, c * (1.0 - c2));
+  return .65 * vec3(c2 * c2, ic + c2 * c, 0.0);
+}
+
+vec3 royalblue(vec3 rgb) {
+  float c = rgb.x;
+  float c2 = sin(c * 8.0);
+  rgb = vec3(c2 * abs(c2) * .2, c2 * .3, c2);
+  return rgb;
+}
+
+vec3 rainbow(vec3 rgb) {
+  float c = rgb.x * 1.5;
+  float c2 = c * c * 2.0;
+  float ic = max(0.0, c2 * (1.0 - c2*c));
+  float ic2 = max(0.0, c * (1.0 - c2));
+  float ic3 = max(0.0, c * (1.0 - c));
+  ic3 -= ic2 * .5;
+  return 2.0 * vec3(ic2, ic, ic3);
+}
+
+vec3 cyber(vec3 rgb) {
+  float c = rgb.x;
+  float c2 = c * c;
+  return vec3(c2 * c, c2 * 4.0, c);
+}
+
+vec3 punk(vec3 rgb) {
+  float c = rgb.x;
+  float c2 = c * c;
+  return vec3(c2 * 4.0, c2 * c, c - c2 * 1.5);
+}
+
+vec3 edged(vec3 rgb) {
+  float c = rgb.x * 32.0;
+  float c2 = clamp(c - 23.5, 0.0, 1.0);
+  float c3 = clamp(c - 7.5, 0.0, 1.0);
+  float c4 = clamp(c - 3.5, 0.0, 1.0);
+  return vec3(c2, mix(c2, c3, .25), mix(c3, c4, .5));
+}
+
+void main() {
+  vec3 rgb = texture2D(texture, vUV).xyz;
+  vec3 orig = rgb;
+
+  if (palette > 0.0) {
+
+    if (palette < 1.0) {
+      rgb = mix(rgb, neonblue(orig), clamp(palette, 0.0, 1.0));
+    }
+    else if (palette < 2.0) {
+      rgb = neonblue(orig);
+      rgb = mix(rgb, ruby(orig), clamp(palette - 1.0, 0.0, 1.0));
+    }
+    else if (palette < 3.0) {
+      rgb = ruby(orig);
+      rgb = mix(rgb, acid(orig), clamp(palette - 2.0, 0.0, 1.0));
+    }
+    else if (palette < 4.0) {
+      rgb = acid(orig);
+      rgb = mix(rgb, purplehaze(orig), clamp(palette - 3.0, 0.0, 1.0));
+    }
+    else if (palette < 5.0) {
+      rgb = purplehaze(orig);
+      rgb = mix(rgb, royalblue(orig), clamp(palette - 4.0, 0.0, 1.0));
+    }
+    else if (palette < 6.0) {
+      rgb = royalblue(orig);
+      rgb = mix(rgb, rainbow(orig), clamp(palette - 5.0, 0.0, 1.0));
+    }
+    else if (palette < 7.0) {
+      rgb = rainbow(orig);
+      rgb = mix(rgb, cyber(orig), clamp(palette - 6.0, 0.0, 1.0));
+    }
+    else if (palette < 8.0) {
+      rgb = cyber(orig);
+      rgb = mix(rgb, punk(orig), clamp(palette - 7.0, 0.0, 1.0));
+    }
+    else {
+      rgb = punk(orig);
+      rgb = mix(rgb, edged(orig), clamp(palette - 8.0, 0.0, 1.0));
+    }
+
+
+  }
+
+  gl_FragColor = vec4(rgb, 1.0);
+}
+</script>
+
+<script type="x-shader/x-fragment" id="particles-fragment-beat">
+
+uniform float pointSize;
+uniform vec4 color;
+
+varying vec2 vParticle;
+varying float vScreenSize;
+
+void main() {
+  float c = dot(vParticle, vParticle);
+  if (c > 1.0) {
+    discard;
+  }
+  float edgeAlpha = min(1.0, vScreenSize * (1.0 - c)) * sqrt(1.0 - c);
+  gl_FragColor = vec4(color.xyz, color.w * edgeAlpha);
+}
+
+</script>
